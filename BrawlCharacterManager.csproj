@@ -56,6 +56,12 @@
     <Compile Include="CostumeManager.Designer.cs">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSSPortraitViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSSPortraitViewer.Designer.cs">
+      <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CostumeManager.resx">
       <DependentUpon>CostumeManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSSPortraitViewer.resx">
+      <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelManager.resx">
       <DependentUpon>ModelManager.cs</DependentUpon>

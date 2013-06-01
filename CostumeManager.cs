@@ -48,12 +48,12 @@ namespace BrawlCharacterManager {
 			listBox2.Items.Clear();
 			int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
 			for (int i = 0; i < upperBound; i++) {
-				string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
+				string pathNoExt = "fighter/" + charname + "/fit" + charname + i.ToString("D2");
 				listBox2.Items.Add(pathNoExt + ".pac");
 				listBox2.Items.Add(pathNoExt + ".pcs");
 				if (charname.ToLower() == "kirby") {
 					foreach (string hatchar in Constants.KirbyHats) {
-						listBox2.Items.Add("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
+						listBox2.Items.Add("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
 					}
 				}
 			}
