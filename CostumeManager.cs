@@ -15,12 +15,26 @@ namespace BrawlCharacterManager {
 			InitializeComponent();
 			modelManager1.LoadFileDelayed(path);
 
-			var regex = new System.Text.RegularExpressions.Regex(@"[01][0-9]\.(pac|pcs)");
+			/*var regex = new System.Text.RegularExpressions.Regex(@"[01][0-9]\.(pac|pcs)");
 			DirectoryInfo fighter = new DirectoryInfo("C:\\Brawl\\fighter");
 			foreach (DirectoryInfo chardir in fighter.EnumerateDirectories()) {
 				foreach (FileInfo file in chardir.EnumerateFiles()) {
 					if (regex.Match(file.Name.ToLower()).Success) {
 						listBox1.Items.Add(file);
+					}
+				}
+			}*/
+
+			foreach (string charname in Constants.CharacterNames) {
+				int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
+				for (int i = 0; i < upperBound; i++) {
+					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
+					listBox1.Items.Add(pathNoExt + ".pac");
+					listBox1.Items.Add(pathNoExt + ".pcs");
+					if (charname.ToLower() == "kirby") {
+						foreach (string hatchar in Constants.KirbyHats) {
+							listBox1.Items.Add("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
+						}
 					}
 				}
 			}

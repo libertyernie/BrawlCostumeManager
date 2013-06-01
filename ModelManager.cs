@@ -38,6 +38,8 @@ namespace BrawlCharacterManager {
 
 		public void LoadFile(string path) {
 			comboBox1.Items.Clear();
+			modelPanel1.ClearAll();
+			modelPanel1.Invalidate();
 			this.Text = new FileInfo(path).Name;
 
 			ResourceNode root = NodeFactory.FromFile(null, path);
@@ -54,7 +56,7 @@ namespace BrawlCharacterManager {
 			model._renderVertices = false;
 			model._renderBox = false;
 
-			modelPanel1.ClearAll();
+//			modelPanel1.ClearAll();
 			modelPanel1.AddTarget((IRenderedObject)model);
 
 			Vector3 min, max;
