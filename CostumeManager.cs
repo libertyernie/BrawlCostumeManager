@@ -33,6 +33,7 @@ namespace BrawlCharacterManager {
 		}
 
 		private void listBox2_SelectedIndexChanged(object sender, EventArgs e) {
+			cssPortraitViewer1.UpdateImage(listBox1.SelectedIndex, listBox2.SelectedIndex / 2);
 			object selected = listBox2.SelectedItem;
 			string path;
 			if (selected is FileInfo) {
