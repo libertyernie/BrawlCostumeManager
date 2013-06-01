@@ -34,24 +34,29 @@ namespace BrawlCharacterManager {
 		}
 
 		public void LoadFile(string path) {
+			comboBox1.Items.Clear();
+			this.Text = new FileInfo(path).Name;
+
 			ResourceNode root = NodeFactory.FromFile(null, path);
-			ResourceNode modelnode = findFirstMDL0(root);
-			if (modelnode is MDL0Node) {
-				this.Text = new FileInfo(path).Name;
-				MDL0Node model = (MDL0Node)modelnode;
-
-				model._renderBones = false;
-				model._renderPolygons = CheckState.Checked;
-				model._renderVertices = false;
-				model._renderBox = false;
-
-				modelPanel1.ClearAll();
-				modelPanel1.AddTarget((IRenderedObject)model);
-
-				Vector3 min, max;
-				((IRenderedObject)model).GetBox(out min, out max);
-				modelPanel1.SetCamWithBox(min, max);
+			List<MDL0Node> models = findAllMDL0s(root);
+			if (models.Count > 0) {
+				comboBox1.Items.AddRange(models.ToArray());
+				comboBox1.SelectedIndex = 0;
 			}
+		}
+
+		public void LoadModel(MDL0Node model) {
+			model._renderBones = false;
+			model._renderPolygons = CheckState.Checked;
+			model._renderVertices = false;
+			model._renderBox = false;
+
+			modelPanel1.ClearAll();
+			modelPanel1.AddTarget((IRenderedObject)model);
+
+			Vector3 min, max;
+			((IRenderedObject)model).GetBox(out min, out max);
+			modelPanel1.SetCamWithBox(min, max);
 		}
 
 		private List<MDL0Node> findAllMDL0s(ResourceNode root) {
@@ -77,6 +82,11 @@ namespace BrawlCharacterManager {
 				}
 			}
 			return null;
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			object item = comboBox1.SelectedItem;
+			if (item is MDL0Node) LoadModel(item as MDL0Node);
 		}
 	}
 }
