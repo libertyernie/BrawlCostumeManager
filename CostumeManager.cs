@@ -25,27 +25,15 @@ namespace BrawlCharacterManager {
 				}
 			}*/
 
-			foreach (string charname in Constants.CharacterNames) {
-				int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
-				for (int i = 0; i < upperBound; i++) {
-					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
-					listBox1.Items.Add(pathNoExt + ".pac");
-					listBox1.Items.Add(pathNoExt + ".pcs");
-					if (charname.ToLower() == "kirby") {
-						foreach (string hatchar in Constants.KirbyHats) {
-							listBox1.Items.Add("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
-						}
-					}
-				}
-			}
+			listBox1.Items.AddRange(Constants.CharacterNames);
 		}
 
 		public void LoadFile(string path) {
 			modelManager1.LoadFile(path);
 		}
 
-		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
-			object selected = listBox1.SelectedItem;
+		private void listBox2_SelectedIndexChanged(object sender, EventArgs e) {
+			object selected = listBox2.SelectedItem;
 			string path;
 			if (selected is FileInfo) {
 				path = (selected as FileInfo).FullName;
@@ -53,6 +41,22 @@ namespace BrawlCharacterManager {
 				path = selected.ToString();
 			}
 			LoadFile(path);
+		}
+
+		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			string charname = listBox1.SelectedItem.ToString();
+			listBox2.Items.Clear();
+			int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
+			for (int i = 0; i < upperBound; i++) {
+				string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
+				listBox2.Items.Add(pathNoExt + ".pac");
+				listBox2.Items.Add(pathNoExt + ".pcs");
+				if (charname.ToLower() == "kirby") {
+					foreach (string hatchar in Constants.KirbyHats) {
+						listBox2.Items.Add("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
+					}
+				}
+			}
 		}
 	}
 }

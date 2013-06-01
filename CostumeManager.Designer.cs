@@ -24,12 +24,18 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.modelManager1 = new BrawlCharacterManager.ModelManager();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.listBox2 = new System.Windows.Forms.ListBox();
+			this.modelManager1 = new BrawlCharacterManager.ModelManager();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listBox1
@@ -38,17 +44,9 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(97, 273);
+			this.listBox1.Size = new System.Drawing.Size(97, 136);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(191, 273);
-			this.modelManager1.TabIndex = 1;
 			// 
 			// splitContainer1
 			// 
@@ -58,7 +56,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+			this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -66,6 +64,42 @@
 			this.splitContainer1.Size = new System.Drawing.Size(292, 273);
 			this.splitContainer1.SplitterDistance = 97;
 			this.splitContainer1.TabIndex = 2;
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer2.Name = "splitContainer2";
+			this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.listBox1);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
+			this.splitContainer2.Size = new System.Drawing.Size(97, 273);
+			this.splitContainer2.SplitterDistance = 136;
+			this.splitContainer2.TabIndex = 1;
+			// 
+			// listBox2
+			// 
+			this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listBox2.FormattingEnabled = true;
+			this.listBox2.Location = new System.Drawing.Point(0, 0);
+			this.listBox2.Name = "listBox2";
+			this.listBox2.Size = new System.Drawing.Size(97, 133);
+			this.listBox2.TabIndex = 0;
+			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(191, 273);
+			this.modelManager1.TabIndex = 1;
 			// 
 			// CostumeManager
 			// 
@@ -79,6 +113,10 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -88,5 +126,7 @@
 		private System.Windows.Forms.ListBox listBox1;
 		private ModelManager modelManager1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.ListBox listBox2;
 	}
 }
