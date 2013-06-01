@@ -16,7 +16,7 @@ namespace BrawlCharacterManager {
 			}
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1(path));
+			Application.Run(new ModelManager(path));
 		}
 	}
 }

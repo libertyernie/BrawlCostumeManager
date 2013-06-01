@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 namespace BrawlCharacterManager {
-	partial class Form1 {
+	partial class ModelManager {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>

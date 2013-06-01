@@ -11,10 +11,10 @@ using BrawlLib.OpenGL;
 using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlCharacterManager {
-	public partial class Form1 : Form {
+	public partial class ModelManager : Form {
 		private string _initialPath;
 
-		public Form1(string initialPath) {
+		public ModelManager(string initialPath) {
 			this._initialPath = initialPath;
 			if (!String.IsNullOrWhiteSpace(initialPath)) {
 				InitializeComponent();
