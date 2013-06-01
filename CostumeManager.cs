@@ -15,17 +15,9 @@ namespace BrawlCharacterManager {
 			InitializeComponent();
 			modelManager1.LoadFileDelayed(path);
 
-			/*var regex = new System.Text.RegularExpressions.Regex(@"[01][0-9]\.(pac|pcs)");
-			DirectoryInfo fighter = new DirectoryInfo("C:\\Brawl\\fighter");
-			foreach (DirectoryInfo chardir in fighter.EnumerateDirectories()) {
-				foreach (FileInfo file in chardir.EnumerateFiles()) {
-					if (regex.Match(file.Name.ToLower()).Success) {
-						listBox1.Items.Add(file);
-					}
-				}
-			}*/
-
-			listBox1.Items.AddRange(Constants.CharacterNames);
+			foreach (string charname in Constants.CharactersByCSSOrder) {
+				if (charname != null) listBox1.Items.Add(charname);
+			}
 		}
 
 		public void LoadFile(string path) {
@@ -33,7 +25,8 @@ namespace BrawlCharacterManager {
 		}
 
 		private void listBox2_SelectedIndexChanged(object sender, EventArgs e) {
-			cssPortraitViewer1.UpdateImage(listBox1.SelectedIndex, listBox2.SelectedIndex / 2);
+			int charnum = Array.IndexOf(Constants.CharactersByCSSOrder, listBox1.SelectedItem);
+			cssPortraitViewer1.UpdateImage(charnum, listBox2.SelectedIndex / 2);
 			object selected = listBox2.SelectedItem;
 			string path;
 			if (selected is FileInfo) {
@@ -58,6 +51,7 @@ namespace BrawlCharacterManager {
 					}
 				}
 			}
+			listBox2.SelectedIndex = 0;
 		}
 	}
 }
