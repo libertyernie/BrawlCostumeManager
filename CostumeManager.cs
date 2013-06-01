@@ -29,5 +29,16 @@ namespace BrawlCharacterManager {
 		public void LoadFile(string path) {
 			modelManager1.LoadFile(path);
 		}
+
+		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			object selected = listBox1.SelectedItem;
+			string path;
+			if (selected is FileInfo) {
+				path = (selected as FileInfo).FullName;
+			} else {
+				path = selected.ToString();
+			}
+			LoadFile(path);
+		}
 	}
 }

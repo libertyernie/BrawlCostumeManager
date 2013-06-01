@@ -14,13 +14,13 @@ namespace BrawlCharacterManager {
 	public partial class ModelManager : UserControl {
 		private string _delayedPath;
 
-		public ModelManager()  {
+		public ModelManager() {
+			InitializeComponent();
 		}
 
 		public void LoadFileDelayed(string delayedPath) {
 			this._delayedPath = delayedPath;
 			if (!String.IsNullOrWhiteSpace(_delayedPath)) {
-				InitializeComponent();
 				var tmp_timer = new System.Timers.Timer(1000);
 				tmp_timer.AutoReset = false;
 				tmp_timer.Elapsed += new System.Timers.ElapsedEventHandler(initializeModelPanel);
