@@ -49,14 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelManager.cs">
+    <Compile Include="CostumeManager.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CostumeManager.Designer.cs">
+      <DependentUpon>CostumeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelManager.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ModelManager.Designer.cs">
       <DependentUpon>ModelManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CostumeManager.resx">
+      <DependentUpon>CostumeManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelManager.resx">
       <DependentUpon>ModelManager.cs</DependentUpon>
     </EmbeddedResource>

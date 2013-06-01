@@ -11,12 +11,15 @@ using BrawlLib.OpenGL;
 using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlCharacterManager {
-	public partial class ModelManager : Form {
-		private string _initialPath;
+	public partial class ModelManager : UserControl {
+		private string _delayedPath;
 
-		public ModelManager(string initialPath) {
-			this._initialPath = initialPath;
-			if (!String.IsNullOrWhiteSpace(initialPath)) {
+		public ModelManager()  {
+		}
+
+		public void LoadFileDelayed(string delayedPath) {
+			this._delayedPath = delayedPath;
+			if (!String.IsNullOrWhiteSpace(_delayedPath)) {
 				InitializeComponent();
 				var tmp_timer = new System.Timers.Timer(1000);
 				tmp_timer.AutoReset = false;
@@ -26,7 +29,7 @@ namespace BrawlCharacterManager {
 		}
 
 		private void initializeModelPanel(object o, System.Timers.ElapsedEventArgs target) {
-			LoadFile(_initialPath);
+			LoadFile(_delayedPath);
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
