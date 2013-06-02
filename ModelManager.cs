@@ -58,11 +58,15 @@ namespace BrawlCharacterManager {
 			modelPanel1.Invalidate();
 			this.Text = new FileInfo(path).Name;
 
-			ResourceNode root = NodeFactory.FromFile(null, path);
-			List<MDL0Node> models = findAllMDL0s(root);
-			if (models.Count > 0) {
-				comboBox1.Items.AddRange(models.ToArray());
-				comboBox1.SelectedIndex = 0;
+			try {
+				ResourceNode root = NodeFactory.FromFile(null, path);
+				List<MDL0Node> models = findAllMDL0s(root);
+				if (models.Count > 0) {
+					comboBox1.Items.AddRange(models.ToArray());
+					comboBox1.SelectedIndex = 0;
+				}
+			} catch (IOException) {
+
 			}
 		}
 
@@ -161,7 +165,6 @@ namespace BrawlCharacterManager {
 
 		public static Dictionary<string, int[]> PolygonsToDisable = new Dictionary<string, int[]> {
 			{"mario", new int[] {4,5,6,7,12,13}}, // open eyelids
-//			{"samus", new int[] {19,20}},
 			{"luigi", new int[] {5,8,9,10,11,12,17}}, // open eyelids
 			{"ness", new int[] {1,2,5,6}}, // remove wild "intro" hair and FS eyes
 			{"zelda", new int[] {19,21,25}}, // open eyelids
