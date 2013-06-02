@@ -39,16 +39,16 @@ namespace BrawlCharacterManager {
 			panel1.BackgroundImage = null;
 
 			if (common5 != null) {
-				label1.Text = "common5.pac/sc_selcharacter_en/";
+				label1.Text = "common5: ";
 			} else if (sc_selcharacter != null) {
-				label1.Text = "sc_selcharacter.pac/";
+				label1.Text = "sc_selcharacter.pac: ";
 			} else {
 				return;
 			}
 
 			string str1 = "char_bust_tex_lz77/MiscData[" + charNum + "]";
 			string str2 = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			label1.Text += str1 + "/" + str2;
+			label1.Text += str2;
 			ResourceNode get_node = sc_selcharacter.FindChild(str1 + "/" + str2, false);
 			if (get_node is TEX0Node) {
 				tex0 = (TEX0Node)get_node;
