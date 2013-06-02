@@ -53,7 +53,7 @@ namespace BrawlCharacterManager {
 			for (int i = 0; i < bres_array.Length; i++) {
 				if (bres_array[i] != null && bres_array[i].IsDirty) {
 					bres_array[i].Rebuild();
-					bres_array[i].Export("menu/common/char_bust_tex/out_MenSelchrFaceB" + i.ToString("D2") + "0.brres");
+					bres_array[i].Export("menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
 				}
 			}
 		}
