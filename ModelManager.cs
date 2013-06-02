@@ -181,7 +181,7 @@ namespace BrawlCharacterManager {
 			"PeachTexEyeHigh", "PeachTexEyeWhite", "PeachTexEyeYellow", // remove black eyes
 			"ZeldaEyeHigh", // remove black eyes
 			"IceclimberTexCYellow.00", // remove Final Smash eyes
-			"FitPikminRef", // remove helmet
+			"FitPikminRef", "FitPikminRef05", // remove helmet
 			"FitLucas_EyeYellow.00",
 			"FitPurin00EyeYellow.00",
 //			"FitToonLink_EyeWhite.0", "FitToonLink_EyeYellow", // remove FS eyes (and eye whites, so you can see the pupils)
