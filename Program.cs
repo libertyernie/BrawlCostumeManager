@@ -9,14 +9,10 @@ namespace BrawlCharacterManager {
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main(string[] args) {
-			string path = null;
-			if (args.Count() > 0) {
-				path = args[0];
-			}
+		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new CostumeManager(path));
+			Application.Run(new CostumeManager());
 		}
 	}
 }

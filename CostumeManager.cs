@@ -11,10 +11,12 @@ using System.Windows.Forms;
 
 namespace BrawlCharacterManager {
 	public partial class CostumeManager : Form {
-		public CostumeManager(string path) {
+		public CostumeManager() {
 			InitializeComponent();
-			modelManager1.LoadFileDelayed(path);
+			readDir();
+		}
 
+		private void readDir() {
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
@@ -29,7 +31,9 @@ namespace BrawlCharacterManager {
 			cssPortraitViewer1.UpdateImage(charnum, listBox2.SelectedIndex / 2);
 			object selected = listBox2.SelectedItem;
 			string path;
-			if (selected is FileInfo) {
+			if (selected is FighterFile) {
+				path = (selected as FighterFile).FullName;
+			} else if (selected is FileInfo) {
 				path = (selected as FileInfo).FullName;
 			} else {
 				path = selected.ToString();
@@ -39,15 +43,16 @@ namespace BrawlCharacterManager {
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			string charname = listBox1.SelectedItem.ToString();
+			int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 			listBox2.Items.Clear();
 			int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
 			for (int i = 0; i < upperBound; i++) {
 				string pathNoExt = "fighter/" + charname + "/fit" + charname + i.ToString("D2");
-				listBox2.Items.Add(pathNoExt + ".pac");
-				listBox2.Items.Add(pathNoExt + ".pcs");
+				listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
+				listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
 				if (charname.ToLower() == "kirby") {
 					foreach (string hatchar in Constants.KirbyHats) {
-						listBox2.Items.Add("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac");
+						listBox2.Items.Add(new FighterFile("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
 					}
 				}
 			}

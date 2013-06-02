@@ -62,6 +62,7 @@
     <Compile Include="CSSPortraitViewer.Designer.cs">
       <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FighterFile.cs" />
     <Compile Include="ModelManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
