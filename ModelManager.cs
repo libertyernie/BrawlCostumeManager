@@ -16,11 +16,17 @@ namespace BrawlCharacterManager {
 		/// The string between "Fit" and the number.
 		/// </summary>
 		private string _charString;
+		/// <summary>
+		/// In case the file needs to be reloaded.
+		/// </summary>
+		private string _path;
+		public bool UseExceptions;
 
 		private string _delayedPath;
 
 		public ModelManager() {
 			InitializeComponent();
+			UseExceptions = true;
 		}
 
 		public void LoadFileDelayed(string delayedPath) {
@@ -38,10 +44,13 @@ namespace BrawlCharacterManager {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-			LoadFile("C:\\Users\\Isaac\\Desktop\\BrawlHacks\\Textures\\RecolorProject\\ToonLink\\Brown\\FitToonLink06.pac");
+//			LoadFile("C:\\Users\\Isaac\\Desktop\\BrawlHacks\\Textures\\RecolorProject\\ToonLink\\Brown\\FitToonLink06.pac");
+			UseExceptions = !UseExceptions;
+			LoadFile(_path);
 		}
 
 		public void LoadFile(string path) {
+			_path = path;
 			_charString = getCharString(path);
 
 			comboBox1.Items.Clear();
@@ -78,7 +87,7 @@ namespace BrawlCharacterManager {
 			model._renderVertices = false;
 			model._renderBox = false;
 
-			foreach (string texname in Constants.TexturesToDisable) {
+			if (UseExceptions) foreach (string texname in TexturesToDisable) {
 				MDL0TextureNode tex = model.TextureGroup.FindChild(texname, false) as MDL0TextureNode;
 				if (tex != null) {
 					tex.Enabled = false;
@@ -88,8 +97,8 @@ namespace BrawlCharacterManager {
 			modelPanel1.ClearAll();
 			modelPanel1.AddTarget((IRenderedObject)model);
 
-			if (Constants.PolygonsToDisable.ContainsKey(_charString)) {
-				foreach (int polygonNum in Constants.PolygonsToDisable[_charString]) {
+			if (UseExceptions && PolygonsToDisable.ContainsKey(_charString)) {
+				foreach (int polygonNum in PolygonsToDisable[_charString]) {
 					MDL0ObjectNode poly = model.PolygonGroup.FindChild("polygon" + polygonNum, false) as MDL0ObjectNode;
 					poly._render = false;
 				}
@@ -131,5 +140,34 @@ namespace BrawlCharacterManager {
 				LoadModel(item as MDL0Node);
 			}
 		}
+
+
+
+		public static string[] TexturesToDisable = {
+			"SamusTexASpc", "SamusTexBSpc", "SamusRef", "SamusTexC", "SamusTexD", "SamusTexDSpc", "Spe", // remove sphere
+			"Yoshi_Egg", // remove egg
+			"PlyKirby5KEyeYellow.1", // remove Final Smash eyes
+			"Pikachu_eyesYellow.00", // remove Final Smash eyes
+			"PeachTexEyeHigh", "PeachTexEyeWhite", "PeachTexEyeYellow", // remove black eyes
+			"ZeldaEyeHigh", // remove black eyes
+			"IceclimberTexCYellow.00", // remove Final Smash eyes
+			"FitPikminRef", // remove helmet
+			"FitLucas_EyeYellow.00",
+			"FitPurin00EyeYellow.00",
+//			"FitToonLink_EyeWhite.0", "FitToonLink_EyeYellow", // remove FS eyes (and eye whites, so you can see the pupils)
+			"FitSonicBodyMask", "FitSonicHeadMask", "FitSonicEyeHighlight", // remove gray Sonic
+//			"FitSonicEnv01", "FitSonicEnv04", "FitSonicSphere", // remove sphere
+		};
+
+		public static Dictionary<string, int[]> PolygonsToDisable = new Dictionary<string, int[]> {
+			{"mario", new int[] {4,5,6,7,12,13}}, // open eyelids
+//			{"samus", new int[] {19,20}},
+			{"luigi", new int[] {5,8,9,10,11,12,17}}, // open eyelids
+			{"ness", new int[] {1,2,5,6}}, // remove wild "intro" hair and FS eyes
+			{"zelda", new int[] {19,21,25}}, // open eyelids
+			{"olimar", new int[] {5}}, // "close" eyelids (normal facial expression for Olimar)
+			{"sonic", new int[] {10,11,14,15,16,18,20,21,22,24,26,27,28,29,30}}, // open eyelids, remove sphere, etc.
+			{"dedede", new int[] {19}}, // remove inflated Dedede
+		};
 	}
 }

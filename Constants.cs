@@ -59,17 +59,5 @@ namespace BrawlCharacterManager {
 			"snake",
 			"sonic",
 		};
-
-		public static string[] TexturesToDisable = {
-			"SamusRef", "SamusTexASpc", "SamusTexBSpc", "SamusTexC", "SamusTexD", "SamusTexDSpc", "Spe",
-			"Yoshi_Egg",
-			"PlyKirby5KEyeYellow.1",
-			"Pikachu_eyesYellow.00",
-			"FitSonicBodyMask", "FitSonicHeadMask", "FitSonicEnv01", "FitSonicEnv04", "FitSonicSphere",
-		};
-
-		public static Dictionary<string,int[]> PolygonsToDisable = new Dictionary<string,int[]> {
-			{"ness", new int[] {1,2,5,6}},
-		};
 	}
 }
