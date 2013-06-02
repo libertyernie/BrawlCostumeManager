@@ -25,16 +25,19 @@
 		private void InitializeComponent() {
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.listBox2 = new System.Windows.Forms.ListBox();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.modelManager1 = new BrawlCharacterManager.ModelManager();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.cssPortraitViewer1 = new BrawlCharacterManager.CSSPortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCharacterManager.ResultPortraitViewer();
+			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
@@ -48,7 +51,7 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(196, 245);
+			this.listBox1.Size = new System.Drawing.Size(196, 231);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -61,6 +64,7 @@
 			// splitContainer1.Panel1
 			// 
 			this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+			this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -70,10 +74,20 @@
 			this.splitContainer1.SplitterDistance = 196;
 			this.splitContainer1.TabIndex = 2;
 			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeDirectory});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(196, 25);
+			this.toolStrip1.TabIndex = 6;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
 			// splitContainer2
 			// 
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer2.Location = new System.Drawing.Point(0, 25);
 			this.splitContainer2.Name = "splitContainer2";
 			this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -84,8 +98,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-			this.splitContainer2.Size = new System.Drawing.Size(196, 493);
-			this.splitContainer2.SplitterDistance = 245;
+			this.splitContainer2.Size = new System.Drawing.Size(196, 468);
+			this.splitContainer2.SplitterDistance = 231;
 			this.splitContainer2.TabIndex = 1;
 			// 
 			// listBox2
@@ -94,9 +108,17 @@
 			this.listBox2.FormattingEnabled = true;
 			this.listBox2.Location = new System.Drawing.Point(0, 0);
 			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(196, 244);
+			this.listBox2.Size = new System.Drawing.Size(196, 233);
 			this.listBox2.TabIndex = 0;
 			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(258, 493);
+			this.modelManager1.TabIndex = 1;
 			// 
 			// flowLayoutPanel1
 			// 
@@ -109,14 +131,6 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(134, 493);
 			this.flowLayoutPanel1.TabIndex = 5;
-			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(258, 493);
-			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
@@ -132,6 +146,15 @@
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 240);
 			this.resultPortraitViewer1.TabIndex = 4;
 			// 
+			// changeDirectory
+			// 
+			this.changeDirectory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.changeDirectory.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.changeDirectory.Name = "changeDirectory";
+			this.changeDirectory.Size = new System.Drawing.Size(95, 22);
+			this.changeDirectory.Text = "Change Directory";
+			this.changeDirectory.Click += new System.EventHandler(this.changeDirectory_Click);
+			// 
 			// CostumeManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,10 +164,13 @@
 			this.Name = "CostumeManager";
 			this.Text = "Form1";
 			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -164,5 +190,7 @@
 		private CSSPortraitViewer cssPortraitViewer1;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private ResultPortraitViewer resultPortraitViewer1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton changeDirectory;
 	}
 }

@@ -17,6 +17,7 @@ namespace BrawlCharacterManager {
 		}
 
 		private void readDir() {
+			listBox1.Items.Clear();
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
@@ -58,6 +59,15 @@ namespace BrawlCharacterManager {
 				}
 			}
 			listBox2.SelectedIndex = 0;
+		}
+
+		private void changeDirectory_Click(object sender, EventArgs e) {
+			FolderBrowserDialog fbd = new FolderBrowserDialog();
+//			fbd.SelectedPath = CurrentDirectory; // Uncomment this if you want the "change directory" dialog to start with the current directory selected
+			if (fbd.ShowDialog() == DialogResult.OK) {
+				System.Environment.CurrentDirectory = fbd.SelectedPath;
+				readDir();
+			}
 		}
 	}
 }
