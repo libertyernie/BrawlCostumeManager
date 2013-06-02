@@ -15,14 +15,7 @@ namespace BrawlCharacterManager {
 		private ResourceNode[] bres_array;
 
 		public ResultPortraitViewer() : base() {
-			bres_array = new ResourceNode[47];
-			for (int i = 0; i < 47; i++) {
-				try {
-					bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
-				} catch (IOException) {
-					bres_array[i] = null;
-				}
-			}
+			UpdateDirectory();
 		}
 
 		public override void UpdateImage(int charNum, int costumeNum) {
@@ -30,6 +23,11 @@ namespace BrawlCharacterManager {
 
 			tex0 = null;
 			panel1.BackgroundImage = null;
+
+			if (costumeNum < 0) {
+				label1.Text = "No portrait mapping";
+				return;
+			}
 
 			ResourceNode bres = bres_array[charNum];
 			if (bres == null) {
@@ -47,7 +45,17 @@ namespace BrawlCharacterManager {
 			} else {
 				label1.Text += " (tex0 not found)";
 			}
+		}
 
+		public override void UpdateDirectory() {
+			bres_array = new ResourceNode[47];
+			for (int i = 0; i < 47; i++) {
+				try {
+					bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
+				} catch (IOException) {
+					bres_array[i] = null;
+				}
+			}
 		}
 
 		protected override void saveButton_Click(object sender, EventArgs e) {

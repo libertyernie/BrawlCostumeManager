@@ -19,17 +19,7 @@ namespace BrawlCharacterManager {
 		private ResourceNode sc_selcharacter;
 
 		public CSSPortraitViewer() : base() {
-			try {
-				common5 = null;
-				sc_selcharacter = NodeFactory.FromFile(null, "menu2/sc_selcharacter.pac");
-			} catch (IOException) {
-				try {
-					common5 = NodeFactory.FromFile(null, "system/common5.pac");
-					sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
-				} catch (IOException) {
-					label1.Text = "Could not load sc_selcharacter or common5.";
-				}
-			}
+			UpdateDirectory();
 		}
 
 		public override void UpdateImage(int charNum, int costumeNum) {
@@ -37,6 +27,11 @@ namespace BrawlCharacterManager {
 
 			tex0 = null;
 			panel1.BackgroundImage = null;
+
+			if (costumeNum < 0) {
+				label1.Text = "No portrait mapping";
+				return;
+			}
 
 			if (common5 != null) {
 				label1.Text = "common5: ";
@@ -56,6 +51,22 @@ namespace BrawlCharacterManager {
 				panel1.BackgroundImage = bitmap;
 			} else {
 				label1.Text += " (tex0 not found)";
+			}
+		}
+
+		public override void UpdateDirectory() {
+			try {
+				common5 = null;
+				sc_selcharacter = NodeFactory.FromFile(null, "menu2/sc_selcharacter.pac");
+			} catch (IOException) {
+				try {
+					common5 = NodeFactory.FromFile(null, "system/common5.pac");
+					sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
+				} catch (IOException) {
+					common5 = null;
+					sc_selcharacter = null;
+					label1.Text = "Could not load sc_selcharacter or common5.";
+				}
 			}
 		}
 

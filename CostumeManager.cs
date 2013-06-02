@@ -21,6 +21,8 @@ namespace BrawlCharacterManager {
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
+			cssPortraitViewer1.UpdateDirectory();
+			resultPortraitViewer1.UpdateDirectory();
 		}
 
 		public void LoadFile(string path) {
@@ -32,8 +34,15 @@ namespace BrawlCharacterManager {
 			string path;
 			if (selected is FighterFile) {
 				FighterFile ff = (FighterFile)selected;
-				cssPortraitViewer1.UpdateImage(ff.CharNum, ff.CostumeNum);
-				resultPortraitViewer1.UpdateImage(ff.CharNum, ff.CostumeNum);
+				int portraitNum = ff.CostumeNum;
+
+				string charName = Constants.CharactersByCSSOrder[ff.CharNum];
+				if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
+					int[] mappings = Constants.PortraitToCostumeMappings[charName];
+					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
+				}
+				cssPortraitViewer1.UpdateImage(ff.CharNum, portraitNum);
+				resultPortraitViewer1.UpdateImage(ff.CharNum, portraitNum);
 				path = ff.FullName;
 			} else if (selected is FileInfo) {
 				path = (selected as FileInfo).FullName;

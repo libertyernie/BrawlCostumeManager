@@ -23,6 +23,8 @@ namespace BrawlCharacterManager {
 
 		public abstract void UpdateImage(int charNum, int costumeNum);
 
+		public abstract void UpdateDirectory();
+
 		void panel1_DragEnter(object sender, DragEventArgs e) {
 			if (tex0 != null && e.Data.GetDataPresent(DataFormats.FileDrop)) {
 				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
