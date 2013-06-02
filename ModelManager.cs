@@ -27,6 +27,33 @@ namespace BrawlCharacterManager {
 		public ModelManager() {
 			InitializeComponent();
 			UseExceptions = true;
+
+			modelPanel1.DragEnter += modelPanel1_DragEnter;
+			modelPanel1.DragDrop += modelPanel1_DragDrop;
+		}
+
+		void modelPanel1_DragEnter(object sender, DragEventArgs e) {
+			if (_path != null && e.Data.GetDataPresent(DataFormats.FileDrop)) {
+				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
+				if (s.Length == 1) { // Can only drag and drop one file
+					string filename = s[0].ToLower();
+					if (filename.EndsWith(".pac") || filename.EndsWith(".pcs")) {
+						e.Effect = DragDropEffects.Copy;
+					}
+				}
+			}
+		}
+
+		void modelPanel1_DragDrop(object sender, DragEventArgs e) {
+			if (e.Effect == DragDropEffects.Copy) {
+				string path = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+				ResourceNode root = NodeFactory.FromFile(null, path);
+				if (root is ARCNode) {
+					(root as ARCNode).ExportPair(_path);
+				} else {
+					MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 
 		public void LoadFileDelayed(string delayedPath) {
@@ -44,7 +71,6 @@ namespace BrawlCharacterManager {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-//			LoadFile("C:\\Users\\Isaac\\Desktop\\BrawlHacks\\Textures\\RecolorProject\\ToonLink\\Brown\\FitToonLink06.pac");
 			UseExceptions = !UseExceptions;
 			LoadFile(_path);
 		}
@@ -66,7 +92,7 @@ namespace BrawlCharacterManager {
 					comboBox1.SelectedIndex = 0;
 				}
 			} catch (IOException) {
-
+				
 			}
 		}
 

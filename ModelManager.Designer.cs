@@ -31,6 +31,7 @@ namespace BrawlCharacterManager {
 			// 
 			// modelPanel1
 			// 
+			this.modelPanel1.AllowDrop = true;
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelPanel1.InitialYFactor = 100;
 			this.modelPanel1.InitialZoomFactor = 5;
@@ -63,16 +64,15 @@ namespace BrawlCharacterManager {
 			this.comboBox1.TabIndex = 2;
 			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
-			// Form1
+			// ModelManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(292, 273);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.modelPanel1);
-			this.Name = "Form1";
-			this.Text = "Model Previewer";
+			this.Name = "ModelManager";
+			this.Size = new System.Drawing.Size(292, 273);
 			this.ResumeLayout(false);
 
 		}
