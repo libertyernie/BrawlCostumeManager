@@ -9,9 +9,20 @@ namespace BrawlCharacterManager {
 	public class FighterFile {
 		private FileInfo path;
 		private int charNum, costumeNum;
+
 		public string FullName {
 			get {
 				return path.FullName;
+			}
+		}
+		public int CharNum {
+			get {
+				return charNum;
+			}
+		}
+		public int CostumeNum {
+			get {
+				return costumeNum;
 			}
 		}
 

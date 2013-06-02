@@ -27,12 +27,14 @@ namespace BrawlCharacterManager {
 		}
 
 		private void listBox2_SelectedIndexChanged(object sender, EventArgs e) {
-			int charnum = Array.IndexOf(Constants.CharactersByCSSOrder, listBox1.SelectedItem);
-			cssPortraitViewer1.UpdateImage(charnum, listBox2.SelectedIndex / 2);
+//			int charnum = Array.IndexOf(Constants.CharactersByCSSOrder, listBox1.SelectedItem);
+//			cssPortraitViewer1.UpdateImage(charnum, listBox2.SelectedIndex / 2);
 			object selected = listBox2.SelectedItem;
 			string path;
 			if (selected is FighterFile) {
-				path = (selected as FighterFile).FullName;
+				FighterFile ff = (FighterFile)selected;
+				cssPortraitViewer1.UpdateImage(ff.CharNum, ff.CostumeNum);
+				path = ff.FullName;
 			} else if (selected is FileInfo) {
 				path = (selected as FileInfo).FullName;
 			} else {
