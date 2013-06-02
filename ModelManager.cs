@@ -12,6 +12,11 @@ using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlCharacterManager {
 	public partial class ModelManager : UserControl {
+		/// <summary>
+		/// The string between "Fit" and the number.
+		/// </summary>
+		private string _charString;
+
 		private string _delayedPath;
 
 		public ModelManager() {
@@ -37,6 +42,8 @@ namespace BrawlCharacterManager {
 		}
 
 		public void LoadFile(string path) {
+			_charString = getCharString(path);
+
 			comboBox1.Items.Clear();
 			modelPanel1.ClearAll();
 			modelPanel1.Invalidate();
@@ -50,14 +57,43 @@ namespace BrawlCharacterManager {
 			}
 		}
 
+		private static string getCharString(string path) {
+			string working = path.ToLower();
+			working = working.Substring(working.LastIndexOf("fit")+3);
+			int length = 0;
+			foreach (char c in working) {
+				if (c >= '0' && c <= '9') {
+					break;
+				} else {
+					length++;
+				}
+			}
+			working = working.Substring(0, length);
+			return working;
+		}
+
 		public void LoadModel(MDL0Node model) {
 			model._renderBones = false;
 			model._renderPolygons = CheckState.Checked;
 			model._renderVertices = false;
 			model._renderBox = false;
 
-//			modelPanel1.ClearAll();
+			foreach (string texname in Constants.TexturesToDisable) {
+				MDL0TextureNode tex = model.TextureGroup.FindChild(texname, false) as MDL0TextureNode;
+				if (tex != null) {
+					tex.Enabled = false;
+				}
+			}
+
+			modelPanel1.ClearAll();
 			modelPanel1.AddTarget((IRenderedObject)model);
+
+			if (Constants.PolygonsToDisable.ContainsKey(_charString)) {
+				foreach (int polygonNum in Constants.PolygonsToDisable[_charString]) {
+					MDL0ObjectNode poly = model.PolygonGroup.FindChild("polygon" + polygonNum, false) as MDL0ObjectNode;
+					poly._render = false;
+				}
+			}
 
 			Vector3 min, max;
 			((IRenderedObject)model).GetBox(out min, out max);
@@ -92,7 +128,6 @@ namespace BrawlCharacterManager {
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			object item = comboBox1.SelectedItem;
 			if (item is MDL0Node) {
-				modelPanel1.ClearAll();
 				LoadModel(item as MDL0Node);
 			}
 		}
