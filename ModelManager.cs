@@ -91,7 +91,10 @@ namespace BrawlCharacterManager {
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			object item = comboBox1.SelectedItem;
-			if (item is MDL0Node) LoadModel(item as MDL0Node);
+			if (item is MDL0Node) {
+				modelPanel1.ClearAll();
+				LoadModel(item as MDL0Node);
+			}
 		}
 	}
 }
