@@ -40,6 +40,9 @@ namespace BrawlCharacterManager {
 			if (!path.Exists) {
 				name = "(" + name + ")";
 			}
+			if (charNum == 17 && costumeNum > 0) {
+				name += " - do not use this file";
+			}
 			return name;
 		}
 	}
