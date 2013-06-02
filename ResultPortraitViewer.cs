@@ -11,16 +11,10 @@ using BrawlLib.SSBB.ResourceNodes;
 using System.IO;
 
 namespace BrawlCharacterManager {
-	public partial class ResultPortraitViewer : UserControl {
+	public class ResultPortraitViewer : PortraitViewer {
 		private ResourceNode[] bres_array;
-		private TEX0Node tex0;
 
-		public ResultPortraitViewer() {
-			InitializeComponent();
-
-			panel1.DragEnter += panel1_DragEnter;
-			panel1.DragDrop += panel1_DragDrop;
-
+		public ResultPortraitViewer() : base() {
 			bres_array = new ResourceNode[47];
 			for (int i = 0; i < 47; i++) {
 				try {
@@ -31,7 +25,7 @@ namespace BrawlCharacterManager {
 			}
 		}
 
-		public void UpdateImage(int charNum, int costumeNum) {
+		public override void UpdateImage(int charNum, int costumeNum) {
 			string tex_number = (charNum*10 + costumeNum + 1).ToString("D3");
 
 			tex0 = null;
@@ -55,32 +49,7 @@ namespace BrawlCharacterManager {
 
 		}
 
-		void panel1_DragEnter(object sender, DragEventArgs e) {
-			if (tex0 != null && e.Data.GetDataPresent(DataFormats.FileDrop)) {
-				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-				if (s.Length == 1) { // Can only drag and drop one file
-					string filename = s[0].ToLower();
-					if (filename.EndsWith(".png") || filename.EndsWith(".gif")
-						|| filename.EndsWith(".tif") || filename.EndsWith(".tiff")) {
-						e.Effect = DragDropEffects.Copy;
-					}
-				}
-			}
-		}
-
-		void panel1_DragDrop(object sender, DragEventArgs e) {
-			if (e.Effect == DragDropEffects.Copy) {
-				Bitmap bitmap = new Bitmap((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
-				if (bitmap.Height == 160 && bitmap.Width == 128) {
-					tex0.Replace(bitmap);
-					panel1.BackgroundImage = tex0.GetImage(0);
-				} else {
-					MessageBox.Show("Character portraits must be 128x160.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
-		}
-
-		private void saveButton_Click(object sender, EventArgs e) {
+		protected override void saveButton_Click(object sender, EventArgs e) {
 			for (int i = 0; i < bres_array.Length; i++) {
 				if (bres_array[i] != null && bres_array[i].IsDirty) {
 					bres_array[i].Rebuild();

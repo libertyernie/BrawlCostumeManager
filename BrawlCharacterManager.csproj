@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="ResultPortraitViewer.cs">
+    <Compile Include="CSSPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ResultPortraitViewer.Designer.cs">
-      <DependentUpon>ResultPortraitViewer.cs</DependentUpon>
+    <Compile Include="ResultPortraitViewer.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CostumeManager.cs">
       <SubType>Form</SubType>
@@ -62,11 +62,11 @@
     <Compile Include="CostumeManager.Designer.cs">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSSPortraitViewer.cs">
+    <Compile Include="PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CSSPortraitViewer.Designer.cs">
-      <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
+    <Compile Include="PortraitViewer.Designer.cs">
+      <DependentUpon>PortraitViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="FighterFile.cs" />
     <Compile Include="ModelManager.cs">
@@ -77,14 +77,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ResultPortraitViewer.resx">
-      <DependentUpon>ResultPortraitViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CostumeManager.resx">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CSSPortraitViewer.resx">
-      <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
+    <EmbeddedResource Include="PortraitViewer.resx">
+      <DependentUpon>PortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelManager.resx">
       <DependentUpon>ModelManager.cs</DependentUpon>

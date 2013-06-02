@@ -1,5 +1,5 @@
 ﻿namespace BrawlCharacterManager {
-	partial class ResultPortraitViewer {
+	partial class PortraitViewer {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -72,8 +72,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Label label1;
+		protected System.Windows.Forms.Panel panel1;
+		protected System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button saveButton;
 	}
 }
