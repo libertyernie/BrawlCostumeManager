@@ -27,8 +27,10 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.listBox2 = new System.Windows.Forms.ListBox();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.modelManager1 = new BrawlCharacterManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCharacterManager.CSSPortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCharacterManager.ResultPortraitViewer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -37,6 +39,7 @@
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listBox1
@@ -45,7 +48,7 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(154, 136);
+			this.listBox1.Size = new System.Drawing.Size(196, 245);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -62,8 +65,9 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.modelManager1);
-			this.splitContainer1.Size = new System.Drawing.Size(464, 273);
-			this.splitContainer1.SplitterDistance = 154;
+			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
+			this.splitContainer1.Size = new System.Drawing.Size(592, 493);
+			this.splitContainer1.SplitterDistance = 196;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// splitContainer2
@@ -80,8 +84,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-			this.splitContainer2.Size = new System.Drawing.Size(154, 273);
-			this.splitContainer2.SplitterDistance = 136;
+			this.splitContainer2.Size = new System.Drawing.Size(196, 493);
+			this.splitContainer2.SplitterDistance = 245;
 			this.splitContainer2.TabIndex = 1;
 			// 
 			// listBox2
@@ -90,43 +94,62 @@
 			this.listBox2.FormattingEnabled = true;
 			this.listBox2.Location = new System.Drawing.Point(0, 0);
 			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(154, 133);
+			this.listBox2.Size = new System.Drawing.Size(196, 244);
 			this.listBox2.TabIndex = 0;
 			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.AutoSize = true;
+			this.flowLayoutPanel1.Controls.Add(this.cssPortraitViewer1);
+			this.flowLayoutPanel1.Controls.Add(this.resultPortraitViewer1);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(258, 0);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(134, 493);
+			this.flowLayoutPanel1.TabIndex = 5;
 			// 
 			// modelManager1
 			// 
 			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelManager1.Location = new System.Drawing.Point(0, 0);
 			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(306, 273);
+			this.modelManager1.Size = new System.Drawing.Size(258, 493);
 			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
-			this.cssPortraitViewer1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.cssPortraitViewer1.Location = new System.Drawing.Point(464, 0);
+			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
 			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
-			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 273);
+			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 240);
 			this.cssPortraitViewer1.TabIndex = 3;
+			// 
+			// resultPortraitViewer1
+			// 
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 249);
+			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
+			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 240);
+			this.resultPortraitViewer1.TabIndex = 4;
 			// 
 			// CostumeManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(592, 273);
+			this.ClientSize = new System.Drawing.Size(592, 493);
 			this.Controls.Add(this.splitContainer1);
-			this.Controls.Add(this.cssPortraitViewer1);
 			this.Name = "CostumeManager";
 			this.Text = "Form1";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
+			this.flowLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -139,5 +162,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.ListBox listBox2;
 		private CSSPortraitViewer cssPortraitViewer1;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private ResultPortraitViewer resultPortraitViewer1;
 	}
 }
