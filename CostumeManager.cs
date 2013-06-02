@@ -11,8 +11,11 @@ using System.Windows.Forms;
 
 namespace BrawlCharacterManager {
 	public partial class CostumeManager : Form {
+		private List<PortraitViewer> portraitViewers;
+
 		public CostumeManager() {
 			InitializeComponent();
+			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1};
 			readDir();
 		}
 
@@ -21,8 +24,9 @@ namespace BrawlCharacterManager {
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
-			cssPortraitViewer1.UpdateDirectory();
-			resultPortraitViewer1.UpdateDirectory();
+			foreach (PortraitViewer p in portraitViewers) {
+				p.UpdateDirectory();
+			}
 		}
 
 		public void LoadFile(string path) {
@@ -41,8 +45,9 @@ namespace BrawlCharacterManager {
 					int[] mappings = Constants.PortraitToCostumeMappings[charName];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
-				cssPortraitViewer1.UpdateImage(ff.CharNum, portraitNum);
-				resultPortraitViewer1.UpdateImage(ff.CharNum, portraitNum);
+				foreach (PortraitViewer p in portraitViewers) {
+					p.UpdateImage(ff.CharNum, portraitNum);
+				}
 				path = ff.FullName;
 			} else if (selected is FileInfo) {
 				path = (selected as FileInfo).FullName;
