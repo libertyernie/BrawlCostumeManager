@@ -18,7 +18,7 @@ namespace BrawlCharacterManager {
 			UpdateDirectory();
 		}
 
-		public override void UpdateImage(int charNum, int costumeNum) {
+		protected override TEX0Node get_node(int charNum, int costumeNum) {
 			string tex_number = (charNum*10 + costumeNum + 1).ToString("D3");
 
 			tex0 = null;
@@ -26,24 +26,23 @@ namespace BrawlCharacterManager {
 
 			if (costumeNum < 0) {
 				label1.Text = "No portrait mapping";
-				return;
+				return null;
 			}
 
 			ResourceNode bres = bres_array[charNum];
 			if (bres == null) {
 				label1.Text = "MenSelchrFaceB" + charNum.ToString("D2") + "0.brres: not found";
-				return;
+				return null;
 			}
 
 			string str = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
 			label1.Text = bres.ToString() + ": " + str;
 			ResourceNode get_node = bres.FindChild(str, false);
 			if (get_node is TEX0Node) {
-				tex0 = (TEX0Node)get_node;
-				Bitmap bitmap = tex0.GetImage(0);
-				panel1.BackgroundImage = bitmap;
+				return tex0 = (TEX0Node)get_node;
 			} else {
 				label1.Text += " (tex0 not found)";
+				return null;
 			}
 		}
 

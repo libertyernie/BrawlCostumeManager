@@ -22,7 +22,7 @@ namespace BrawlCharacterManager {
 			UpdateDirectory();
 		}
 
-		public override void UpdateImage(int charNum, int costumeNum) {
+		protected override TEX0Node get_node(int charNum, int costumeNum) {
 			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
 
 			tex0 = null;
@@ -30,7 +30,7 @@ namespace BrawlCharacterManager {
 
 			if (costumeNum < 0) {
 				label1.Text = "No portrait mapping";
-				return;
+				return null;
 			}
 
 			if (common5 != null) {
@@ -38,7 +38,7 @@ namespace BrawlCharacterManager {
 			} else if (sc_selcharacter != null) {
 				label1.Text = "sc_selcharacter.pac: ";
 			} else {
-				return;
+				return null;
 			}
 
 			string str1 = "char_bust_tex_lz77/MiscData[" + charNum + "]";
@@ -46,11 +46,10 @@ namespace BrawlCharacterManager {
 			label1.Text += str2;
 			ResourceNode get_node = sc_selcharacter.FindChild(str1 + "/" + str2, false);
 			if (get_node is TEX0Node) {
-				tex0 = (TEX0Node)get_node;
-				Bitmap bitmap = tex0.GetImage(0);
-				panel1.BackgroundImage = bitmap;
+				return (TEX0Node)get_node;
 			} else {
 				label1.Text += " (tex0 not found)";
+				return null;
 			}
 		}
 

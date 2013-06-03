@@ -14,14 +14,35 @@ namespace BrawlCharacterManager {
 	public abstract partial class PortraitViewer : UserControl {
 		protected TEX0Node tex0;
 
+		// In case the image needs to be reloaded after replacing the texture
+		protected int _charNum, _costumeNum;
+
 		public PortraitViewer() {
 			InitializeComponent();
+
+			_charNum = -1;
+			_costumeNum = -1;
 
 			panel1.DragEnter += panel1_DragEnter;
 			panel1.DragDrop += panel1_DragDrop;
 		}
 
-		public abstract void UpdateImage(int charNum, int costumeNum);
+		public void UpdateImage(int charNum, int costumeNum) {
+			panel1.BackgroundImage = null;
+			_charNum = -1;
+			_costumeNum = -1;
+
+			tex0 = (TEX0Node)get_node(charNum, costumeNum);
+			if (tex0 != null) {
+				Bitmap bitmap = tex0.GetImage(0);
+				panel1.BackgroundImage = bitmap;
+
+				_charNum = charNum;
+				_costumeNum = costumeNum;
+			}
+		}
+
+		protected abstract TEX0Node get_node(int charNum, int costumeNum);
 
 		public abstract void UpdateDirectory();
 
@@ -40,12 +61,18 @@ namespace BrawlCharacterManager {
 
 		void panel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
-				Bitmap bitmap = new Bitmap((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
+				/* bitmap = new Bitmap((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
 				if (bitmap.Height == 160 && bitmap.Width == 128) {
 					tex0.Replace(bitmap);
 					panel1.BackgroundImage = tex0.GetImage(0);
 				} else {
 					MessageBox.Show("Character portraits must be 128x160.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}*/
+				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
+					dlg.ImageSource = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
+					if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
+						UpdateImage(_charNum, _costumeNum);
+					}
 				}
 			}
 		}
