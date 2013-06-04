@@ -61,13 +61,6 @@ namespace BrawlCharacterManager {
 
 		void panel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
-				/* bitmap = new Bitmap((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
-				if (bitmap.Height == 160 && bitmap.Width == 128) {
-					tex0.Replace(bitmap);
-					panel1.BackgroundImage = tex0.GetImage(0);
-				} else {
-					MessageBox.Show("Character portraits must be 128x160.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}*/
 				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
 					dlg.ImageSource = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
 					if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
