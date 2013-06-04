@@ -1,4 +1,4 @@
-﻿namespace BrawlCharacterManager {
+﻿namespace BrawlCostumeManager {
 	partial class PortraitViewer {
 		/// <summary> 
 		/// Required designer variable.

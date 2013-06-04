@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using BrawlLib.OpenGL;
 using BrawlLib.SSBB.ResourceNodes;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public partial class ModelManager : UserControl {
 		/// <summary>
 		/// The string between "Fit" and the number.

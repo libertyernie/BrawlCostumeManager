@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public class FighterFile {
 		private FileInfo path;
 		private int charNum, costumeNum;

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {
 		private List<PortraitViewer> portraitViewers;
 		public bool Use_cBliss;
@@ -93,6 +93,10 @@ namespace BrawlCharacterManager {
 			foreach (PortraitViewer p in portraitViewers) {
 				RefreshPortraits();
 			}
+		}
+
+		private void aboutBrawlCostumeManagerToolStripMenuItem_Click(object sender, EventArgs e) {
+			new About(null).Show();
 		}
 	}
 }

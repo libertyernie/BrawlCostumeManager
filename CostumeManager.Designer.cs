@@ -1,4 +1,4 @@
-﻿namespace BrawlCharacterManager {
+﻿namespace BrawlCostumeManager {
 	partial class CostumeManager {
 		/// <summary>
 		/// Required designer variable.
@@ -32,10 +32,12 @@
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
-			this.modelManager1 = new BrawlCharacterManager.ModelManager();
+			this.separator = new System.Windows.Forms.ToolStripSeparator();
+			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.cssPortraitViewer1 = new BrawlCharacterManager.CSSPortraitViewer();
-			this.resultPortraitViewer1 = new BrawlCharacterManager.ResultPortraitViewer();
+			this.modelManager1 = new BrawlCostumeManager.ModelManager();
+			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -130,7 +132,9 @@
 			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hidePolygonsCheckbox,
-            this.cBlissCheckbox});
+            this.cBlissCheckbox,
+            this.separator,
+            this.aboutBrawlCostumeManagerToolStripMenuItem});
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
 			this.toolStripDropDownButton1.Size = new System.Drawing.Size(57, 22);
@@ -154,13 +158,17 @@
 			this.cBlissCheckbox.Text = "Use cBliss costume/portrait mappings";
 			this.cBlissCheckbox.Click += new System.EventHandler(this.cBlissCheckbox_Click);
 			// 
-			// modelManager1
+			// separator
 			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(258, 493);
-			this.modelManager1.TabIndex = 1;
+			this.separator.Name = "separator";
+			this.separator.Size = new System.Drawing.Size(248, 6);
+			// 
+			// aboutBrawlCostumeManagerToolStripMenuItem
+			// 
+			this.aboutBrawlCostumeManagerToolStripMenuItem.Name = "aboutBrawlCostumeManagerToolStripMenuItem";
+			this.aboutBrawlCostumeManagerToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
+			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -173,6 +181,14 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(134, 493);
 			this.flowLayoutPanel1.TabIndex = 5;
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(258, 493);
+			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
@@ -228,5 +244,7 @@
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
 		private System.Windows.Forms.ToolStripMenuItem hidePolygonsCheckbox;
 		private System.Windows.Forms.ToolStripMenuItem cBlissCheckbox;
+		private System.Windows.Forms.ToolStripSeparator separator;
+		private System.Windows.Forms.ToolStripMenuItem aboutBrawlCostumeManagerToolStripMenuItem;
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	partial class ModelManager {
 		/// <summary>
 		/// Required designer variable.

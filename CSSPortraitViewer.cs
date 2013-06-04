@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BrawlLib.SSBB.ResourceNodes;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public class CSSPortraitViewer : PortraitViewer {
 		/// <summary>
 		/// The common5 currently being used. If using sc_selcharacter.pac instead, this will be null.

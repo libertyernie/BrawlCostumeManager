@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using BrawlLib.SSBB.ResourceNodes;
 using System.IO;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public class ResultPortraitViewer : PortraitViewer {
 		private ResourceNode[] bres_array;
 

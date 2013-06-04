@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BrawlCharacterManager {
+namespace BrawlCostumeManager {
 	public class Constants {
 		public static string[] KirbyHats = {
 			"donkey", "falco", "pikmin", "purin", "snake"
