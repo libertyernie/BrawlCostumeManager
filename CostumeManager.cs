@@ -12,6 +12,7 @@ using System.Windows.Forms;
 namespace BrawlCharacterManager {
 	public partial class CostumeManager : Form {
 		private List<PortraitViewer> portraitViewers;
+		public bool Use_cBliss;
 
 		public CostumeManager() {
 			InitializeComponent();
@@ -34,27 +35,25 @@ namespace BrawlCharacterManager {
 		}
 
 		private void listBox2_SelectedIndexChanged(object sender, EventArgs e) {
-			object selected = listBox2.SelectedItem;
-			string path;
-			if (selected is FighterFile) {
-				FighterFile ff = (FighterFile)selected;
-				int portraitNum = ff.CostumeNum;
+			FighterFile ff = (FighterFile)listBox2.SelectedItem;
+			string path = ff.FullName;
+			LoadFile(path);
+			RefreshPortraits();
+		}
 
+		public void RefreshPortraits() {
+			FighterFile ff = (FighterFile)listBox2.SelectedItem;
+			int portraitNum = ff.CostumeNum;
+			if (!Use_cBliss) {
 				string charName = Constants.CharactersByCSSOrder[ff.CharNum];
 				if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
 					int[] mappings = Constants.PortraitToCostumeMappings[charName];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
-				foreach (PortraitViewer p in portraitViewers) {
-					p.UpdateImage(ff.CharNum, portraitNum);
-				}
-				path = ff.FullName;
-			} else if (selected is FileInfo) {
-				path = (selected as FileInfo).FullName;
-			} else {
-				path = selected.ToString();
 			}
-			LoadFile(path);
+			foreach (PortraitViewer p in portraitViewers) {
+				p.UpdateImage(ff.CharNum, portraitNum);
+			}
 		}
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -81,6 +80,18 @@ namespace BrawlCharacterManager {
 			if (fbd.ShowDialog() == DialogResult.OK) {
 				System.Environment.CurrentDirectory = fbd.SelectedPath;
 				readDir();
+			}
+		}
+
+		private void hidePolygonsCheckbox_Click(object sender, EventArgs e) {
+			modelManager1.UseExceptions = hidePolygonsCheckbox.Checked;
+			modelManager1.RefreshModel();
+		}
+
+		private void cBlissCheckbox_Click(object sender, EventArgs e) {
+			Use_cBliss = cBlissCheckbox.Checked;
+			foreach (PortraitViewer p in portraitViewers) {
+				RefreshPortraits();
 			}
 		}
 	}
