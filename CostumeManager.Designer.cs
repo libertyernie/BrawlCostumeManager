@@ -29,13 +29,13 @@
 			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
+			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
+			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.modelManager1 = new BrawlCharacterManager.ModelManager();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.cssPortraitViewer1 = new BrawlCharacterManager.CSSPortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCharacterManager.ResultPortraitViewer();
-			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
-			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -125,6 +125,35 @@
 			this.changeDirectory.Text = "Change Directory";
 			this.changeDirectory.Click += new System.EventHandler(this.changeDirectory_Click);
 			// 
+			// toolStripDropDownButton1
+			// 
+			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hidePolygonsCheckbox,
+            this.cBlissCheckbox});
+			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+			this.toolStripDropDownButton1.Size = new System.Drawing.Size(57, 22);
+			this.toolStripDropDownButton1.Text = "Options";
+			// 
+			// hidePolygonsCheckbox
+			// 
+			this.hidePolygonsCheckbox.Checked = true;
+			this.hidePolygonsCheckbox.CheckOnClick = true;
+			this.hidePolygonsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hidePolygonsCheckbox.Name = "hidePolygonsCheckbox";
+			this.hidePolygonsCheckbox.Size = new System.Drawing.Size(251, 22);
+			this.hidePolygonsCheckbox.Text = "Hide certain polygons/textures";
+			this.hidePolygonsCheckbox.Click += new System.EventHandler(this.hidePolygonsCheckbox_Click);
+			// 
+			// cBlissCheckbox
+			// 
+			this.cBlissCheckbox.CheckOnClick = true;
+			this.cBlissCheckbox.Name = "cBlissCheckbox";
+			this.cBlissCheckbox.Size = new System.Drawing.Size(251, 22);
+			this.cBlissCheckbox.Text = "Use cBliss costume/portrait mappings";
+			this.cBlissCheckbox.Click += new System.EventHandler(this.cBlissCheckbox_Click);
+			// 
 			// modelManager1
 			// 
 			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -159,35 +188,6 @@
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 240);
 			this.resultPortraitViewer1.TabIndex = 4;
 			// 
-			// toolStripDropDownButton1
-			// 
-			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hidePolygonsCheckbox,
-            this.cBlissCheckbox});
-			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-			this.toolStripDropDownButton1.Size = new System.Drawing.Size(57, 22);
-			this.toolStripDropDownButton1.Text = "Options";
-			// 
-			// hidePolygonsCheckbox
-			// 
-			this.hidePolygonsCheckbox.Checked = true;
-			this.hidePolygonsCheckbox.CheckOnClick = true;
-			this.hidePolygonsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hidePolygonsCheckbox.Name = "hidePolygonsCheckbox";
-			this.hidePolygonsCheckbox.Size = new System.Drawing.Size(251, 22);
-			this.hidePolygonsCheckbox.Text = "Hide certain polygons/textures";
-			this.hidePolygonsCheckbox.Click += new System.EventHandler(this.hidePolygonsCheckbox_Click);
-			// 
-			// cBlissCheckbox
-			// 
-			this.cBlissCheckbox.CheckOnClick = true;
-			this.cBlissCheckbox.Name = "cBlissCheckbox";
-			this.cBlissCheckbox.Size = new System.Drawing.Size(251, 22);
-			this.cBlissCheckbox.Text = "Use cBliss costume/portrait mappings";
-			this.cBlissCheckbox.Click += new System.EventHandler(this.cBlissCheckbox_Click);
-			// 
 			// CostumeManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,7 +195,7 @@
 			this.ClientSize = new System.Drawing.Size(592, 493);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "CostumeManager";
-			this.Text = "Form1";
+			this.Text = "Brawl Costume Manager";
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
