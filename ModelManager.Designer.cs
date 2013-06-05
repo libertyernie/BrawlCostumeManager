@@ -25,7 +25,6 @@ namespace BrawlCostumeManager {
 		/// </summary>
 		private void InitializeComponent() {
 			this.modelPanel1 = new System.Windows.Forms.ModelPanel();
-			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
@@ -43,17 +42,6 @@ namespace BrawlCostumeManager {
 			this.modelPanel1.TranslationScale = 0.05F;
 			this.modelPanel1.ZoomScale = 2.5F;
 			// 
-			// button1
-			// 
-			this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.button1.Location = new System.Drawing.Point(0, 250);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(292, 23);
-			this.button1.TabIndex = 1;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
 			// comboBox1
 			// 
 			this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -69,7 +57,6 @@ namespace BrawlCostumeManager {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.comboBox1);
-			this.Controls.Add(this.button1);
 			this.Controls.Add(this.modelPanel1);
 			this.Name = "ModelManager";
 			this.Size = new System.Drawing.Size(292, 273);
@@ -80,7 +67,6 @@ namespace BrawlCostumeManager {
 		#endregion
 
 		private ModelPanel modelPanel1;
-		private Button button1;
 		private ComboBox comboBox1;
 	}
 }

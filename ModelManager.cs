@@ -70,11 +70,6 @@ namespace BrawlCostumeManager {
 			LoadFile(_delayedPath);
 		}
 
-		private void button1_Click(object sender, EventArgs e) {
-			UseExceptions = !UseExceptions;
-			RefreshModel();
-		}
-
 		public void RefreshModel() {
 			LoadFile(_path);
 		}
