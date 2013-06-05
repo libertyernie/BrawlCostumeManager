@@ -21,12 +21,16 @@ namespace BrawlCostumeManager {
 		}
 
 		private void readDir() {
+			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
 			foreach (PortraitViewer p in portraitViewers) {
 				p.UpdateDirectory();
+			}
+			if (selectedIndex >= 0) {
+				listBox1.SelectedIndex = selectedIndex;
 			}
 		}
 
