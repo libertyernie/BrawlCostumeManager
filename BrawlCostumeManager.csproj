@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BrawlCostumeManager</RootNamespace>
     <AssemblyName>BrawlCostumeManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -117,7 +117,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\brawltools2-r21\trunk\BrawlLib\BrawlLib.csproj">
+    <ProjectReference Include="..\brawltools2-r22\trunk\BrawlLib\BrawlLib.csproj">
       <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
       <Name>BrawlLib</Name>
     </ProjectReference>
