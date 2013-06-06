@@ -74,6 +74,8 @@ namespace BrawlCostumeManager {
 		}
 
 		public void updateCostumeSelectionPane() {
+			int selectedIndex = listBox2.SelectedIndex;
+
 			string charname = listBox1.SelectedItem.ToString();
 			int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 			listBox2.Items.Clear();
@@ -88,7 +90,7 @@ namespace BrawlCostumeManager {
 					}
 				}
 			}
-			listBox2.SelectedIndex = 0;
+			listBox2.SelectedIndex = (selectedIndex < listBox2.Items.Count) ? selectedIndex : 0;
 		}
 
 		private void changeDirectory_Click(object sender, EventArgs e) {
