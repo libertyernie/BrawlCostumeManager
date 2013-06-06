@@ -20,7 +20,15 @@ namespace BrawlCostumeManager {
 		/// In case the file needs to be reloaded.
 		/// </summary>
 		private string _path;
+
+	    /// <summary>
+	    /// Should be disposed when you switch to a new file.
+	    /// </summary>
+	    ResourceNode _root;
+
 		public bool UseExceptions;
+
+		private MDL0Node _model; 
 
 		private string _delayedPath;
 
@@ -47,11 +55,17 @@ namespace BrawlCostumeManager {
 		void modelPanel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
 				string path = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-				ResourceNode root = NodeFactory.FromFile(null, path);
-				if (root is ARCNode) {
-					(root as ARCNode).ExportPair(_path);
-				} else {
-					MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				using (ResourceNode newroot = NodeFactory.FromFile(null, path)) {
+					if (newroot is ARCNode) {
+						if (_root != null) {
+							_root.Dispose();
+							_root = null;
+						}
+						(newroot as ARCNode).ExportPair(_path);
+						LoadFile(_path);
+					} else {
+						MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
 			}
 		}
@@ -75,6 +89,7 @@ namespace BrawlCostumeManager {
 		}
 
 		public void LoadFile(string path) {
+			_model = null;
 			_path = path;
 			_charString = getCharString(path);
 
@@ -84,8 +99,8 @@ namespace BrawlCostumeManager {
 			this.Text = new FileInfo(path).Name;
 
 			try {
-				ResourceNode root = NodeFactory.FromFile(null, path);
-				List<MDL0Node> models = findAllMDL0s(root);
+				_root = NodeFactory.FromFile(null, path);
+				List<MDL0Node> models = findAllMDL0s(_root);
 				if (models.Count > 0) {
 					comboBox1.Items.AddRange(models.ToArray());
 					comboBox1.SelectedIndex = 0;
