@@ -54,14 +54,32 @@ namespace BrawlCostumeManager {
 
 		void modelPanel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
-				string path = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-				using (ResourceNode newroot = NodeFactory.FromFile(null, path)) {
+				string newpath = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+				using (ResourceNode newroot = NodeFactory.FromFile(null, newpath)) {
 					if (newroot is ARCNode) {
+						string basePath = _path;
+						if (Path.HasExtension(basePath)) {
+							basePath = basePath.Substring(0, basePath.LastIndexOf('.'));
+						}
+						FileInfo pac = new FileInfo(basePath + ".pac");
+						FileInfo pcs = new FileInfo(basePath + ".pcs");
+
+						bool cont = true;
+						if (pac.Exists || pcs.Exists) {
+							cont = (DialogResult.OK == MessageBox.Show(
+								"Replace " + pac.Name + "/" + pcs.Name + "?",
+								"Overwrite?",
+								MessageBoxButtons.OKCancel));
+						}
+						if (!cont) return;
+
 						if (_root != null) {
 							_root.Dispose();
 							_root = null;
 						}
-						(newroot as ARCNode).ExportPair(_path);
+						(newroot as ARCNode).ExportPAC(pac.FullName);
+						(newroot as ARCNode).ExportPCS(pcs.FullName);
+
 						LoadFile(_path);
 					} else {
 						MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
