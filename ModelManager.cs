@@ -107,6 +107,11 @@ namespace BrawlCostumeManager {
 		}
 
 		public void LoadFile(string path) {
+			if (_root != null) {
+				_root.Dispose();
+				_root = null;
+			}
+
 			_model = null;
 			_path = path;
 			_charString = getCharString(path);
