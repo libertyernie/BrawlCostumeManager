@@ -130,10 +130,14 @@ namespace BrawlCostumeManager {
 			}
 			FileInfo pac = new FileInfo(toDelete + ".pac");
 			FileInfo pcs = new FileInfo(toDelete + ".pcs");
-			modelManager1.LoadFile(null);
-			pac.Delete();
-			pcs.Delete();
-			updateCostumeSelectionPane();
+			if (DialogResult.Yes == MessageBox.Show(
+				"Are you sure you want to delete " + pac.Name + "/" + pcs.Name + "?",
+				"Confirm", MessageBoxButtons.YesNo)) {
+				modelManager1.LoadFile(null);
+				if (pac.Exists) pac.Delete();
+				if (pcs.Exists) pcs.Delete();
+				updateCostumeSelectionPane();
+			}
 		}
 
 		private void copyToToolStripMenuItem_Click(object sender, EventArgs e) {
