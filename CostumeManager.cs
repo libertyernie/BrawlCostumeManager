@@ -69,7 +69,7 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+		public void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			string charname = listBox1.SelectedItem.ToString();
 			int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 			listBox2.Items.Clear();
@@ -110,6 +110,23 @@ namespace BrawlCostumeManager {
 
 		private void aboutBrawlCostumeManagerToolStripMenuItem_Click(object sender, EventArgs e) {
 			new About(null).Show();
+		}
+
+		private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
+			listBox2.SelectedIndex = listBox2.IndexFromPoint(listBox2.PointToClient(Cursor.Position));
+		}
+
+		private void deleteToolStripMenuItem_Click(object sender, EventArgs e) {
+			string toDelete = (listBox2.SelectedItem as FighterFile).FullName;
+			if (Path.HasExtension(toDelete)) {
+				toDelete = toDelete.Substring(0, toDelete.LastIndexOf('.'));
+			}
+			FileInfo pac = new FileInfo(toDelete + ".pac");
+			FileInfo pcs = new FileInfo(toDelete + ".pcs");
+			modelManager1.LoadFile(null);
+			pac.Delete();
+			pcs.Delete();
+			listBox1_SelectedIndexChanged(null, null);
 		}
 	}
 }

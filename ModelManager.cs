@@ -111,6 +111,9 @@ namespace BrawlCostumeManager {
 				_root.Dispose();
 				_root = null;
 			}
+			if (path == null) {
+				return;
+			}
 
 			_model = null;
 			_path = path;
