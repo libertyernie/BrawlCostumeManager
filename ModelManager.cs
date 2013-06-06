@@ -80,6 +80,10 @@ namespace BrawlCostumeManager {
 						(newroot as ARCNode).ExportPAC(pac.FullName);
 						(newroot as ARCNode).ExportPCS(pcs.FullName);
 
+						if (ParentForm is CostumeManager) {
+							(ParentForm as CostumeManager).updateCostumeSelectionPane();
+						}
+
 						LoadFile(_path);
 					} else {
 						MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

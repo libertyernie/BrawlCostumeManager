@@ -70,6 +70,10 @@ namespace BrawlCostumeManager {
 		}
 
 		public void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			updateCostumeSelectionPane();
+		}
+
+		public void updateCostumeSelectionPane() {
 			string charname = listBox1.SelectedItem.ToString();
 			int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 			listBox2.Items.Clear();
@@ -126,7 +130,7 @@ namespace BrawlCostumeManager {
 			modelManager1.LoadFile(null);
 			pac.Delete();
 			pcs.Delete();
-			listBox1_SelectedIndexChanged(null, null);
+			updateCostumeSelectionPane();
 		}
 	}
 }
