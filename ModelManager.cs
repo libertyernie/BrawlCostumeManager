@@ -28,8 +28,6 @@ namespace BrawlCostumeManager {
 
 		public bool UseExceptions;
 
-		private MDL0Node _model; 
-
 		private string _delayedPath;
 
 		public ModelManager() {
@@ -119,7 +117,6 @@ namespace BrawlCostumeManager {
 				return;
 			}
 
-			_model = null;
 			_path = path;
 			_charString = getCharString(path);
 
