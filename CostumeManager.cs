@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BrawlLib;
 
 namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {
@@ -133,6 +134,17 @@ namespace BrawlCostumeManager {
 			pac.Delete();
 			pcs.Delete();
 			updateCostumeSelectionPane();
+		}
+
+		private void copyToToolStripMenuItem_Click(object sender, EventArgs e) {
+			using (SaveFileDialog dlg = new SaveFileDialog()) {
+				dlg.Filter = "PAC Archive (*.pac)|*.pac|" +
+					"Compressed PAC Archive (*.pcs)|*.pcs|" +
+					"Archive Pair (*.pair)|*.pair";
+				if (dlg.ShowDialog(this) == DialogResult.OK) {
+					modelManager1.WorkingRoot.Export(dlg.FileName);
+				}
+			}
 		}
 	}
 }

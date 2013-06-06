@@ -41,6 +41,7 @@
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
+			this.copyToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -190,9 +191,10 @@
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// deleteToolStripMenuItem
@@ -223,6 +225,13 @@
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 240);
 			this.resultPortraitViewer1.TabIndex = 4;
+			// 
+			// copyToToolStripMenuItem
+			// 
+			this.copyToToolStripMenuItem.Name = "copyToToolStripMenuItem";
+			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.copyToToolStripMenuItem.Text = "Copy To...";
+			this.copyToToolStripMenuItem.Click += new System.EventHandler(this.copyToToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -269,5 +278,6 @@
 		private System.Windows.Forms.ToolStripMenuItem aboutBrawlCostumeManagerToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem copyToToolStripMenuItem;
 	}
 }

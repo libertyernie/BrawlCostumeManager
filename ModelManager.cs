@@ -24,7 +24,13 @@ namespace BrawlCostumeManager {
 	    /// <summary>
 	    /// Should be disposed when you switch to a new file.
 	    /// </summary>
-	    ResourceNode _root;
+		ResourceNode _root;
+
+		public ResourceNode WorkingRoot {
+			get {
+				return _root;
+			}
+		}
 
 		public bool UseExceptions;
 
