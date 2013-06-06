@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -59,6 +60,9 @@
     <Compile Include="CSSPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ResultPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +93,9 @@
     <EmbeddedResource Include="CostumeManager.resx">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModelForm.resx">
+      <DependentUpon>ModelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PortraitViewer.resx">
       <DependentUpon>PortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,9 +124,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\brawltools2-r21\trunk\BrawlLib\BrawlLib.csproj">
-      <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
-      <Name>BrawlLib</Name>
+    <ProjectReference Include="..\brawltools-r4\trunk\BrawlLib\BrawlLib-r4+.csproj">
+      <Project>{7c1a3a55-c3f3-48f6-bf56-218729fa19b1}</Project>
+      <Name>BrawlLib-r4+</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

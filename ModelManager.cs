@@ -20,7 +20,14 @@ namespace BrawlCostumeManager {
 		/// In case the file needs to be reloaded.
 		/// </summary>
 		private string _path;
+
+		/// <summary>
+		/// Should be disposed when you switch to a new file.
+		/// </summary>
+		ResourceNode _root;
 		public bool UseExceptions;
+
+		private MDL0Node _model;
 
 		private string _delayedPath;
 
@@ -28,8 +35,8 @@ namespace BrawlCostumeManager {
 			InitializeComponent();
 			UseExceptions = true;
 
-			modelPanel1.DragEnter += modelPanel1_DragEnter;
-			modelPanel1.DragDrop += modelPanel1_DragDrop;
+			button1.DragEnter += modelPanel1_DragEnter;
+			button1.DragDrop += modelPanel1_DragDrop;
 		}
 
 		void modelPanel1_DragEnter(object sender, DragEventArgs e) {
@@ -47,11 +54,17 @@ namespace BrawlCostumeManager {
 		void modelPanel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
 				string path = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-				ResourceNode root = NodeFactory.FromFile(null, path);
-				if (root is ARCNode) {
-					(root as ARCNode).ExportPair(_path);
-				} else {
-					MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				using (ResourceNode newroot = NodeFactory.FromFile(null, path)) {
+					if (newroot is ARCNode) {
+						if (_root != null) {
+							_root.Dispose();
+							_root = null;
+						}
+						(newroot as ARCNode).ExportPair(_path);
+						LoadFile(_path);
+					} else {
+						MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
 			}
 		}
@@ -75,17 +88,16 @@ namespace BrawlCostumeManager {
 		}
 
 		public void LoadFile(string path) {
+			_model = null;
 			_path = path;
 			_charString = getCharString(path);
 
 			comboBox1.Items.Clear();
-			modelPanel1.ClearAll();
-			modelPanel1.Invalidate();
 			this.Text = new FileInfo(path).Name;
 
 			try {
-				ResourceNode root = NodeFactory.FromFile(null, path);
-				List<MDL0Node> models = findAllMDL0s(root);
+				_root = NodeFactory.FromFile(null, path);
+				List<MDL0Node> models = findAllMDL0s(_root);
 				if (models.Count > 0) {
 					comboBox1.Items.AddRange(models.ToArray());
 					comboBox1.SelectedIndex = 0;
@@ -111,31 +123,7 @@ namespace BrawlCostumeManager {
 		}
 
 		public void LoadModel(MDL0Node model) {
-			model._renderBones = false;
-			model._renderPolygons = CheckState.Checked;
-			model._renderVertices = false;
-			model._renderBox = false;
-
-			if (UseExceptions) foreach (string texname in TexturesToDisable) {
-				MDL0TextureNode tex = model.TextureGroup.FindChild(texname, false) as MDL0TextureNode;
-				if (tex != null) {
-					tex.Enabled = false;
-				}
-			}
-
-			modelPanel1.ClearAll();
-			modelPanel1.AddTarget((IRenderedObject)model);
-
-			if (UseExceptions && PolygonsToDisable.ContainsKey(_charString)) {
-				foreach (int polygonNum in PolygonsToDisable[_charString]) {
-					MDL0ObjectNode poly = model.PolygonGroup.FindChild("polygon" + polygonNum, false) as MDL0ObjectNode;
-					poly._render = false;
-				}
-			}
-
-			Vector3 min, max;
-			((IRenderedObject)model).GetBox(out min, out max);
-			modelPanel1.SetCamWithBox(min, max);
+			_model = model;
 		}
 
 		private List<MDL0Node> findAllMDL0s(ResourceNode root) {
@@ -197,5 +185,11 @@ namespace BrawlCostumeManager {
 			{"sonic", new int[] {10,11,14,15,16,18,20,21,22,24,26,27,28,29,30}}, // open eyelids, remove sphere, etc.
 			{"dedede", new int[] {19}}, // remove inflated Dedede
 		};
+
+		private void button1_Click(object sender, EventArgs e) {
+			if (_model != null) using (ModelForm form = new ModelForm()) {
+				form.ShowDialog(_model);
+			}
+		}
 	}
 }
