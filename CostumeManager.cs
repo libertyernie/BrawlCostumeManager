@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {
+		private static string TITLE = "Brawl Costume Manager";
+
 		private List<PortraitViewer> portraitViewers;
 		public bool Use_cBliss;
 
@@ -21,6 +23,8 @@ namespace BrawlCostumeManager {
 		}
 
 		private void readDir() {
+			Text = TITLE + " - " + System.Environment.CurrentDirectory;
+
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
 			foreach (string charname in Constants.CharactersByCSSOrder) {
