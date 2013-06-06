@@ -19,6 +19,11 @@ namespace BrawlCostumeManager {
 		public CostumeManager() {
 			InitializeComponent();
 			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1};
+
+			if (!new DirectoryInfo("fighter").Exists && new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
+				System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
+			}
+
 			readDir();
 		}
 
