@@ -19,7 +19,7 @@ namespace BrawlCostumeManager {
 			get { return 56; }
 		}
 
-		private ResourceNode[] battle_bres_array;
+		private ResourceNode[] bres_cache;
 
 		public BattlePortraitViewer() : base() {
 			UpdateDirectory();
@@ -36,14 +36,23 @@ namespace BrawlCostumeManager {
 				return null;
 			}
 
-			ResourceNode bres = battle_bres_array[charNum * 10 + costumeNum + 1];
+			int index = charNum * 10 + costumeNum + 1;
+			ResourceNode bres = bres_cache[index];
 			if (bres == null) {
-				label1.Text = "InfFace" + tex_number + ".brres: not found";
-				return null;
+				string f = "info/portrite/InfFace" + tex_number + ".brres";
+				if (new FileInfo(f).Exists) {
+					bres_cache[index] = bres = (BRESNode)NodeFactory.FromFile(null, f);
+				}
+
+				if (bres == null) {
+					label1.Text = "InfFace" + tex_number + ".brres: not found";
+					return null;
+				}
 			}
 
 			ResourceNode get_node = bres.FindChild("Textures(NW4R)", false).Children[0];
 			if (get_node is TEX0Node) {
+				label1.Text = "InfFace" + tex_number + ".brres";
 				return tex0 = (TEX0Node)get_node;
 			} else {
 				label1.Text += " (tex0 not found)";
@@ -52,25 +61,19 @@ namespace BrawlCostumeManager {
 		}
 
 		public override void UpdateDirectory() {
-			battle_bres_array = new ResourceNode[470];
-			using (ProgressWindow progress = new ProgressWindow(this, "Loading battle portraits", System.Environment.CurrentDirectory, false)) {
-				progress.Begin(0, 470, 0);
-				for (int i = 0; i < 470; i++) {
-					progress.Update(i);
-					// could be cleaned up to skip certain unused numbers
-					string f = "info/portrite/InfFace" + i.ToString("D3") + ".brres";
-					if (new FileInfo(f).Exists) {
-						battle_bres_array[i] = (BRESNode)NodeFactory.FromFile(null, f);
-					}
+			if (bres_cache != null) {
+				foreach (ResourceNode node in bres_cache) {
+					if (node != null) node.Dispose();
 				}
 			}
+			bres_cache = new ResourceNode[470];
 		}
 
 		protected override void saveButton_Click(object sender, EventArgs e) {
-			for (int i = 0; i < battle_bres_array.Length; i++) {
-				if (battle_bres_array[i] != null && battle_bres_array[i].IsDirty) {
-					battle_bres_array[i].Merge();
-					battle_bres_array[i].Export("info/portrite/InfFace" + i.ToString("D3") + ".brres");
+			for (int i = 0; i < bres_cache.Length; i++) {
+				if (bres_cache[i] != null && bres_cache[i].IsDirty) {
+					bres_cache[i].Merge();
+					bres_cache[i].Export("info/portrite/InfFace" + i.ToString("D3") + ".brres");
 				}
 			}
 		}
