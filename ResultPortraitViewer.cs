@@ -19,7 +19,7 @@ namespace BrawlCostumeManager {
 			get { return 160; }
 		}
 
-		private ResourceNode[] bres_array;
+		private ResourceNode[] bres_cache;
 
 		public ResultPortraitViewer() : base() {
 			UpdateDirectory();
@@ -36,10 +36,17 @@ namespace BrawlCostumeManager {
 				return null;
 			}
 
-			ResourceNode bres = bres_array[charNum];
+			ResourceNode bres = bres_cache[charNum];
 			if (bres == null) {
-				label1.Text = "MenSelchrFaceB" + charNum.ToString("D2") + "0: not found";
-				return null;
+				string f = "menu/common/char_bust_tex/MenSelchrFaceB" + charNum.ToString("D2") + "0.brres";
+				if (new FileInfo(f).Exists) {
+					bres_cache[charNum] = bres = (BRESNode)NodeFactory.FromFile(null, f);
+				}
+
+				if (bres == null) {
+					label1.Text = "MenSelchrFaceB" + charNum.ToString("D2") + "0: not found";
+					return null;
+				}
 			}
 
 			string str = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
@@ -54,24 +61,19 @@ namespace BrawlCostumeManager {
 		}
 
 		public override void UpdateDirectory() {
-			bres_array = new ResourceNode[47];
-			using (ProgressWindow progress = new ProgressWindow(this, "Loading result portraits", System.Environment.CurrentDirectory, false)) {
-				progress.Begin(0, 47, 0);
-				for (int i = 0; i < 47; i++) {
-					progress.Update(i);
-					string f = "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres";
-					if (new FileInfo(f).Exists) {
-						bres_array[i] = (BRESNode)NodeFactory.FromFile(null, f);
-					}
+			if (bres_cache != null) {
+				foreach (ResourceNode node in bres_cache) {
+					if (node != null) node.Dispose();
 				}
 			}
+			bres_cache = new ResourceNode[47];
 		}
 
 		protected override void saveButton_Click(object sender, EventArgs e) {
-			for (int i = 0; i < bres_array.Length; i++) {
-				if (bres_array[i] != null && bres_array[i].IsDirty) {
-					bres_array[i].Merge();
-					bres_array[i].Export("menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
+			for (int i = 0; i < bres_cache.Length; i++) {
+				if (bres_cache[i] != null && bres_cache[i].IsDirty) {
+					bres_cache[i].Merge();
+					bres_cache[i].Export("menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
 				}
 			}
 		}
