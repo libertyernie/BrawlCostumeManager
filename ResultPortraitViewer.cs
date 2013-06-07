@@ -38,12 +38,12 @@ namespace BrawlCostumeManager {
 
 			ResourceNode bres = bres_array[charNum];
 			if (bres == null) {
-				label1.Text = "MenSelchrFaceB" + charNum.ToString("D2") + "0.brres: not found";
+				label1.Text = "MenSelchrFaceB" + charNum.ToString("D2") + "0: not found";
 				return null;
 			}
 
 			string str = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			label1.Text = bres.ToString() + ": " + str;
+			label1.Text = bres.ToString().Replace(".brres", "") + ": " + str;
 			ResourceNode get_node = bres.FindChild(str, false);
 			if (get_node is TEX0Node) {
 				return tex0 = (TEX0Node)get_node;
