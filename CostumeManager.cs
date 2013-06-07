@@ -57,6 +57,7 @@ namespace BrawlCostumeManager {
 
 		public void RefreshPortraits() {
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
+			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
 			if (!Use_cBliss) {
 				string charName = Constants.CharactersByCSSOrder[ff.CharNum];
