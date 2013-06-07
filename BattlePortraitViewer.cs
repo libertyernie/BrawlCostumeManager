@@ -57,11 +57,10 @@ namespace BrawlCostumeManager {
 				progress.Begin(0, 470, 0);
 				for (int i = 0; i < 470; i++) {
 					progress.Update(i);
-					try {
-						// could be cleaned up to skip certain unused numbers
-						battle_bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "info/portrite/InfFace" + i.ToString("D3") + ".brres");
-					} catch (IOException) {
-						battle_bres_array[i] = null;
+					// could be cleaned up to skip certain unused numbers
+					string f = "info/portrite/InfFace" + i.ToString("D3") + ".brres";
+					if (new FileInfo(f).Exists) {
+						battle_bres_array[i] = (BRESNode)NodeFactory.FromFile(null, f);
 					}
 				}
 			}

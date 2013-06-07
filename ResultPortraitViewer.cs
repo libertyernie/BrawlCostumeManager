@@ -59,10 +59,9 @@ namespace BrawlCostumeManager {
 				progress.Begin(0, 47, 0);
 				for (int i = 0; i < 47; i++) {
 					progress.Update(i);
-					try {
-						bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
-					} catch (IOException) {
-						bres_array[i] = null;
+					string f = "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres";
+					if (new FileInfo(f).Exists) {
+						bres_array[i] = (BRESNode)NodeFactory.FromFile(null, f);
 					}
 				}
 			}
