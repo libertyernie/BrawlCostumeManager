@@ -12,6 +12,13 @@ using System.IO;
 
 namespace BrawlCostumeManager {
 	public class ResultPortraitViewer : PortraitViewer {
+		public override int PortraitWidth {
+			get { return 128; }
+		}
+		public override int PortraitHeight {
+			get { return 160; }
+		}
+
 		private ResourceNode[] bres_array;
 
 		public ResultPortraitViewer() : base() {
@@ -60,7 +67,7 @@ namespace BrawlCostumeManager {
 		protected override void saveButton_Click(object sender, EventArgs e) {
 			for (int i = 0; i < bres_array.Length; i++) {
 				if (bres_array[i] != null && bres_array[i].IsDirty) {
-					bres_array[i].Rebuild();
+					bres_array[i].Merge();
 					bres_array[i].Export("menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
 				}
 			}

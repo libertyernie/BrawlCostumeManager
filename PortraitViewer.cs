@@ -12,6 +12,13 @@ using System.IO;
 
 namespace BrawlCostumeManager {
 	public abstract partial class PortraitViewer : UserControl {
+		public abstract int PortraitWidth {
+			get;
+		}
+		public abstract int PortraitHeight {
+			get;
+		}
+
 		protected TEX0Node tex0;
 
 		// In case the image needs to be reloaded after replacing the texture
@@ -19,6 +26,7 @@ namespace BrawlCostumeManager {
 
 		public PortraitViewer() {
 			InitializeComponent();
+			panel1.Size = new System.Drawing.Size(PortraitWidth, PortraitHeight);
 
 			_charNum = -1;
 			_costumeNum = -1;

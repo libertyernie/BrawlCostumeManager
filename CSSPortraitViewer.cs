@@ -9,6 +9,13 @@ using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlCostumeManager {
 	public class CSSPortraitViewer : PortraitViewer {
+		public override int PortraitWidth {
+			get { return 128; }
+		}
+		public override int PortraitHeight {
+			get { return 160; }
+		}
+
 		/// <summary>
 		/// The common5 currently being used. If using sc_selcharacter.pac instead, this will be null.
 		/// </summary>
