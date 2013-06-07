@@ -55,11 +55,15 @@ namespace BrawlCostumeManager {
 
 		public override void UpdateDirectory() {
 			bres_array = new ResourceNode[47];
-			for (int i = 0; i < 47; i++) {
-				try {
-					bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
-				} catch (IOException) {
-					bres_array[i] = null;
+			using (ProgressWindow progress = new ProgressWindow(this, "Loading result portraits", System.Environment.CurrentDirectory, false)) {
+				progress.Begin(0, 47, 0);
+				for (int i = 0; i < 47; i++) {
+					progress.Update(i);
+					try {
+						bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
+					} catch (IOException) {
+						bres_array[i] = null;
+					}
 				}
 			}
 		}

@@ -53,7 +53,7 @@ namespace BrawlCostumeManager {
 
 		public override void UpdateDirectory() {
 			battle_bres_array = new ResourceNode[470];
-			using (ProgressWindow progress = new ProgressWindow(this, "Loading battle portraits", "InfFace", false)) {
+			using (ProgressWindow progress = new ProgressWindow(this, "Loading battle portraits", System.Environment.CurrentDirectory, false)) {
 				progress.Begin(0, 470, 0);
 				for (int i = 0; i < 470; i++) {
 					progress.Update(i);
