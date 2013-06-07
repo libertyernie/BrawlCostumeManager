@@ -57,14 +57,14 @@
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
 			// 
-			// CSSPortraitViewer
+			// PortraitViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.saveButton);
 			this.Controls.Add(this.panel1);
-			this.Name = "CSSPortraitViewer";
+			this.Name = "PortraitViewer";
 			this.Size = new System.Drawing.Size(128, 256);
 			this.ResumeLayout(false);
 

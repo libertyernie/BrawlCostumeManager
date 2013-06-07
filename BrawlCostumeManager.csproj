@@ -56,6 +56,9 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="BattlePortraitViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CSSPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
