@@ -42,9 +42,7 @@ namespace BrawlCostumeManager {
 				return null;
 			}
 
-			string str = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			label1.Text = bres.ToString() + ": " + str;
-			ResourceNode get_node = bres.FindChild(str, false);
+			ResourceNode get_node = bres.FindChild("Textures(NW4R)", false).Children[0];
 			if (get_node is TEX0Node) {
 				return tex0 = (TEX0Node)get_node;
 			} else {
@@ -55,12 +53,16 @@ namespace BrawlCostumeManager {
 
 		public override void UpdateDirectory() {
 			battle_bres_array = new ResourceNode[470];
-			for (int i = 0; i < 470; i++) {
-				try {
-					// could be cleaned up to skip certain unused numbers
-					battle_bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "info/portrite/InfFace" + i.ToString("D3") + ".brres");
-				} catch (IOException) {
-					battle_bres_array[i] = null;
+			using (ProgressWindow progress = new ProgressWindow(this, "Loading battle portraits", "InfFace", false)) {
+				progress.Begin(0, 470, 0);
+				for (int i = 0; i < 470; i++) {
+					progress.Update(i);
+					try {
+						// could be cleaned up to skip certain unused numbers
+						battle_bres_array[i] = (BRESNode)NodeFactory.FromFile(null, "info/portrite/InfFace" + i.ToString("D3") + ".brres");
+					} catch (IOException) {
+						battle_bres_array[i] = null;
+					}
 				}
 			}
 		}
@@ -68,7 +70,7 @@ namespace BrawlCostumeManager {
 		protected override void saveButton_Click(object sender, EventArgs e) {
 			for (int i = 0; i < battle_bres_array.Length; i++) {
 				if (battle_bres_array[i] != null && battle_bres_array[i].IsDirty) {
-					battle_bres_array[i].Rebuild();
+					battle_bres_array[i].Merge();
 					battle_bres_array[i].Export("info/portrite/InfFace" + i.ToString("D3") + ".brres");
 				}
 			}
