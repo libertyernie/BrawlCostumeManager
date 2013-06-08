@@ -66,7 +66,7 @@ namespace BrawlCostumeManager {
 					if (node != null) node.Dispose();
 				}
 			}
-			bres_cache = new ResourceNode[470];
+			bres_cache = new ResourceNode[471];
 		}
 
 		protected override void saveButton_Click(object sender, EventArgs e) {
