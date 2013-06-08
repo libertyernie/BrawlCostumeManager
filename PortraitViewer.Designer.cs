@@ -23,16 +23,22 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.flowLayoutPanel1.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
 			this.panel1.AllowDrop = true;
+			this.panel1.ContextMenuStrip = this.contextMenuStrip1;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
@@ -71,6 +77,28 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 224);
 			this.flowLayoutPanel1.TabIndex = 3;
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceToolStripMenuItem,
+            this.exportToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+			// 
+			// replaceToolStripMenuItem
+			// 
+			this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+			this.replaceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.replaceToolStripMenuItem.Text = "Replace";
+			this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
+			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exportToolStripMenuItem.Text = "Export";
+			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+			// 
 			// PortraitViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -79,6 +107,7 @@
 			this.Name = "PortraitViewer";
 			this.Size = new System.Drawing.Size(128, 224);
 			this.flowLayoutPanel1.ResumeLayout(false);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -89,5 +118,8 @@
 		protected System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
 	}
 }
