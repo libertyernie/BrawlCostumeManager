@@ -177,7 +177,7 @@ namespace BrawlCostumeManager {
 			if (UseExceptions && PolygonsToDisable.ContainsKey(_charString)) {
 				foreach (int polygonNum in PolygonsToDisable[_charString]) {
 					MDL0ObjectNode poly = model.PolygonGroup.FindChild("polygon" + polygonNum, false) as MDL0ObjectNode;
-					poly._render = false;
+					if (poly != null) poly._render = false;
 				}
 			}
 
