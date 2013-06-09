@@ -16,6 +16,8 @@ namespace BrawlCostumeManager {
 			get { return 160; }
 		}
 
+		private string _openFilePath;
+
 		/// <summary>
 		/// The common5 currently being used. If using sc_selcharacter.pac instead, this will be null.
 		/// </summary>
@@ -62,16 +64,27 @@ namespace BrawlCostumeManager {
 
 		public override void UpdateDirectory() {
 			try {
+				string path = "menu2/sc_selcharacter.pac";
 				common5 = null;
-				sc_selcharacter = NodeFactory.FromFile(null, "menu2/sc_selcharacter.pac");
+				sc_selcharacter = NodeFactory.FromFile(null, path);
+				_openFilePath = path;
 			} catch (IOException) {
 				try {
-					common5 = NodeFactory.FromFile(null, "system/common5.pac");
+					string path = "system/common5.pac";
+					common5 = NodeFactory.FromFile(null, path);
 					sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
+					_openFilePath = path;
 				} catch (IOException) {
-					common5 = null;
-					sc_selcharacter = null;
-					label1.Text = "Could not load sc_selcharacter or common5.";
+					try {
+						string path = "system/common5_en.pac";
+						common5 = NodeFactory.FromFile(null, path);
+						sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
+						_openFilePath = path;
+					} catch (IOException) {
+						common5 = null;
+						sc_selcharacter = null;
+						label1.Text = "Could not load sc_selcharacter or common5(_en).";
+					}
 				}
 			}
 		}
@@ -83,10 +96,10 @@ namespace BrawlCostumeManager {
 
 			if (common5 != null) {
 				common5.Merge();
-				common5.Export("system/common5.pac");
+				common5.Export(_openFilePath);
 			} else {
 				sc_selcharacter.Merge();
-				sc_selcharacter.Export("menu2/sc_selcharacter_out.pac");
+				sc_selcharacter.Export(_openFilePath);
 			}
 		}
 	}
