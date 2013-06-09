@@ -92,7 +92,7 @@ namespace BrawlCostumeManager {
 				if (s.Length == 1) { // Can only drag and drop one file
 					string filename = s[0].ToLower();
 					if (filename.EndsWith(".png") || filename.EndsWith(".gif")
-						|| filename.EndsWith(".tif") || filename.EndsWith(".tiff")) {
+						|| filename.EndsWith(".tex0") || filename.EndsWith(".brres")) {
 						e.Effect = DragDropEffects.Copy;
 					}
 				}
@@ -106,10 +106,26 @@ namespace BrawlCostumeManager {
 		}
 
 		public void Replace(string filename) {
-			using (TextureConverterDialog dlg = new TextureConverterDialog()) {
-				dlg.ImageSource = filename;
-				if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
-					UpdateImage(_charNum, _costumeNum);
+			var ig = StringComparison.CurrentCultureIgnoreCase;
+			if (filename.EndsWith(".tex0", ig) || filename.EndsWith(".brres", ig)) {
+				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {
+					TEX0Node tex0;
+					if (node is TEX0Node) {
+						tex0 = (TEX0Node)node;
+					} else {
+						tex0 = (TEX0Node)node.FindChild("Textures(NW4R)", false).Children[0];
+					}
+					string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
+					tex0.Export(tempFile);
+					Replace(tempFile); // call self with new file
+					File.Delete(tempFile);
+				}
+			} else {
+				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
+					dlg.ImageSource = filename;
+					if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
+						UpdateImage(_charNum, _costumeNum);
+					}
 				}
 			}
 		}
