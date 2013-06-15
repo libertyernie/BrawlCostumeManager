@@ -12,6 +12,7 @@ using BrawlLib;
 
 namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {
+		private static string DASH = "-";
 		private static string TITLE = "Brawl Costume Manager";
 
 		private List<PortraitViewer> portraitViewers;
@@ -33,6 +34,7 @@ namespace BrawlCostumeManager {
 
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
+			listBox1.Items.Add(DASH);
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
@@ -79,20 +81,29 @@ namespace BrawlCostumeManager {
 			int selectedIndex = listBox2.SelectedIndex;
 
 			string charname = listBox1.SelectedItem.ToString();
-			int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 			listBox2.Items.Clear();
-			int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
-			for (int i = 0; i < upperBound; i++) {
-				string pathNoExt = "fighter/" + charname + "/fit" + charname + i.ToString("D2");
-				listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
-				listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
-				if (charname.ToLower() == "kirby") {
-					foreach (string hatchar in Constants.KirbyHats) {
-						listBox2.Items.Add(new FighterFile("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
+			if (charname == DASH) {
+				foreach (FileInfo f in new DirectoryInfo(".").EnumerateFiles()) {
+					string name = f.Name.ToLower();
+					if (name.EndsWith(".pac") || name.EndsWith(".pcs")) {
+						listBox2.Items.Add(new FighterFile(f.Name, 1, 1));
 					}
 				}
+			} else {
+				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
+				int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
+				for (int i = 0; i < upperBound; i++) {
+					string pathNoExt = "fighter/" + charname + "/fit" + charname + i.ToString("D2");
+					listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
+					listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
+					if (charname.ToLower() == "kirby") {
+						foreach (string hatchar in Constants.KirbyHats) {
+							listBox2.Items.Add(new FighterFile("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
+						}
+					}
+				}
+				listBox2.SelectedIndex = (selectedIndex < listBox2.Items.Count) ? selectedIndex : 0;
 			}
-			listBox2.SelectedIndex = (selectedIndex < listBox2.Items.Count) ? selectedIndex : 0;
 		}
 
 		private void changeDirectory_Click(object sender, EventArgs e) {
