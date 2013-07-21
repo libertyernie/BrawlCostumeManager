@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BrawlLib.SSBB.ResourceNodes;
+using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
 	public class CSSPortraitViewer : PortraitViewer {
@@ -16,6 +17,14 @@ namespace BrawlCostumeManager {
 			get { return 160; }
 		}
 
+		private static AdditionalTextureData[] additionalTextureData = {
+			new AdditionalTextureData(128, 32, "MiscData[30]/Textures(NW4R)/MenSelchrChrNm.", i => i.ToString("D2") + "1"),
+			new AdditionalTextureData(80, 56, "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0", i => (i + 1).ToString("D2")),
+			new AdditionalTextureData(32, 32, "MiscData[90]/Textures(NW4R)/InfStc.", (i,j) => (i*10 + j + 1).ToString("D3")),
+			new AdditionalTextureData(56, 14, "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0", i => (i + 1).ToString("D2")),
+		};
+
+		private TEX0Node[] additionalTextures;
 		private string _openFilePath;
 
 		/// <summary>
@@ -28,9 +37,11 @@ namespace BrawlCostumeManager {
 		private ResourceNode sc_selcharacter;
 
 		public CSSPortraitViewer() : base() {
-			panel2.Visible = true;
-			panel3.Visible = true;
-			panel4.Visible = true;
+			int a = additionalTextureData.Length;
+			additionalTextures = new TEX0Node[a];
+			foreach (var atd in additionalTextureData) {
+				AdditionalControls.Add(atd.Panel);
+			}
 			UpdateDirectory();
 		}
 
@@ -65,29 +76,21 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		public override void UpdateImage(int charNum, int costumeNum) {
-			base.UpdateImage(charNum, costumeNum);
-			string path;
-
-			path = "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + charNum.ToString("D2") + "1";
-			TEX0Node ChrNm = sc_selcharacter.FindChild(path, false) as TEX0Node;
-			if (ChrNm != null) {
-				Bitmap bitmap = new Bitmap(ChrNm.GetImage(0), 128, 32);
-				panel2.BackgroundImage = bitmap;
-			}
-
-			path = "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (charNum + 1).ToString("D2");
-			TEX0Node ChrFace = sc_selcharacter.FindChild(path, false) as TEX0Node;
-			if (ChrFace != null) {
-				Bitmap bitmap = new Bitmap(ChrFace.GetImage(0), 80, 56);
-				panel3.BackgroundImage = bitmap;
-			}
-
-			path = "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (charNum + 1).ToString("D2");
-			TEX0Node ChrNmS = sc_selcharacter.FindChild(path, false) as TEX0Node;
-			if (ChrNmS != null) {
-				Bitmap bitmap = ChrNmS.GetImage(0);
-				panel4.BackgroundImage = bitmap;
+		public override bool UpdateImage(int charNum, int costumeNum) {
+			if (base.UpdateImage(charNum, costumeNum)) {
+				foreach (var atd in additionalTextureData) {
+					TEX0Node t = sc_selcharacter.FindChild(atd[charNum, costumeNum], false) as TEX0Node;
+					if (t != null) {
+						Bitmap bitmap = new Bitmap(t.GetImage(0), atd.Size);
+						atd.Panel.BackgroundImage = bitmap;
+					}
+				}
+				return true;
+			} else {
+				foreach (var atd in additionalTextureData) {
+					atd.Panel.BackgroundImage = null;
+				}
+				return false;
 			}
 		}
 

@@ -38,8 +38,8 @@
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
@@ -200,6 +200,14 @@
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
 			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(205, 401);
+			this.modelManager1.TabIndex = 1;
+			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoSize = true;
@@ -213,19 +221,11 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 401);
 			this.flowLayoutPanel1.TabIndex = 5;
 			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(205, 401);
-			this.modelManager1.TabIndex = 1;
-			// 
 			// cssPortraitViewer1
 			// 
 			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
 			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
-			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 340);
+			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 400);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
 			// battlePortraitViewer1

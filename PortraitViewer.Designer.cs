@@ -31,9 +31,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.panel4 = new System.Windows.Forms.Panel();
+			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.contextMenuStrip1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
@@ -72,7 +70,7 @@
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(0, 272);
+			this.label1.Location = new System.Drawing.Point(0, 160);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(128, 40);
@@ -81,7 +79,7 @@
 			// 
 			// saveButton
 			// 
-			this.saveButton.Location = new System.Drawing.Point(0, 312);
+			this.saveButton.Location = new System.Drawing.Point(0, 200);
 			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(128, 23);
@@ -93,47 +91,24 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.panel1);
-			this.flowLayoutPanel1.Controls.Add(this.panel2);
-			this.flowLayoutPanel1.Controls.Add(this.panel3);
-			this.flowLayoutPanel1.Controls.Add(this.panel4);
 			this.flowLayoutPanel1.Controls.Add(this.label1);
+			this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
 			this.flowLayoutPanel1.Controls.Add(this.saveButton);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 340);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 240);
 			this.flowLayoutPanel1.TabIndex = 3;
 			// 
-			// panel2
+			// additionalTexturesPanel
 			// 
-			this.panel2.ContextMenuStrip = this.contextMenuStrip1;
-			this.panel2.Location = new System.Drawing.Point(0, 160);
-			this.panel2.Margin = new System.Windows.Forms.Padding(0);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(128, 32);
-			this.panel2.TabIndex = 3;
-			this.panel2.Visible = false;
-			// 
-			// panel3
-			// 
-			this.panel3.ContextMenuStrip = this.contextMenuStrip1;
-			this.panel3.Location = new System.Drawing.Point(0, 192);
-			this.panel3.Margin = new System.Windows.Forms.Padding(0);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(80, 56);
-			this.panel3.TabIndex = 4;
-			this.panel3.Visible = false;
-			// 
-			// panel4
-			// 
-			this.panel4.ContextMenuStrip = this.contextMenuStrip1;
-			this.panel4.Location = new System.Drawing.Point(0, 248);
-			this.panel4.Margin = new System.Windows.Forms.Padding(0);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(88, 24);
-			this.panel4.TabIndex = 5;
-			this.panel4.Visible = false;
+			this.additionalTexturesPanel.AutoSize = true;
+			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 200);
+			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
+			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
+			this.additionalTexturesPanel.TabIndex = 3;
 			// 
 			// PortraitViewer
 			// 
@@ -141,9 +116,10 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.flowLayoutPanel1);
 			this.Name = "PortraitViewer";
-			this.Size = new System.Drawing.Size(128, 340);
+			this.Size = new System.Drawing.Size(128, 240);
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
+			this.flowLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -157,8 +133,6 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-		protected System.Windows.Forms.Panel panel2;
-		protected System.Windows.Forms.Panel panel3;
-		protected System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.FlowLayoutPanel additionalTexturesPanel;
 	}
 }

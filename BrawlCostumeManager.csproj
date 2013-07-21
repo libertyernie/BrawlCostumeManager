@@ -63,6 +63,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdditionalTextureData.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="BattlePortraitViewer.cs">
       <SubType>UserControl</SubType>
