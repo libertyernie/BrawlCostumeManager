@@ -16,12 +16,19 @@ namespace BrawlCostumeManager {
 		public override int PortraitHeight {
 			get { return 160; }
 		}
+		public override string PortraitPathFor(int charNum, int costumeNum) {
+			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
+			return "char_bust_tex_lz77/MiscData[" + charNum + "]/Textures(NW4R)/MenSelchrFaceB." + tex_number;
+		}
+		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
+			return sc_selcharacter;
+		}
 
 		private static AdditionalTextureData[] additionalTextureData = {
-			new AdditionalTextureData(128, 32, "MiscData[30]/Textures(NW4R)/MenSelchrChrNm.", i => i.ToString("D2") + "1"),
-			new AdditionalTextureData(80, 56, "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0", i => (i + 1).ToString("D2")),
-			new AdditionalTextureData(32, 32, "MiscData[90]/Textures(NW4R)/InfStc.", (i,j) => (i*10 + j + 1).ToString("D3")),
-			new AdditionalTextureData(56, 14, "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0", i => (i + 1).ToString("D2")),
+			new AdditionalTextureData(128, 32, i => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
+			new AdditionalTextureData(80, 56, i => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
+			new AdditionalTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
+			new AdditionalTextureData(56, 14, i => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
 		};
 
 		private TEX0Node[] additionalTextures;
@@ -41,42 +48,12 @@ namespace BrawlCostumeManager {
 			additionalTextures = new TEX0Node[a];
 			foreach (var atd in additionalTextureData) {
 				AdditionalControls.Add(atd.Panel);
-				atd.OnUpdate += new EventHandler(delegate(object sender, EventArgs ea) {
+				atd.OnUpdate = delegate(AdditionalTextureData sender) {
 					UpdateImage(_charNum, _costumeNum);
-				});
+				};
 			}
 			UpdateDirectory();
-		}
-
-		protected override TEX0Node get_node(int charNum, int costumeNum) {
-			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
-
-			tex0 = null;
-			panel1.BackgroundImage = null;
-
-			if (costumeNum < 0) {
-				label1.Text = "No portrait mapping";
-				return null;
-			}
-
-			if (common5 != null) {
-				label1.Text = "common5: ";
-			} else if (sc_selcharacter != null) {
-				label1.Text = "sc_selcharacter.pac: ";
-			} else {
-				return null;
-			}
-
-			string str1 = "char_bust_tex_lz77/MiscData[" + charNum + "]";
-			string str2 = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			label1.Text += str2;
-			ResourceNode get_node = sc_selcharacter.FindChild(str1 + "/" + str2, false);
-			if (get_node is TEX0Node) {
-				return (TEX0Node)get_node;
-			} else {
-				label1.Text += " (tex0 not found)";
-				return null;
-			}
+			label1.Text = (common5 != null ? "common5" : "sc_selcharacter");
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {

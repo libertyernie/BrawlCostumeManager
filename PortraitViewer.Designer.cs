@@ -24,7 +24,6 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			this.panel1 = new System.Windows.Forms.Panel();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,16 +34,6 @@
 			this.contextMenuStrip1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// panel1
-			// 
-			this.panel1.AllowDrop = true;
-			this.panel1.ContextMenuStrip = this.contextMenuStrip1;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(128, 160);
-			this.panel1.TabIndex = 0;
 			// 
 			// contextMenuStrip1
 			// 
@@ -70,7 +59,7 @@
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(0, 160);
+			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(128, 40);
@@ -79,7 +68,7 @@
 			// 
 			// saveButton
 			// 
-			this.saveButton.Location = new System.Drawing.Point(0, 200);
+			this.saveButton.Location = new System.Drawing.Point(0, 40);
 			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(128, 23);
@@ -90,7 +79,6 @@
 			// 
 			// flowLayoutPanel1
 			// 
-			this.flowLayoutPanel1.Controls.Add(this.panel1);
 			this.flowLayoutPanel1.Controls.Add(this.label1);
 			this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
 			this.flowLayoutPanel1.Controls.Add(this.saveButton);
@@ -104,7 +92,7 @@
 			// additionalTexturesPanel
 			// 
 			this.additionalTexturesPanel.AutoSize = true;
-			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 200);
+			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 40);
 			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
 			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
@@ -126,7 +114,6 @@
 
 		#endregion
 
-		protected System.Windows.Forms.Panel panel1;
 		protected System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

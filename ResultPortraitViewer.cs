@@ -18,24 +18,7 @@ namespace BrawlCostumeManager {
 		public override int PortraitHeight {
 			get { return 160; }
 		}
-
-		private ResourceNode[] bres_cache;
-
-		public ResultPortraitViewer() : base() {
-			UpdateDirectory();
-		}
-
-		protected override TEX0Node get_node(int charNum, int costumeNum) {
-			string tex_number = (charNum*10 + costumeNum + 1).ToString("D3");
-
-			tex0 = null;
-			panel1.BackgroundImage = null;
-
-			if (costumeNum < 0) {
-				label1.Text = "No portrait mapping";
-				return null;
-			}
-
+		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
 			ResourceNode bres = bres_cache[charNum];
 			if (bres == null) {
 				string f = "menu/common/char_bust_tex/MenSelchrFaceB" + charNum.ToString("D2") + "0.brres";
@@ -48,16 +31,16 @@ namespace BrawlCostumeManager {
 					return null;
 				}
 			}
+			return bres;
+		}
+		public override string PortraitPathFor(int charNum, int costumeNum) {
+			return "Textures(NW4R)/MenSelchrFaceB." + (charNum * 10 + costumeNum + 1).ToString("D3");
+		}
 
-			string str = "Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			label1.Text = bres.ToString().Replace(".brres", "") + ": " + str;
-			ResourceNode get_node = bres.FindChild(str, false);
-			if (get_node is TEX0Node) {
-				return tex0 = (TEX0Node)get_node;
-			} else {
-				label1.Text += " (tex0 not found)";
-				return null;
-			}
+		private ResourceNode[] bres_cache;
+
+		public ResultPortraitViewer() : base() {
+			UpdateDirectory();
 		}
 
 		public override void UpdateDirectory() {

@@ -56,88 +56,37 @@ namespace BrawlCostumeManager {
 		public abstract int PortraitHeight {
 			get;
 		}
+		public abstract ResourceNode PortraitRootFor(int charNum, int costumeNum);
+		public abstract string PortraitPathFor(int charNum, int costumeNum);
 
-		protected TEX0Node tex0;
+		protected AdditionalTextureData texture;
 
 		// In case the image needs to be reloaded after replacing the texture
 		protected int _charNum, _costumeNum;
 
 		public PortraitViewer() {
 			InitializeComponent();
-			panel1.Size = new System.Drawing.Size(PortraitWidth, PortraitHeight);
+			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, PortraitPathFor);
+			additionalTexturesPanel.Controls.Add(texture.Panel);
+			texture.Panel.ContextMenuStrip = contextMenuStrip1;
+			texture.OnUpdate = delegate(AdditionalTextureData sender) {
+					UpdateImage(_charNum, _costumeNum);
+				};
 
 			_charNum = -1;
 			_costumeNum = -1;
-
-			panel1.DragEnter += panel1_DragEnter;
-			panel1.DragDrop += panel1_DragDrop;
 		}
 
 		public virtual bool UpdateImage(int charNum, int costumeNum) {
-			panel1.BackgroundImage = null;
-			_charNum = -1;
-			_costumeNum = -1;
-
-			tex0 = (TEX0Node)get_node(charNum, costumeNum);
-			if (tex0 != null) {
-				Bitmap bitmap = tex0.GetImage(0);
-				panel1.BackgroundImage = bitmap;
-
-				_charNum = charNum;
-				_costumeNum = costumeNum;
-				return true;
-			} else {
-				return false;
-			}
+			_charNum = charNum;
+			_costumeNum = costumeNum;
+			ResourceNode bres = PortraitRootFor(charNum, costumeNum);
+			label1.Text = bres.RootNode.Name;
+			texture.TextureFrom(bres, charNum, costumeNum);
+			return texture.Texture != null;
 		}
-
-		protected abstract TEX0Node get_node(int charNum, int costumeNum);
 
 		public abstract void UpdateDirectory();
-
-		void panel1_DragEnter(object sender, DragEventArgs e) {
-			if (tex0 != null && e.Data.GetDataPresent(DataFormats.FileDrop)) {
-				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-				if (s.Length == 1) { // Can only drag and drop one file
-					string filename = s[0].ToLower();
-					if (filename.EndsWith(".png") || filename.EndsWith(".gif")
-						|| filename.EndsWith(".tex0") || filename.EndsWith(".brres")) {
-						e.Effect = DragDropEffects.Copy;
-					}
-				}
-			}
-		}
-
-		void panel1_DragDrop(object sender, DragEventArgs e) {
-			if (e.Effect == DragDropEffects.Copy) {
-				Replace((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
-			}
-		}
-
-		public void Replace(string filename) {
-			var ig = StringComparison.CurrentCultureIgnoreCase;
-			if (filename.EndsWith(".tex0", ig) || filename.EndsWith(".brres", ig)) {
-				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {
-					TEX0Node tex0;
-					if (node is TEX0Node) {
-						tex0 = (TEX0Node)node;
-					} else {
-						tex0 = (TEX0Node)node.FindChild("Textures(NW4R)", false).Children[0];
-					}
-					string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
-					tex0.Export(tempFile);
-					Replace(tempFile); // call self with new file
-					File.Delete(tempFile);
-				}
-			} else {
-				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
-					dlg.ImageSource = filename;
-					if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
-						UpdateImage(_charNum, _costumeNum);
-					}
-				}
-			}
-		}
 
 		protected abstract void saveButton_Click(object sender, EventArgs e);
 
@@ -145,7 +94,7 @@ namespace BrawlCostumeManager {
 			_openDlg.Filter = ExportFilters.TEX0;
 			if (_openDlg.ShowDialog() == DialogResult.OK) {
 				string fileName = _openDlg.FileName;
-				Replace(fileName);
+				texture.Replace(fileName);
 			}
 		}
 
@@ -160,7 +109,7 @@ namespace BrawlCostumeManager {
 
 				//Fix extension
 				string fileName = ApplyExtension(_saveDlg.FileName, _saveDlg.Filter, fIndex - 1);
-				tex0.Export(fileName);
+				texture.Texture.Export(fileName);
 			}
 		}
 	}

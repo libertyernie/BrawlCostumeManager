@@ -10,22 +10,29 @@ using System.Windows.Forms;
 namespace BrawlCostumeManager {
 	public class AdditionalTextureData {
 		public Size Size { get; private set; }
-		public string Prefix { get; private set; }
-		public Func<int, int, string> SuffixFunc { get; private set; }
-		public event EventHandler OnUpdate;
+		public Func<int, int, string> PathFunc { get; private set; }
+		public delegate void VD(AdditionalTextureData sender);
+		public VD OnUpdate;
 
 		public string this[int charNum, int costumeNum] {
 			get {
-				return Prefix + SuffixFunc(charNum, costumeNum);
+				return PathFunc(charNum, costumeNum);
 			}
 		}
 
 		private TEX0Node _texture;
 		public TEX0Node Texture {
+			get {
+				return _texture;
+			}
 			set {
 				_texture = value;
 				if (_texture != null) {
 					Bitmap bitmap = new Bitmap(_texture.GetImage(0), Size);
+					/*Form f = new Form();
+					Panel p = new Panel() { BackgroundImage = bitmap, Dock = DockStyle.Fill };
+					f.Controls.Add(p);
+					f.ShowDialog();*/
 					Panel.BackgroundImage = bitmap;
 				} else {
 					Panel.BackgroundImage = null;
@@ -33,14 +40,14 @@ namespace BrawlCostumeManager {
 			}
 		}
 		public void TextureFrom(ResourceNode sc_selcharacter, int charNum, int costumeNum) {
-			Texture = sc_selcharacter.FindChild(this[charNum, costumeNum], false) as TEX0Node;
+			Texture = sc_selcharacter == null ? null : sc_selcharacter.FindChild(this[charNum, costumeNum], false) as TEX0Node;
 		}
 
 		private Panel _panel;
 		public Panel Panel {
 			get {
 				if (_panel == null) {
-					_panel = new Panel() { Size = Size, AllowDrop = true };
+					_panel = new Panel() { Size = Size, AllowDrop = true, Margin = Padding.Empty };
 					_panel.DragEnter += _panel_DragEnter;
 					_panel.DragDrop += _panel_DragDrop;
 				}
@@ -67,7 +74,7 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private void Replace(string filename) {
+		public void Replace(string filename) {
 			var ig = StringComparison.CurrentCultureIgnoreCase;
 			if (filename.EndsWith(".tex0", ig) || filename.EndsWith(".brres", ig)) {
 				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {
@@ -86,20 +93,25 @@ namespace BrawlCostumeManager {
 				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
 					dlg.ImageSource = filename;
 					if (dlg.ShowDialog(null, _texture) == DialogResult.OK) {
-						OnUpdate.Invoke(this, new EventArgs());
+						if (OnUpdate != null) {
+							OnUpdate(this);
+						}
 					}
 				}
 			}
 		}
 
-		public AdditionalTextureData(int width, int height, string prefix, Func<int, string> SuffixFunc)
-		: this(width, height, prefix, (x,y) => SuffixFunc(x)) {
+		public AdditionalTextureData(int width, int height, string path)
+			: this(width, height, (x, y) => path) {
 		}
 
-		public AdditionalTextureData(int width, int height, string prefix, Func<int, int, string> SuffixFunc) {
+		public AdditionalTextureData(int width, int height, Func<int, string> PathFunc)
+			: this(width, height, (x, y) => PathFunc(x)) {
+		}
+
+		public AdditionalTextureData(int width, int height, Func<int, int, string> PathFunc) {
 			this.Size = new Size(width, height);
-			this.Prefix = prefix;
-			this.SuffixFunc = SuffixFunc;
+			this.PathFunc = PathFunc;
 		}
 	}
 }
