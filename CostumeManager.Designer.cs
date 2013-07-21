@@ -62,7 +62,7 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(180, 280);
+			this.listBox1.Size = new System.Drawing.Size(207, 185);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -81,8 +81,8 @@
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.modelManager1);
 			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-			this.splitContainer1.Size = new System.Drawing.Size(592, 593);
-			this.splitContainer1.SplitterDistance = 180;
+			this.splitContainer1.Size = new System.Drawing.Size(684, 401);
+			this.splitContainer1.SplitterDistance = 207;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// splitContainer2
@@ -99,8 +99,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-			this.splitContainer2.Size = new System.Drawing.Size(180, 568);
-			this.splitContainer2.SplitterDistance = 280;
+			this.splitContainer2.Size = new System.Drawing.Size(207, 376);
+			this.splitContainer2.SplitterDistance = 185;
 			this.splitContainer2.TabIndex = 1;
 			// 
 			// listBox2
@@ -110,7 +110,7 @@
 			this.listBox2.FormattingEnabled = true;
 			this.listBox2.Location = new System.Drawing.Point(0, 0);
 			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(180, 284);
+			this.listBox2.Size = new System.Drawing.Size(207, 187);
 			this.listBox2.TabIndex = 0;
 			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
 			// 
@@ -120,20 +120,20 @@
             this.copyToToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(127, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// copyToToolStripMenuItem
 			// 
 			this.copyToToolStripMenuItem.Name = "copyToToolStripMenuItem";
-			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.copyToToolStripMenuItem.Text = "Copy To...";
 			this.copyToToolStripMenuItem.Click += new System.EventHandler(this.copyToToolStripMenuItem_Click);
 			// 
 			// deleteToolStripMenuItem
 			// 
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
@@ -144,7 +144,7 @@
             this.toolStripDropDownButton1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(180, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(207, 25);
 			this.toolStrip1.TabIndex = 6;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -153,7 +153,7 @@
 			this.changeDirectory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.changeDirectory.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.changeDirectory.Name = "changeDirectory";
-			this.changeDirectory.Size = new System.Drawing.Size(95, 22);
+			this.changeDirectory.Size = new System.Drawing.Size(103, 22);
 			this.changeDirectory.Text = "Change Directory";
 			this.changeDirectory.Click += new System.EventHandler(this.changeDirectory_Click);
 			// 
@@ -167,7 +167,7 @@
             this.aboutBrawlCostumeManagerToolStripMenuItem});
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-			this.toolStripDropDownButton1.Size = new System.Drawing.Size(57, 22);
+			this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
 			this.toolStripDropDownButton1.Text = "Options";
 			// 
 			// hidePolygonsCheckbox
@@ -176,7 +176,7 @@
 			this.hidePolygonsCheckbox.CheckOnClick = true;
 			this.hidePolygonsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.hidePolygonsCheckbox.Name = "hidePolygonsCheckbox";
-			this.hidePolygonsCheckbox.Size = new System.Drawing.Size(251, 22);
+			this.hidePolygonsCheckbox.Size = new System.Drawing.Size(274, 22);
 			this.hidePolygonsCheckbox.Text = "Hide certain polygons/textures";
 			this.hidePolygonsCheckbox.Click += new System.EventHandler(this.hidePolygonsCheckbox_Click);
 			// 
@@ -184,19 +184,19 @@
 			// 
 			this.cBlissCheckbox.CheckOnClick = true;
 			this.cBlissCheckbox.Name = "cBlissCheckbox";
-			this.cBlissCheckbox.Size = new System.Drawing.Size(251, 22);
+			this.cBlissCheckbox.Size = new System.Drawing.Size(274, 22);
 			this.cBlissCheckbox.Text = "Use cBliss costume/portrait mappings";
 			this.cBlissCheckbox.Click += new System.EventHandler(this.cBlissCheckbox_Click);
 			// 
 			// separator
 			// 
 			this.separator.Name = "separator";
-			this.separator.Size = new System.Drawing.Size(248, 6);
+			this.separator.Size = new System.Drawing.Size(271, 6);
 			// 
 			// aboutBrawlCostumeManagerToolStripMenuItem
 			// 
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Name = "aboutBrawlCostumeManagerToolStripMenuItem";
-			this.aboutBrawlCostumeManagerToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+			this.aboutBrawlCostumeManagerToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
 			// 
@@ -208,9 +208,9 @@
 			this.flowLayoutPanel1.Controls.Add(this.resultPortraitViewer1);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(274, 0);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(205, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(134, 593);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 401);
 			this.flowLayoutPanel1.TabIndex = 5;
 			// 
 			// modelManager1
@@ -218,26 +218,26 @@
 			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelManager1.Location = new System.Drawing.Point(0, 0);
 			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(274, 593);
+			this.modelManager1.Size = new System.Drawing.Size(205, 401);
 			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
 			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
 			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
-			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 224);
+			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 340);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
 			// battlePortraitViewer1
 			// 
-			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 233);
+			this.battlePortraitViewer1.Location = new System.Drawing.Point(137, 3);
 			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
 			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
 			this.battlePortraitViewer1.TabIndex = 5;
 			// 
 			// resultPortraitViewer1
 			// 
-			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 359);
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(137, 129);
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
 			this.resultPortraitViewer1.TabIndex = 4;
@@ -246,7 +246,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(592, 593);
+			this.ClientSize = new System.Drawing.Size(684, 401);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "CostumeManager";
 			this.Text = "Brawl Costume Manager";

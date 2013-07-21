@@ -28,6 +28,9 @@ namespace BrawlCostumeManager {
 		private ResourceNode sc_selcharacter;
 
 		public CSSPortraitViewer() : base() {
+			panel2.Visible = true;
+			panel3.Visible = true;
+			panel4.Visible = true;
 			UpdateDirectory();
 		}
 
@@ -62,30 +65,57 @@ namespace BrawlCostumeManager {
 			}
 		}
 
+		public override void UpdateImage(int charNum, int costumeNum) {
+			base.UpdateImage(charNum, costumeNum);
+			string path;
+
+			path = "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + charNum.ToString("D2") + "1";
+			TEX0Node ChrNm = sc_selcharacter.FindChild(path, false) as TEX0Node;
+			if (ChrNm != null) {
+				Bitmap bitmap = new Bitmap(ChrNm.GetImage(0), 128, 32);
+				panel2.BackgroundImage = bitmap;
+			}
+
+			path = "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (charNum + 1).ToString("D2");
+			TEX0Node ChrFace = sc_selcharacter.FindChild(path, false) as TEX0Node;
+			if (ChrFace != null) {
+				Bitmap bitmap = new Bitmap(ChrFace.GetImage(0), 80, 56);
+				panel3.BackgroundImage = bitmap;
+			}
+
+			path = "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (charNum + 1).ToString("D2");
+			TEX0Node ChrNmS = sc_selcharacter.FindChild(path, false) as TEX0Node;
+			if (ChrNmS != null) {
+				Bitmap bitmap = ChrNmS.GetImage(0);
+				panel4.BackgroundImage = bitmap;
+			}
+		}
+
 		public override void UpdateDirectory() {
-			try {
+			if (File.Exists("menu2/sc_selcharacter.pac")) {
 				string path = "menu2/sc_selcharacter.pac";
 				common5 = null;
 				sc_selcharacter = NodeFactory.FromFile(null, path);
 				_openFilePath = path;
-			} catch (IOException) {
-				try {
-					string path = "system/common5.pac";
-					common5 = NodeFactory.FromFile(null, path);
-					sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
-					_openFilePath = path;
-				} catch (IOException) {
-					try {
-						string path = "system/common5_en.pac";
-						common5 = NodeFactory.FromFile(null, path);
-						sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
-						_openFilePath = path;
-					} catch (IOException) {
-						common5 = null;
-						sc_selcharacter = null;
-						label1.Text = "Could not load sc_selcharacter or common5(_en).";
-					}
-				}
+			} else if (File.Exists("menu2/sc_selcharacter_en.pac")) {
+				string path = "menu2/sc_selcharacter_en.pac";
+				common5 = null;
+				sc_selcharacter = NodeFactory.FromFile(null, path);
+				_openFilePath = path;
+			} else if (File.Exists("system/common5.pac")) {
+				string path = "system/common5.pac";
+				common5 = NodeFactory.FromFile(null, path);
+				sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
+				_openFilePath = path;
+			} else if (File.Exists("system/common5_en.pac")) {
+				string path = "system/common5_en.pac";
+				common5 = NodeFactory.FromFile(null, path);
+				sc_selcharacter = common5.FindChild("sc_selcharacter_en", false);
+				_openFilePath = path;
+			} else {
+				common5 = null;
+				sc_selcharacter = null;
+				label1.Text = "Could not load sc_selcharacter or common5(_en).";
 			}
 		}
 

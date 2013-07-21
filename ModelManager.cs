@@ -159,10 +159,14 @@ namespace BrawlCostumeManager {
 		}
 
 		public void LoadModel(MDL0Node model) {
+			model.Populate();
 			model._renderBones = false;
-			model._renderPolygons = CheckState.Checked;
+			model._renderPolygons = true;
+			model._renderWireframe = false;
 			model._renderVertices = false;
 			model._renderBox = false;
+			model.ApplyCHR(null, 0);
+			model.ApplySRT(null, 0);
 
 			if (UseExceptions) foreach (string texname in TexturesToDisable) {
 				MDL0TextureNode tex = model.TextureGroup.FindChild(texname, false) as MDL0TextureNode;

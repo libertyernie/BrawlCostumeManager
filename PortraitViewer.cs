@@ -65,9 +65,12 @@ namespace BrawlCostumeManager {
 
 			panel1.DragEnter += panel1_DragEnter;
 			panel1.DragDrop += panel1_DragDrop;
+
+			panel2.DragEnter += panel1_DragEnter;
+			panel2.DragDrop += panel1_DragDrop;
 		}
 
-		public void UpdateImage(int charNum, int costumeNum) {
+		public virtual void UpdateImage(int charNum, int costumeNum) {
 			panel1.BackgroundImage = null;
 			_charNum = -1;
 			_costumeNum = -1;
