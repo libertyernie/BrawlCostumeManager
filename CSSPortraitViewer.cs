@@ -41,6 +41,9 @@ namespace BrawlCostumeManager {
 			additionalTextures = new TEX0Node[a];
 			foreach (var atd in additionalTextureData) {
 				AdditionalControls.Add(atd.Panel);
+				atd.OnUpdate += new EventHandler(delegate(object sender, EventArgs ea) {
+					UpdateImage(_charNum, _costumeNum);
+				});
 			}
 			UpdateDirectory();
 		}
@@ -79,16 +82,12 @@ namespace BrawlCostumeManager {
 		public override bool UpdateImage(int charNum, int costumeNum) {
 			if (base.UpdateImage(charNum, costumeNum)) {
 				foreach (var atd in additionalTextureData) {
-					TEX0Node t = sc_selcharacter.FindChild(atd[charNum, costumeNum], false) as TEX0Node;
-					if (t != null) {
-						Bitmap bitmap = new Bitmap(t.GetImage(0), atd.Size);
-						atd.Panel.BackgroundImage = bitmap;
-					}
+					atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
 				}
 				return true;
 			} else {
 				foreach (var atd in additionalTextureData) {
-					atd.Panel.BackgroundImage = null;
+					atd.Texture = null;
 				}
 				return false;
 			}
