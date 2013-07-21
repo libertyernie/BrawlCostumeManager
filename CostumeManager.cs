@@ -30,6 +30,12 @@ namespace BrawlCostumeManager {
 		}
 
 		private void readDir() {
+			if (!Directory.Exists("fighter") && Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
+				System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf";
+				readDir();
+				return;
+			}
+
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
 
 			int selectedIndex = listBox1.SelectedIndex;
@@ -38,6 +44,7 @@ namespace BrawlCostumeManager {
 			foreach (string charname in Constants.CharactersByCSSOrder) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
+
 			foreach (PortraitViewer p in portraitViewers) {
 				p.UpdateDirectory();
 			}
