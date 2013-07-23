@@ -73,7 +73,7 @@ namespace BrawlCostumeManager {
 			if (_saveDlg.ShowDialog() == DialogResult.OK) {
 				int fIndex = _saveDlg.FilterIndex;
 
-				//Fix extension
+				// Fix extension
 				string fileName = ApplyExtension(_saveDlg.FileName, _saveDlg.Filter, fIndex - 1);
 				Texture.Export(fileName);
 			}
@@ -83,7 +83,7 @@ namespace BrawlCostumeManager {
 			_openDlg.Filter = ExportFilters.TEX0;
 			if (_openDlg.ShowDialog() == DialogResult.OK) {
 				string fileName = _openDlg.FileName;
-				Texture.Replace(fileName);
+				Replace(fileName, true);
 				if (OnUpdate != null) {
 					OnUpdate(this);
 				}
@@ -105,11 +105,11 @@ namespace BrawlCostumeManager {
 
 		void _panel_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
-				Replace((e.Data.GetData(DataFormats.FileDrop) as string[])[0]);
+				Replace((e.Data.GetData(DataFormats.FileDrop) as string[])[0], false);
 			}
 		}
 
-		public void Replace(string filename) {
+		public void Replace(string filename, bool useTextureConverter) {
 			var ig = StringComparison.CurrentCultureIgnoreCase;
 			if (filename.EndsWith(".tex0", ig) || filename.EndsWith(".brres", ig)) {
 				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {
@@ -121,17 +121,20 @@ namespace BrawlCostumeManager {
 					}
 					string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
 					tex0.Export(tempFile);
-					Replace(tempFile); // call self with new file
+					Replace(tempFile, useTextureConverter); // call self with new file
 					File.Delete(tempFile);
 				}
 			} else {
-				using (TextureConverterDialog dlg = new TextureConverterDialog()) {
-					dlg.ImageSource = filename;
-					if (dlg.ShowDialog(null, _texture) == DialogResult.OK) {
-						if (OnUpdate != null) {
-							OnUpdate(this);
+				if (useTextureConverter) {
+					using (TextureConverterDialog dlg = new TextureConverterDialog()) {
+						dlg.ImageSource = filename;
+						if (dlg.ShowDialog(null, Texture) == DialogResult.OK) {
+							if (OnUpdate != null) OnUpdate(this);
 						}
 					}
+				} else {
+					Texture.Replace(filename);
+					if (OnUpdate != null) OnUpdate(this);
 				}
 			}
 		}
