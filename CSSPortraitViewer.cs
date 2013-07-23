@@ -31,7 +31,6 @@ namespace BrawlCostumeManager {
 			new AdditionalTextureData(56, 14, i => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
 		};
 
-		private TEX0Node[] additionalTextures;
 		private string _openFilePath;
 
 		/// <summary>
@@ -45,7 +44,6 @@ namespace BrawlCostumeManager {
 
 		public CSSPortraitViewer() : base() {
 			int a = additionalTextureData.Length;
-			additionalTextures = new TEX0Node[a];
 			foreach (var atd in additionalTextureData) {
 				AdditionalControls.Add(atd.Panel);
 				atd.OnUpdate = delegate(AdditionalTextureData sender) {
