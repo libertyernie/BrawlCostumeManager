@@ -14,36 +14,6 @@ using BrawlLib;
 namespace BrawlCostumeManager {
 	public abstract partial class PortraitViewer : UserControl {
 
-		private static OpenFileDialog _openDlg;
-		private static SaveFileDialog _saveDlg;
-		static PortraitViewer() {
-			_openDlg = new OpenFileDialog();
-			_saveDlg = new SaveFileDialog();
-		}
-
-		/// <summary>
-		/// Method lifted directly from BrawlBox.
-		/// </summary>
-		public static string ApplyExtension(string path, string filter, int filterIndex) {
-			int tmp;
-			if ((Path.HasExtension(path)) && (!int.TryParse(Path.GetExtension(path), out tmp)))
-				return path;
-
-			int index = filter.IndexOfOccurance('|', filterIndex * 2);
-			if (index == -1)
-				return path;
-
-			index = filter.IndexOf('.', index);
-			int len = Math.Max(filter.Length, filter.IndexOfAny(new char[] { ';', '|' })) - index;
-
-			string ext = filter.Substring(index, len);
-
-			if (ext.IndexOf('*') >= 0)
-				return path;
-
-			return path + ext;
-		}
-
 		protected ControlCollection AdditionalControls {
 			get {
 				return additionalTexturesPanel.Controls;
@@ -68,10 +38,9 @@ namespace BrawlCostumeManager {
 			InitializeComponent();
 			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, PortraitPathFor);
 			additionalTexturesPanel.Controls.Add(texture.Panel);
-			texture.Panel.ContextMenuStrip = contextMenuStrip1;
 			texture.OnUpdate = delegate(AdditionalTextureData sender) {
-					UpdateImage(_charNum, _costumeNum);
-				};
+				UpdateImage(_charNum, _costumeNum);
+			};
 
 			_charNum = -1;
 			_costumeNum = -1;
@@ -89,28 +58,5 @@ namespace BrawlCostumeManager {
 		public abstract void UpdateDirectory();
 
 		protected abstract void saveButton_Click(object sender, EventArgs e);
-
-		private void replaceToolStripMenuItem_Click(object sender, EventArgs e) {
-			_openDlg.Filter = ExportFilters.TEX0;
-			if (_openDlg.ShowDialog() == DialogResult.OK) {
-				string fileName = _openDlg.FileName;
-				texture.Replace(fileName);
-			}
-		}
-
-		/// <summary>
-		/// From BrawlBox (mostly - some simplification)
-		/// </summary>
-		private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
-			_saveDlg.Filter = ExportFilters.TEX0;
-			_saveDlg.FilterIndex = 1;
-			if (_saveDlg.ShowDialog() == DialogResult.OK) {
-				int fIndex = _saveDlg.FilterIndex;
-
-				//Fix extension
-				string fileName = ApplyExtension(_saveDlg.FileName, _saveDlg.Filter, fIndex - 1);
-				texture.Texture.Export(fileName);
-			}
-		}
 	}
 }

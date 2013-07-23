@@ -23,39 +23,12 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.components = new System.ComponentModel.Container();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label1 = new System.Windows.Forms.Label();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.contextMenuStrip1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// contextMenuStrip1
-			// 
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.replaceToolStripMenuItem,
-            this.exportToolStripMenuItem});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(116, 48);
-			// 
-			// replaceToolStripMenuItem
-			// 
-			this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-			this.replaceToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-			this.replaceToolStripMenuItem.Text = "Replace";
-			this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
-			// 
-			// exportToolStripMenuItem
-			// 
-			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-			this.exportToolStripMenuItem.Text = "Export";
-			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// label1
 			// 
@@ -105,7 +78,6 @@
 			this.Controls.Add(this.flowLayoutPanel1);
 			this.Name = "PortraitViewer";
 			this.Size = new System.Drawing.Size(128, 240);
-			this.contextMenuStrip1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
@@ -117,9 +89,6 @@
 		protected System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
 		private System.Windows.Forms.FlowLayoutPanel additionalTexturesPanel;
 	}
 }
