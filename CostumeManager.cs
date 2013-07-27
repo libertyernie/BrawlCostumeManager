@@ -20,6 +20,9 @@ namespace BrawlCostumeManager {
 
 		public CostumeManager() {
 			InitializeComponent();
+			try {
+				Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+			} catch (Exception) {}
 			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1, battlePortraitViewer1};
 
 			if (!new DirectoryInfo("fighter").Exists && new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
@@ -135,7 +138,7 @@ namespace BrawlCostumeManager {
 		}
 
 		private void aboutBrawlCostumeManagerToolStripMenuItem_Click(object sender, EventArgs e) {
-			new About(null).Show();
+			new About(Icon).Show();
 		}
 
 		private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
