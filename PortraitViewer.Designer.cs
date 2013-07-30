@@ -35,13 +35,13 @@
 			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(128, 40);
+			this.label1.Size = new System.Drawing.Size(128, 20);
 			this.label1.TabIndex = 1;
 			this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// saveButton
 			// 
-			this.saveButton.Location = new System.Drawing.Point(0, 40);
+			this.saveButton.Location = new System.Drawing.Point(0, 20);
 			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(128, 23);
@@ -65,7 +65,7 @@
 			// additionalTexturesPanel
 			// 
 			this.additionalTexturesPanel.AutoSize = true;
-			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 40);
+			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 20);
 			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
 			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
