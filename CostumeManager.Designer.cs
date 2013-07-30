@@ -38,11 +38,12 @@
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -62,7 +63,7 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(207, 185);
+			this.listBox1.Size = new System.Drawing.Size(207, 187);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -80,8 +81,9 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.modelManager1);
+			this.splitContainer1.Panel2.Controls.Add(this.button1);
 			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-			this.splitContainer1.Size = new System.Drawing.Size(684, 401);
+			this.splitContainer1.Size = new System.Drawing.Size(684, 406);
 			this.splitContainer1.SplitterDistance = 207;
 			this.splitContainer1.TabIndex = 2;
 			// 
@@ -99,8 +101,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-			this.splitContainer2.Size = new System.Drawing.Size(207, 376);
-			this.splitContainer2.SplitterDistance = 185;
+			this.splitContainer2.Size = new System.Drawing.Size(207, 381);
+			this.splitContainer2.SplitterDistance = 187;
 			this.splitContainer2.TabIndex = 1;
 			// 
 			// listBox2
@@ -110,7 +112,7 @@
 			this.listBox2.FormattingEnabled = true;
 			this.listBox2.Location = new System.Drawing.Point(0, 0);
 			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(207, 187);
+			this.listBox2.Size = new System.Drawing.Size(207, 190);
 			this.listBox2.TabIndex = 0;
 			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
 			// 
@@ -200,14 +202,6 @@
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
 			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(205, 401);
-			this.modelManager1.TabIndex = 1;
-			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoSize = true;
@@ -218,8 +212,16 @@
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(205, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 401);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 406);
 			this.flowLayoutPanel1.TabIndex = 5;
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(185, 406);
+			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
@@ -242,11 +244,22 @@
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
 			this.resultPortraitViewer1.TabIndex = 4;
 			// 
+			// button1
+			// 
+			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.button1.Location = new System.Drawing.Point(185, 0);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(20, 406);
+			this.button1.TabIndex = 6;
+			this.button1.Text = ">";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// CostumeManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(684, 401);
+			this.ClientSize = new System.Drawing.Size(684, 406);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "CostumeManager";
 			this.Text = "Brawl Costume Manager";
@@ -289,5 +302,6 @@
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToToolStripMenuItem;
 		private BattlePortraitViewer battlePortraitViewer1;
+		private System.Windows.Forms.Button button1;
 	}
 }
