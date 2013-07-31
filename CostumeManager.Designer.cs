@@ -38,13 +38,15 @@
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
-			this.spaceFiller1 = new System.Windows.Forms.Panel();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
+			this.button1 = new System.Windows.Forms.Button();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.spaceFiller1 = new System.Windows.Forms.Panel();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
+			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -164,6 +166,8 @@
 			// 
 			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateSSSStockIconsToolStripMenuItem,
+            this.separator2,
             this.hidePolygonsCheckbox,
             this.cBlissCheckbox,
             this.separator,
@@ -203,6 +207,25 @@
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
 			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(185, 406);
+			this.modelManager1.TabIndex = 1;
+			// 
+			// button1
+			// 
+			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.button1.Location = new System.Drawing.Point(185, 0);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(20, 406);
+			this.button1.TabIndex = 6;
+			this.button1.Text = ">";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoSize = true;
@@ -217,17 +240,6 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 406);
 			this.flowLayoutPanel1.TabIndex = 5;
 			// 
-			// button1
-			// 
-			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.button1.Location = new System.Drawing.Point(185, 0);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(20, 406);
-			this.button1.TabIndex = 6;
-			this.button1.Text = ">";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
 			// spaceFiller1
 			// 
 			this.spaceFiller1.Location = new System.Drawing.Point(0, 0);
@@ -235,14 +247,6 @@
 			this.spaceFiller1.Name = "spaceFiller1";
 			this.spaceFiller1.Size = new System.Drawing.Size(100, 4);
 			this.spaceFiller1.TabIndex = 6;
-			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(185, 406);
-			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
 			// 
@@ -264,6 +268,18 @@
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
 			this.resultPortraitViewer1.TabIndex = 4;
+			// 
+			// updateSSSStockIconsToolStripMenuItem
+			// 
+			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
+			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.updateSSSStockIconsToolStripMenuItem.Text = "Update SSS stock icons";
+			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
+			// 
+			// separator2
+			// 
+			this.separator2.Name = "separator2";
+			this.separator2.Size = new System.Drawing.Size(271, 6);
 			// 
 			// CostumeManager
 			// 
@@ -314,5 +330,7 @@
 		private BattlePortraitViewer battlePortraitViewer1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Panel spaceFiller1;
+		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator separator2;
 	}
 }

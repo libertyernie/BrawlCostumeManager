@@ -1,14 +1,29 @@
 Brawl Costume Manager
+v2.nd - July 30, 2013
 <http://www.lakora.us/brawl/costumemanager>
 
-Brawl Costume Manager is a .NET application for managing the costume files and corresponding CSS (character select screen) portraits for each character in Super Smash Bros. Brawl.
+Brawl Costume Manager is a .NET application for managing the costume files and
+corresponding CSS (character select screen) portraits for each character in
+Super Smash Bros. Brawl.
 
-To choose a directory to work in, use the Change Directory button. Select the folder that contains "fighter" and "system" (usually the "pf" folder.)
+To choose a directory to work in, use the Change Directory button. Select the
+folder that contains "fighter" and "system" (usually the "pf" folder.)
 
-The top-left pane shows a list of characters. When you select a character, the bottom-left pane will show possible costume files for that character from 00 through 09 (cBliss allows 10 costumes for each character) or 00 through 11 for Wario. Files that don't exist will be in parentheses.
+The top-left pane shows a list of characters. When you select a character, the
+bottom-left pane will show possible costume files for that character from 00
+through 09 (cBliss allows 10 costumes for each character) or 00 through 11 for
+Wario. Files that don't exist will be in parentheses.
 
-The center pane will show the character if the selected file in the bottom-left pane is present; if not, the center pane will be blank. Either way, you can drag and drop a .pac or .pcs file onto it to copy that costume into the slot. Both .pac and .pcs files will be written automatically. (These changes are saved immediately.)
+The center pane will show the character if the selected file in the bottom-
+left pane is present; if not, the center pane will be blank. Either way, you
+can drag and drop a .pac or .pcs file onto it to copy that costume into the
+slot. Both .pac and .pcs files will be written automatically. (These changes
+are saved immediately.)
 
-The right panels show the common5 or sc_selcharacter portrait (top) and the char_bust_tex results-screen portrait (bottom). To replace one of these, drag and drop an image file onto the existing image. Changes to these files will not be saved until you click the Save button.
+The right panels show the portraits from common5.pac/sc_selcharacter.pac,
+info/portrite and char_bust_tex. To replace one of these, drag and drop an
+image file onto the existing image. Changes to these files will not be saved
+until you click the Save button.
 
-If you're using cBliss, make sure to check the appropriate option in the Options menu so the mappings between costume and portrait numbers are corrected.
+If you're using cBliss, make sure to check the option in the Options menu so
+the mappings between costume and portrait numbers are corrected.

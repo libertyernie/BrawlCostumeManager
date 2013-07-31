@@ -182,5 +182,9 @@ namespace BrawlCostumeManager {
 				button1.Text = ">";
 			}
 		}
+
+		private void updateSSSStockIconsToolStripMenuItem_Click(object sender, EventArgs e) {
+			cssPortraitViewer1.UpdateSSSStockIcons();
+		}
 	}
 }

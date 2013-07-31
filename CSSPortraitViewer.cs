@@ -109,5 +109,23 @@ namespace BrawlCostumeManager {
 				sc_selcharacter.Export(_openFilePath);
 			}
 		}
+
+		public void UpdateSSSStockIcons() {
+			if (common5 == null) {
+				MessageBox.Show(this.FindForm(), "common5.pac is not loaded - can't update automatically.\n" +
+					"After saving sc_selcharacter.pac,  update the icons manually by replacing sc_selmap's " +
+					"MiscData[40] with sc_selcharacter's MiscData[90].", "Cannot perform operation",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} else {
+				ResourceNode css_stockicons = sc_selcharacter.FindChild("MiscData[90]", false);
+				string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".brres";
+				css_stockicons.Export(tempFile);
+				ResourceNode sss_stockicons = common5.FindChild("sc_selmap_en/MiscData[40]", false);
+				sss_stockicons.Replace(tempFile);
+				try {
+					File.Delete(tempFile);
+				} catch (Exception) { }
+			}
+		}
 	}
 }
