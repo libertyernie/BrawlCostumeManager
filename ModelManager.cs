@@ -81,6 +81,7 @@ namespace BrawlCostumeManager {
 							_root.Dispose();
 							_root = null;
 						}
+						pac.Directory.Create();
 						(newroot as ARCNode).ExportPAC(pac.FullName);
 						(newroot as ARCNode).ExportPCS(pcs.FullName);
 

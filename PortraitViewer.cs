@@ -50,7 +50,7 @@ namespace BrawlCostumeManager {
 			_charNum = charNum;
 			_costumeNum = costumeNum;
 			ResourceNode bres = PortraitRootFor(charNum, costumeNum);
-			label1.Text = bres.RootNode.Name;
+			if (bres != null) label1.Text = bres.RootNode.Name;
 			texture.TextureFrom(bres, charNum, costumeNum);
 			return texture.Texture != null;
 		}
