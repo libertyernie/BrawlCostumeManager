@@ -1,5 +1,5 @@
 Brawl Costume Manager
-v2.nd - July 30, 2013
+v3.0 - July 30, 2013
 <http://www.lakora.us/brawl/costumemanager>
 
 Brawl Costume Manager is a .NET application for managing the costume files and
