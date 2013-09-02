@@ -17,6 +17,7 @@ namespace BrawlCostumeManager {
 
 		private List<PortraitViewer> portraitViewers;
 		public bool Use_cBliss;
+		public bool Swap_Wario;
 
 		public CostumeManager() {
 			InitializeComponent();
@@ -71,12 +72,15 @@ namespace BrawlCostumeManager {
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
 			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
+			string charName = Constants.CharactersByCSSOrder[ff.CharNum];
 			if (!Use_cBliss) {
-				string charName = Constants.CharactersByCSSOrder[ff.CharNum];
 				if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
 					int[] mappings = Constants.PortraitToCostumeMappings[charName];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
+			}
+			if (charName == "wario" && Swap_Wario) {
+				portraitNum = (portraitNum + 6) % 12;
 			}
 			foreach (PortraitViewer p in portraitViewers) {
 				p.UpdateImage(ff.CharNum, portraitNum);
@@ -132,6 +136,13 @@ namespace BrawlCostumeManager {
 
 		private void cBlissCheckbox_Click(object sender, EventArgs e) {
 			Use_cBliss = cBlissCheckbox.Checked;
+			foreach (PortraitViewer p in portraitViewers) {
+				RefreshPortraits();
+			}
+		}
+
+		private void swapPortraitsForWarioStylesToolStripMenuItem_Click(object sender, EventArgs e) {
+			Swap_Wario = swapPortraitsForWarioStylesToolStripMenuItem.Checked;
 			foreach (PortraitViewer p in portraitViewers) {
 				RefreshPortraits();
 			}

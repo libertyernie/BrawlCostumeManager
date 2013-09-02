@@ -34,6 +34,8 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
@@ -45,8 +47,7 @@
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
-			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.swapPortraitsForWarioStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -170,12 +171,25 @@
             this.separator2,
             this.hidePolygonsCheckbox,
             this.cBlissCheckbox,
+            this.swapPortraitsForWarioStylesToolStripMenuItem,
             this.separator,
             this.aboutBrawlCostumeManagerToolStripMenuItem});
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
 			this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
 			this.toolStripDropDownButton1.Text = "Options";
+			// 
+			// updateSSSStockIconsToolStripMenuItem
+			// 
+			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
+			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.updateSSSStockIconsToolStripMenuItem.Text = "Update SSS stock icons";
+			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
+			// 
+			// separator2
+			// 
+			this.separator2.Name = "separator2";
+			this.separator2.Size = new System.Drawing.Size(271, 6);
 			// 
 			// hidePolygonsCheckbox
 			// 
@@ -269,17 +283,13 @@
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
 			this.resultPortraitViewer1.TabIndex = 4;
 			// 
-			// updateSSSStockIconsToolStripMenuItem
+			// swapPortraitsForWarioStylesToolStripMenuItem
 			// 
-			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
-			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.updateSSSStockIconsToolStripMenuItem.Text = "Update SSS stock icons";
-			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
-			// 
-			// separator2
-			// 
-			this.separator2.Name = "separator2";
-			this.separator2.Size = new System.Drawing.Size(271, 6);
+			this.swapPortraitsForWarioStylesToolStripMenuItem.CheckOnClick = true;
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Name = "swapPortraitsForWarioStylesToolStripMenuItem";
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Text = "Swap portraits for Wario styles";
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Click += new System.EventHandler(this.swapPortraitsForWarioStylesToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -332,5 +342,6 @@
 		private System.Windows.Forms.Panel spaceFiller1;
 		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator separator2;
+		private System.Windows.Forms.ToolStripMenuItem swapPortraitsForWarioStylesToolStripMenuItem;
 	}
 }
