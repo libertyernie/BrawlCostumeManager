@@ -36,9 +36,7 @@ namespace BrawlCostumeManager {
 			return bres;
 		}
 		public override ResourceNode TEX0For(ResourceNode node, int charNum, int costumeNum) {
-			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
-			string path = "Textures(NW4R)/InfFace." + tex_number;
-			return node.FindChild(path, false);
+			return node.FindChild("Textures(NW4R)", false).Children[0];
 		}
 
 		private ResourceNode[] bres_cache;
