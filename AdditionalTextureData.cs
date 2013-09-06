@@ -1,5 +1,6 @@
 ﻿using BrawlLib;
 using BrawlLib.SSBB.ResourceNodes;
+using BrawlLib.Wii.Textures;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -133,7 +134,14 @@ namespace BrawlCostumeManager {
 						}
 					}
 				} else {
-					Texture.Replace(filename);
+					if (Texture.Format == WiiPixelFormat.CMPR) {
+						Bitmap bitmap = new Bitmap(filename);
+						UnsafeBuffer buffer = TextureConverter.CMPR.GeneratePreview(bitmap);
+						BrawlLib.IO.FileMap textureData = TextureConverter.CMPR.EncodeTextureCached(bitmap, Texture.LevelOfDetail, buffer);
+						Texture.ReplaceRaw(textureData);
+					} else {
+						Texture.Replace(filename);
+					}
 					if (OnUpdate != null) OnUpdate(this);
 				}
 			}
