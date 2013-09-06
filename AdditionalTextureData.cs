@@ -11,8 +11,14 @@ using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
 	public class AdditionalTextureData {
-		public Size Size { get; private set; }
+		/// <summary>
+		/// For the main texture, stores the TEX0For method from the PortraitViewer implementation.
+		/// For other textures (i.e. stock icons), stores another function which gets that TEX0 from the brres.
+		/// The latter is only used for CSSPortraitViewer right now.
+		/// </summary>
 		public Func<ResourceNode, int, int, ResourceNode> GetTEX0Func { get; private set; }
+
+		public Size Size { get; private set; }
 		public delegate void VD(AdditionalTextureData sender);
 		public VD OnUpdate;
 
@@ -60,6 +66,26 @@ namespace BrawlCostumeManager {
 				}
 				return _panel;
 			}
+		}
+
+		/// <summary>
+		/// Typical usage of the constructor - getting the TEX0 using the PortraitViewer's TEX0For function
+		/// </summary>
+		public AdditionalTextureData(int width, int height, PortraitViewer parent)
+			: this(width, height, parent.TEX0For) {
+		}
+
+		/// <summary>
+		/// For additional textures in the file - getting these TEX0s using lambda functions
+		/// which return the path (not the node itself)
+		/// </summary>
+		public AdditionalTextureData(int width, int height, Func<int, int, string> GetTEX0Func)
+			: this(width, height, (n, x, y) => n.FindChild(GetTEX0Func(x, y), false)) {
+		}
+
+		private AdditionalTextureData(int width, int height, Func<ResourceNode, int, int, ResourceNode> GetTEX0Func) {
+			this.Size = new Size(width, height);
+			this.GetTEX0Func = GetTEX0Func;
 		}
 
 		void export_Click(object sender, EventArgs e) {
@@ -139,15 +165,6 @@ namespace BrawlCostumeManager {
 					if (OnUpdate != null) OnUpdate(this);
 				}
 			}
-		}
-
-		public AdditionalTextureData(int width, int height, Func<int, int, string> PathFunc)
-			: this(width, height, (n, x, y) => n.FindChild(PathFunc(x, y), false)) {
-		}
-
-		public AdditionalTextureData(int width, int height, Func<ResourceNode, int, int, ResourceNode> GetTEX0Func) {
-			this.Size = new Size(width, height);
-			this.GetTEX0Func = GetTEX0Func;
 		}
 
 		/// <summary>

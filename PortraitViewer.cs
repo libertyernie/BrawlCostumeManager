@@ -27,7 +27,12 @@ namespace BrawlCostumeManager {
 			get;
 		}
 		public abstract ResourceNode PortraitRootFor(int charNum, int costumeNum);
-		public abstract ResourceNode TEX0For(ResourceNode brres, int charNum, int costumeNum);
+
+		/// <summary>
+		/// This method, when overriden in a subclass, returns the TEX0 within a given
+		/// ResourceNode for the given character and costume index.
+		/// </summary>
+		public abstract ResourceNode TEX0For(ResourceNode node, int charNum, int costumeNum);
 
 		protected AdditionalTextureData texture;
 
@@ -36,7 +41,7 @@ namespace BrawlCostumeManager {
 
 		public PortraitViewer() {
 			InitializeComponent();
-			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, TEX0For);
+			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, this);
 			additionalTexturesPanel.Controls.Add(texture.Panel);
 			texture.OnUpdate = delegate(AdditionalTextureData sender) {
 				UpdateImage(_charNum, _costumeNum);
