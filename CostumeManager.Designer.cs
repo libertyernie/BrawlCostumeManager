@@ -38,6 +38,7 @@
 			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
+			this.swapPortraitsForWarioStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
@@ -47,7 +48,7 @@
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
-			this.swapPortraitsForWarioStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyToOtherPacpcsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -124,22 +125,23 @@
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToToolStripMenuItem,
+            this.copyToOtherPacpcsToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(193, 92);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// copyToToolStripMenuItem
 			// 
 			this.copyToToolStripMenuItem.Name = "copyToToolStripMenuItem";
-			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-			this.copyToToolStripMenuItem.Text = "Copy To...";
+			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+			this.copyToToolStripMenuItem.Text = "Copy to...";
 			this.copyToToolStripMenuItem.Click += new System.EventHandler(this.copyToToolStripMenuItem_Click);
 			// 
 			// deleteToolStripMenuItem
 			// 
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
@@ -208,6 +210,14 @@
 			this.cBlissCheckbox.Size = new System.Drawing.Size(274, 22);
 			this.cBlissCheckbox.Text = "Use cBliss costume/portrait mappings";
 			this.cBlissCheckbox.Click += new System.EventHandler(this.cBlissCheckbox_Click);
+			// 
+			// swapPortraitsForWarioStylesToolStripMenuItem
+			// 
+			this.swapPortraitsForWarioStylesToolStripMenuItem.CheckOnClick = true;
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Name = "swapPortraitsForWarioStylesToolStripMenuItem";
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Text = "Swap portraits for Wario styles";
+			this.swapPortraitsForWarioStylesToolStripMenuItem.Click += new System.EventHandler(this.swapPortraitsForWarioStylesToolStripMenuItem_Click);
 			// 
 			// separator
 			// 
@@ -283,13 +293,12 @@
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
 			this.resultPortraitViewer1.TabIndex = 4;
 			// 
-			// swapPortraitsForWarioStylesToolStripMenuItem
+			// copyToOtherPacpcsToolStripMenuItem
 			// 
-			this.swapPortraitsForWarioStylesToolStripMenuItem.CheckOnClick = true;
-			this.swapPortraitsForWarioStylesToolStripMenuItem.Name = "swapPortraitsForWarioStylesToolStripMenuItem";
-			this.swapPortraitsForWarioStylesToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.swapPortraitsForWarioStylesToolStripMenuItem.Text = "Swap portraits for Wario styles";
-			this.swapPortraitsForWarioStylesToolStripMenuItem.Click += new System.EventHandler(this.swapPortraitsForWarioStylesToolStripMenuItem_Click);
+			this.copyToOtherPacpcsToolStripMenuItem.Name = "copyToOtherPacpcsToolStripMenuItem";
+			this.copyToOtherPacpcsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+			this.copyToOtherPacpcsToolStripMenuItem.Text = "Copy to other pac/pcs";
+			this.copyToOtherPacpcsToolStripMenuItem.Click += new System.EventHandler(this.copyToOtherPacpcsToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -343,5 +352,6 @@
 		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator separator2;
 		private System.Windows.Forms.ToolStripMenuItem swapPortraitsForWarioStylesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem copyToOtherPacpcsToolStripMenuItem;
 	}
 }
