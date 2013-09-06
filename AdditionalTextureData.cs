@@ -12,18 +12,12 @@ using System.Windows.Forms;
 namespace BrawlCostumeManager {
 	public class AdditionalTextureData {
 		public Size Size { get; private set; }
-		public Func<int, int, string> PathFunc { get; private set; }
+		public Func<ResourceNode, int, int, ResourceNode> GetTEX0Func { get; private set; }
 		public delegate void VD(AdditionalTextureData sender);
 		public VD OnUpdate;
 
 		private static OpenFileDialog _openDlg = new OpenFileDialog();
 		private static SaveFileDialog _saveDlg = new SaveFileDialog();
-
-		public string this[int charNum, int costumeNum] {
-			get {
-				return PathFunc(charNum, costumeNum);
-			}
-		}
 
 		private TEX0Node _texture;
 		public TEX0Node Texture {
@@ -44,8 +38,8 @@ namespace BrawlCostumeManager {
 				}
 			}
 		}
-		public void TextureFrom(ResourceNode sc_selcharacter, int charNum, int costumeNum) {
-			Texture = sc_selcharacter == null ? null : sc_selcharacter.FindChild(this[charNum, costumeNum], false) as TEX0Node;
+		public void TextureFrom(ResourceNode node, int charNum, int costumeNum) {
+			Texture = node == null ? null : GetTEX0Func(node, charNum, costumeNum) as TEX0Node;
 		}
 
 		private Panel _panel;
@@ -147,17 +141,13 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		public AdditionalTextureData(int width, int height, string path)
-			: this(width, height, (x, y) => path) {
+		public AdditionalTextureData(int width, int height, Func<int, int, string> PathFunc)
+			: this(width, height, (n, x, y) => n.FindChild(PathFunc(x, y), false)) {
 		}
 
-		public AdditionalTextureData(int width, int height, Func<int, string> PathFunc)
-			: this(width, height, (x, y) => PathFunc(x)) {
-		}
-
-		public AdditionalTextureData(int width, int height, Func<int, int, string> PathFunc) {
+		public AdditionalTextureData(int width, int height, Func<ResourceNode, int, int, ResourceNode> GetTEX0Func) {
 			this.Size = new Size(width, height);
-			this.PathFunc = PathFunc;
+			this.GetTEX0Func = GetTEX0Func;
 		}
 
 		/// <summary>

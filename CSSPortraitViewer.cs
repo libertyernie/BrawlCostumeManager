@@ -16,19 +16,20 @@ namespace BrawlCostumeManager {
 		public override int PortraitHeight {
 			get { return 160; }
 		}
-		public override string PortraitPathFor(int charNum, int costumeNum) {
+		public override ResourceNode TEX0For(ResourceNode brres, int charNum, int costumeNum) {
 			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
-			return "char_bust_tex_lz77/MiscData[" + charNum + "]/Textures(NW4R)/MenSelchrFaceB." + tex_number;
+			string path = "char_bust_tex_lz77/MiscData[" + charNum + "]/Textures(NW4R)/MenSelchrFaceB." + tex_number;
+			return brres.FindChild(path, false);
 		}
 		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
 			return sc_selcharacter;
 		}
 
 		private static AdditionalTextureData[] additionalTextureData = {
-			new AdditionalTextureData(128, 32, i => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
-			new AdditionalTextureData(80, 56, i => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
+			new AdditionalTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
+			new AdditionalTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
 			new AdditionalTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
-			new AdditionalTextureData(56, 14, i => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
+			new AdditionalTextureData(56, 14, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
 		};
 
 		private string _openFilePath;

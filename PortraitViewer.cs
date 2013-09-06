@@ -27,7 +27,7 @@ namespace BrawlCostumeManager {
 			get;
 		}
 		public abstract ResourceNode PortraitRootFor(int charNum, int costumeNum);
-		public abstract string PortraitPathFor(int charNum, int costumeNum);
+		public abstract ResourceNode TEX0For(ResourceNode brres, int charNum, int costumeNum);
 
 		protected AdditionalTextureData texture;
 
@@ -36,7 +36,7 @@ namespace BrawlCostumeManager {
 
 		public PortraitViewer() {
 			InitializeComponent();
-			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, PortraitPathFor);
+			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, TEX0For);
 			additionalTexturesPanel.Controls.Add(texture.Panel);
 			texture.OnUpdate = delegate(AdditionalTextureData sender) {
 				UpdateImage(_charNum, _costumeNum);
