@@ -201,10 +201,12 @@ namespace BrawlCostumeManager {
 		private void copyToOtherPacpcsToolStripMenuItem_Click(object sender, EventArgs e) {
 			string charfile = ((FighterFile)listBox2.SelectedItem).FullName;
 			if (charfile.EndsWith(".pac", StringComparison.InvariantCultureIgnoreCase)) {
-				modelManager1.WorkingRoot.Export(charfile.Substring(0, charfile.Length - 4) + ".pcs");
+				((BrawlLib.SSBB.ResourceNodes.ARCNode)modelManager1.WorkingRoot)
+					.ExportPCS(charfile.Substring(0, charfile.Length - 4) + ".pcs");
 				updateCostumeSelectionPane();
 			} else if (charfile.EndsWith(".pcs", StringComparison.InvariantCultureIgnoreCase)) {
-				modelManager1.WorkingRoot.Export(charfile.Substring(0, charfile.Length - 4) + ".pac");
+				((BrawlLib.SSBB.ResourceNodes.ARCNode)modelManager1.WorkingRoot)
+					.ExportPAC(charfile.Substring(0, charfile.Length - 4) + ".pac");
 				updateCostumeSelectionPane();
 			} else {
 				MessageBox.Show("Not a .pac or .pcs file");
