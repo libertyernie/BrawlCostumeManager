@@ -34,16 +34,16 @@ namespace BrawlCostumeManager {
 		/// </summary>
 		public abstract ResourceNode TEX0For(ResourceNode node, int charNum, int costumeNum);
 
-		protected AdditionalTextureData texture;
+		protected PortraitViewerTextureData texture;
 
 		// In case the image needs to be reloaded after replacing the texture
 		protected int _charNum, _costumeNum;
 
 		public PortraitViewer() {
 			InitializeComponent();
-			texture = new AdditionalTextureData(PortraitWidth, PortraitHeight, this);
+			texture = new PortraitViewerTextureData(PortraitWidth, PortraitHeight, this);
 			additionalTexturesPanel.Controls.Add(texture.Panel);
-			texture.OnUpdate = delegate(AdditionalTextureData sender) {
+			texture.OnUpdate = delegate(PortraitViewerTextureData sender) {
 				UpdateImage(_charNum, _costumeNum);
 			};
 

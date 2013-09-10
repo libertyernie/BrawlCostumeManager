@@ -25,11 +25,11 @@ namespace BrawlCostumeManager {
 			return sc_selcharacter;
 		}
 
-		private static AdditionalTextureData[] additionalTextureData = {
-			new AdditionalTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
-			new AdditionalTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
-			new AdditionalTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
-			new AdditionalTextureData(56, 14, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
+		private static PortraitViewerTextureData[] additionalTextureData = {
+			new PortraitViewerTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
+			new PortraitViewerTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
+			new PortraitViewerTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
+			new PortraitViewerTextureData(56, 14, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS.0" + (i + 1).ToString("D2")),
 		};
 
 		private string _openFilePath;
@@ -47,7 +47,7 @@ namespace BrawlCostumeManager {
 			int a = additionalTextureData.Length;
 			foreach (var atd in additionalTextureData) {
 				AdditionalControls.Add(atd.Panel);
-				atd.OnUpdate = delegate(AdditionalTextureData sender) {
+				atd.OnUpdate = delegate(PortraitViewerTextureData sender) {
 					UpdateImage(_charNum, _costumeNum);
 				};
 			}
@@ -56,10 +56,12 @@ namespace BrawlCostumeManager {
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {
-			if (base.UpdateImage(charNum, costumeNum)) {
+            bool success = base.UpdateImage(charNum, costumeNum);
+			if (success) {
 				foreach (var atd in additionalTextureData) {
 					atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
 				}
+                OverlayName();
 				return true;
 			} else {
 				foreach (var atd in additionalTextureData) {
@@ -67,6 +69,24 @@ namespace BrawlCostumeManager {
 				}
 				return false;
 			}
+		}
+
+		private void OverlayName() {
+			Image orig = this.texture.Panel.BackgroundImage;
+			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0), 130, 26);
+			Bitmap swap = BitmapUtilities.AlphaSwap(name);
+
+			Bitmap overlaid = new Bitmap(orig.Width, orig.Height);
+			Graphics g = Graphics.FromImage(overlaid);
+			g.FillRectangle(new SolidBrush(Color.FromArgb(64, 64, 128)), 0, 0, 128, 160);
+			g.DrawImage(orig, 0, 0);
+			g.DrawImage(swap, new Point[] {
+				new Point(2, 100),
+				new Point(130, 100),
+				new Point(-2, 126)
+			});
+			g.FillRectangle(new SolidBrush(this.texture.Panel.BackColor), 0, 128, 160, 32);
+			this.texture.Panel.BackgroundImage = overlaid;
 		}
 
 		public override void UpdateDirectory() {

@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
-	public class AdditionalTextureData {
+	public class PortraitViewerTextureData {
 		/// <summary>
 		/// For the main texture, stores the TEX0For method from the PortraitViewer implementation.
 		/// For other textures (i.e. stock icons), stores another function which gets that TEX0 from the brres.
@@ -19,7 +19,7 @@ namespace BrawlCostumeManager {
 		public Func<ResourceNode, int, int, ResourceNode> GetTEX0Func { get; private set; }
 
 		public Size Size { get; private set; }
-		public delegate void VD(AdditionalTextureData sender);
+		public delegate void VD(PortraitViewerTextureData sender);
 		public VD OnUpdate;
 
 		private static OpenFileDialog _openDlg = new OpenFileDialog();
@@ -34,10 +34,6 @@ namespace BrawlCostumeManager {
 				_texture = value;
 				if (_texture != null) {
 					Bitmap bitmap = new Bitmap(_texture.GetImage(0), Size);
-					/*Form f = new Form();
-					Panel p = new Panel() { BackgroundImage = bitmap, Dock = DockStyle.Fill };
-					f.Controls.Add(p);
-					f.ShowDialog();*/
 					Panel.BackgroundImage = bitmap;
 				} else {
 					Panel.BackgroundImage = null;
@@ -59,10 +55,13 @@ namespace BrawlCostumeManager {
 
 					var replace = new ToolStripMenuItem() { Text = "Replace" };
 					replace.Click += replace_Click;
-					_panel.ContextMenuStrip.Items.Add(replace);
-					var export = new ToolStripMenuItem() { Text = "Export" };
-					export.Click += export_Click;
-					_panel.ContextMenuStrip.Items.Add(export);
+                    _panel.ContextMenuStrip.Items.Add(replace);
+                    var export = new ToolStripMenuItem() { Text = "Export" };
+                    export.Click += export_Click;
+                    _panel.ContextMenuStrip.Items.Add(export);
+                    var copy = new ToolStripMenuItem() { Text = "Copy" };
+                    copy.Click += copy_Click;
+                    _panel.ContextMenuStrip.Items.Add(copy);
 				}
 				return _panel;
 			}
@@ -71,7 +70,7 @@ namespace BrawlCostumeManager {
 		/// <summary>
 		/// Typical usage of the constructor - getting the TEX0 using the PortraitViewer's TEX0For function
 		/// </summary>
-		public AdditionalTextureData(int width, int height, PortraitViewer parent)
+		public PortraitViewerTextureData(int width, int height, PortraitViewer parent)
 			: this(width, height, parent.TEX0For) {
 		}
 
@@ -79,11 +78,11 @@ namespace BrawlCostumeManager {
 		/// For additional textures in the file - getting these TEX0s using lambda functions
 		/// which return the path (not the node itself)
 		/// </summary>
-		public AdditionalTextureData(int width, int height, Func<int, int, string> GetTEX0Func)
+		public PortraitViewerTextureData(int width, int height, Func<int, int, string> GetTEX0Func)
 			: this(width, height, (n, x, y) => n.FindChild(GetTEX0Func(x, y), false)) {
 		}
 
-		private AdditionalTextureData(int width, int height, Func<ResourceNode, int, int, ResourceNode> GetTEX0Func) {
+		private PortraitViewerTextureData(int width, int height, Func<ResourceNode, int, int, ResourceNode> GetTEX0Func) {
 			this.Size = new Size(width, height);
 			this.GetTEX0Func = GetTEX0Func;
 		}
@@ -110,6 +109,18 @@ namespace BrawlCostumeManager {
 				}
 			}
 		}
+
+        void copy_Click(object sender, EventArgs e)
+        {
+            //Clipboard.SetImage(Texture.GetImage(0));
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Texture.GetImage(0).Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                var data = new DataObject("PNG", stream);
+                Clipboard.Clear();
+                Clipboard.SetDataObject(data, true);
+            }
+        }
 
 		void _panel_DragEnter(object sender, DragEventArgs e) {
 			if (_texture != null && e.Data.GetDataPresent(DataFormats.FileDrop)) {
