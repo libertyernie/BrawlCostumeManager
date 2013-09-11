@@ -59,7 +59,7 @@ namespace BrawlCostumeManager {
                     var export = new ToolStripMenuItem() { Text = "Export" };
                     export.Click += export_Click;
                     _panel.ContextMenuStrip.Items.Add(export);
-                    var copy = new ToolStripMenuItem() { Text = "Copy" };
+                    var copy = new ToolStripMenuItem() { Text = "Copy Texture" };
                     copy.Click += copy_Click;
                     _panel.ContextMenuStrip.Items.Add(copy);
 				}

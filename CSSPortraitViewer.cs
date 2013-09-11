@@ -33,7 +33,6 @@ namespace BrawlCostumeManager {
 			set {
 				_namePortraitPreview = value;
 				UpdateImage(_charNum, _costumeNum);
-				copyPreview.Enabled = value;
 			}
 		}
 
