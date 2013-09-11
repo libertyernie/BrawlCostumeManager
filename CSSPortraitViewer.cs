@@ -90,9 +90,10 @@ namespace BrawlCostumeManager {
 
 		private void OverlayName() {
 			Image orig = this.texture.Panel.BackgroundImage;
+
 			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0));
-			Bitmap white = BitmapUtilities.AlphaSwap(name);
-			Bitmap black = BitmapUtilities.Blur(white);
+			Bitmap swapped = BitmapUtilities.AlphaSwap(name);
+			Bitmap blurred = BitmapUtilities.BlurCombine(swapped, Color.Black);
 
 			Bitmap overlaid = new Bitmap(orig.Width, orig.Height);
 			Graphics g = Graphics.FromImage(overlaid);
@@ -100,20 +101,10 @@ namespace BrawlCostumeManager {
 				new Rectangle(0, 0, 128, 128),
 				new Rectangle(0, 0, 128, 128),
 				GraphicsUnit.Pixel);
-			g.DrawImage(black, new Point[] {
-				new Point(-1, 98),
-				new Point(133, 98),
-				new Point(-5, 127)
-			});
-			g.DrawImage(black, new Point[] {
-				new Point(1, 100),
-				new Point(131, 100),
-				new Point(-3, 125)
-			});
-			g.DrawImage(white, new Point[] {
-				new Point(0, 99),
-				new Point(132, 99),
-				new Point(-4, 126)
+			g.DrawImage(blurred, new Point[] {
+				new Point(0, 98),
+				new Point(131, 98),
+				new Point(-3, 127)
 			});
 			this.texture.Panel.BackgroundImage = overlaid;
 		}
