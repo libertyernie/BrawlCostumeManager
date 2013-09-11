@@ -25,6 +25,18 @@ namespace BrawlCostumeManager {
 			return sc_selcharacter;
 		}
 
+		private bool _namePortraitPreview;
+		public bool NamePortraitPreview {
+			get {
+				return _namePortraitPreview;
+			}
+			set {
+				_namePortraitPreview = value;
+				UpdateImage(_charNum, _costumeNum);
+				copyPreview.Enabled = value;
+			}
+		}
+
 		private static PortraitViewerTextureData[] additionalTextureData = {
 			new PortraitViewerTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
 			new PortraitViewerTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
@@ -42,6 +54,7 @@ namespace BrawlCostumeManager {
 		/// Either the sc_selcharacter_en archive within common5.pac or the sc_selcharacter.pac file.
 		/// </summary>
 		private ResourceNode sc_selcharacter;
+		private ToolStripMenuItem copyPreview;
 
 		public CSSPortraitViewer() : base() {
 			int a = additionalTextureData.Length;
@@ -53,6 +66,10 @@ namespace BrawlCostumeManager {
 			}
 			UpdateDirectory();
 			label1.Text = (common5 != null ? "common5" : "sc_selcharacter");
+
+            copyPreview = new ToolStripMenuItem("Copy preview");
+			copyPreview.Click += delegate(object sender, EventArgs e) { Clipboard.SetImage(texture.Panel.BackgroundImage); };
+            texture.Panel.ContextMenuStrip.Items.Add(copyPreview);
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {
@@ -61,7 +78,7 @@ namespace BrawlCostumeManager {
 				foreach (var atd in additionalTextureData) {
 					atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
 				}
-                OverlayName();
+                if (NamePortraitPreview) OverlayName();
 				return true;
 			} else {
 				foreach (var atd in additionalTextureData) {
@@ -73,19 +90,31 @@ namespace BrawlCostumeManager {
 
 		private void OverlayName() {
 			Image orig = this.texture.Panel.BackgroundImage;
-			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0), 130, 26);
-			Bitmap swap = BitmapUtilities.AlphaSwap(name);
+			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0));
+			Bitmap white = BitmapUtilities.AlphaSwap(name);
+			Bitmap black = BitmapUtilities.Blur(white);
 
 			Bitmap overlaid = new Bitmap(orig.Width, orig.Height);
 			Graphics g = Graphics.FromImage(overlaid);
-			g.FillRectangle(new SolidBrush(Color.FromArgb(64, 64, 128)), 0, 0, 128, 160);
-			g.DrawImage(orig, 0, 0);
-			g.DrawImage(swap, new Point[] {
-				new Point(2, 100),
-				new Point(130, 100),
-				new Point(-2, 126)
+			g.DrawImage(orig,
+				new Rectangle(0, 0, 128, 128),
+				new Rectangle(0, 0, 128, 128),
+				GraphicsUnit.Pixel);
+			g.DrawImage(black, new Point[] {
+				new Point(-1, 98),
+				new Point(133, 98),
+				new Point(-5, 127)
 			});
-			g.FillRectangle(new SolidBrush(this.texture.Panel.BackColor), 0, 128, 160, 32);
+			g.DrawImage(black, new Point[] {
+				new Point(1, 100),
+				new Point(131, 100),
+				new Point(-3, 125)
+			});
+			g.DrawImage(white, new Point[] {
+				new Point(0, 99),
+				new Point(132, 99),
+				new Point(-4, 126)
+			});
 			this.texture.Panel.BackgroundImage = overlaid;
 		}
 

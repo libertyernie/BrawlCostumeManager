@@ -30,6 +30,7 @@
 			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.copyToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyToOtherPacpcsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
@@ -40,15 +41,17 @@
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.swapPortraitsForWarioStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
+			this.nameportraitPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.separator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.button1 = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.spaceFiller1 = new System.Windows.Forms.Panel();
+			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
-			this.copyToOtherPacpcsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -128,7 +131,7 @@
             this.copyToOtherPacpcsToolStripMenuItem,
             this.deleteToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(193, 92);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(193, 70);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// copyToToolStripMenuItem
@@ -137,6 +140,13 @@
 			this.copyToToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
 			this.copyToToolStripMenuItem.Text = "Copy to...";
 			this.copyToToolStripMenuItem.Click += new System.EventHandler(this.copyToToolStripMenuItem_Click);
+			// 
+			// copyToOtherPacpcsToolStripMenuItem
+			// 
+			this.copyToOtherPacpcsToolStripMenuItem.Name = "copyToOtherPacpcsToolStripMenuItem";
+			this.copyToOtherPacpcsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+			this.copyToOtherPacpcsToolStripMenuItem.Text = "Copy to other pac/pcs";
+			this.copyToOtherPacpcsToolStripMenuItem.Click += new System.EventHandler(this.copyToOtherPacpcsToolStripMenuItem_Click);
 			// 
 			// deleteToolStripMenuItem
 			// 
@@ -175,6 +185,9 @@
             this.cBlissCheckbox,
             this.swapPortraitsForWarioStylesToolStripMenuItem,
             this.separator,
+            this.nameportraitPreviewToolStripMenuItem,
+            this.backgroundColorToolStripMenuItem,
+            this.separator3,
             this.aboutBrawlCostumeManagerToolStripMenuItem});
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -224,20 +237,25 @@
 			this.separator.Name = "separator";
 			this.separator.Size = new System.Drawing.Size(271, 6);
 			// 
+			// nameportraitPreviewToolStripMenuItem
+			// 
+			this.nameportraitPreviewToolStripMenuItem.CheckOnClick = true;
+			this.nameportraitPreviewToolStripMenuItem.Name = "nameportraitPreviewToolStripMenuItem";
+			this.nameportraitPreviewToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.nameportraitPreviewToolStripMenuItem.Text = "Name/portrait preview";
+			this.nameportraitPreviewToolStripMenuItem.Click += new System.EventHandler(this.nameportraitPreviewToolStripMenuItem_Click);
+			// 
+			// separator3
+			// 
+			this.separator3.Name = "separator3";
+			this.separator3.Size = new System.Drawing.Size(271, 6);
+			// 
 			// aboutBrawlCostumeManagerToolStripMenuItem
 			// 
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Name = "aboutBrawlCostumeManagerToolStripMenuItem";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
-			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(185, 406);
-			this.modelManager1.TabIndex = 1;
 			// 
 			// button1
 			// 
@@ -272,10 +290,26 @@
 			this.spaceFiller1.Size = new System.Drawing.Size(100, 4);
 			this.spaceFiller1.TabIndex = 6;
 			// 
+			// backgroundColorToolStripMenuItem
+			// 
+			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
+			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
+			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(185, 406);
+			this.modelManager1.TabIndex = 1;
+			// 
 			// cssPortraitViewer1
 			// 
 			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 7);
 			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
+			this.cssPortraitViewer1.NamePortraitPreview = false;
 			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 306);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
@@ -292,13 +326,6 @@
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
 			this.resultPortraitViewer1.TabIndex = 4;
-			// 
-			// copyToOtherPacpcsToolStripMenuItem
-			// 
-			this.copyToOtherPacpcsToolStripMenuItem.Name = "copyToOtherPacpcsToolStripMenuItem";
-			this.copyToOtherPacpcsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-			this.copyToOtherPacpcsToolStripMenuItem.Text = "Copy to other pac/pcs";
-			this.copyToOtherPacpcsToolStripMenuItem.Click += new System.EventHandler(this.copyToOtherPacpcsToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -351,7 +378,10 @@
 		private System.Windows.Forms.Panel spaceFiller1;
 		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator separator2;
+		private System.Windows.Forms.ToolStripSeparator separator3;
 		private System.Windows.Forms.ToolStripMenuItem swapPortraitsForWarioStylesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToOtherPacpcsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nameportraitPreviewToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
 	}
 }

@@ -212,5 +212,20 @@ namespace BrawlCostumeManager {
 				MessageBox.Show("Not a .pac or .pcs file");
 			}
 		}
+
+		private void nameportraitPreviewToolStripMenuItem_Click(object sender, EventArgs e) {
+			cssPortraitViewer1.NamePortraitPreview = nameportraitPreviewToolStripMenuItem.Checked;
+		}
+
+		private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e) {
+			using (ColorDialog cd = new ColorDialog()) {
+				cd.Color = cssPortraitViewer1.BackColor;
+				if (cd.ShowDialog() == DialogResult.OK) {
+					foreach (var pv in portraitViewers) {
+						pv.BackColor = cd.Color;
+					}
+				}
+			}
+		}
 	}
 }
