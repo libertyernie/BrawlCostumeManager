@@ -21,7 +21,7 @@ namespace BrawlCostumeManager {
 		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
 			ResourceNode bres = bres_cache[charNum];
 			if (bres == null) {
-				string f = "menu/common/char_bust_tex/MenSelchrFaceB" + charNum.ToString("D2") + "0.brres";
+				string f = "../menu/common/char_bust_tex/MenSelchrFaceB" + charNum.ToString("D2") + "0.brres";
 				if (new FileInfo(f).Exists) {
 					bres_cache[charNum] = bres = (BRESNode)NodeFactory.FromFile(null, f);
 				}
@@ -57,7 +57,7 @@ namespace BrawlCostumeManager {
 			for (int i = 0; i < bres_cache.Length; i++) {
 				if (bres_cache[i] != null && bres_cache[i].IsDirty) {
 					bres_cache[i].Merge();
-					bres_cache[i].Export("menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
+					bres_cache[i].Export("../menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
 				}
 			}
 		}

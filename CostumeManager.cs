@@ -34,8 +34,12 @@ namespace BrawlCostumeManager {
 		}
 
 		private void readDir() {
-			if (!Directory.Exists("fighter") && Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
-				System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf";
+			if (!Directory.Exists("mario") && Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
+				System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
+				readDir();
+				return;
+			} else if (!Directory.Exists("mario") && Directory.Exists("fighter")) {
+				System.Environment.CurrentDirectory += "/fighter";
 				readDir();
 				return;
 			}
@@ -107,7 +111,7 @@ namespace BrawlCostumeManager {
 				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
 				int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
 				for (int i = 0; i < upperBound; i++) {
-					string pathNoExt = "fighter/" + charname + "/fit" + charname + i.ToString("D2");
+					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
 					if (charname.ToLower() == "kirby") {
