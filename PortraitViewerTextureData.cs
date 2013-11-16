@@ -88,7 +88,7 @@ namespace BrawlCostumeManager {
 		}
 
 		void export_Click(object sender, EventArgs e) {
-			_saveDlg.Filter = ExportFilters.TEX0;
+			_saveDlg.Filter = FileFilters.TEX0;
 			_saveDlg.FilterIndex = 1;
 			if (_saveDlg.ShowDialog() == DialogResult.OK) {
 				int fIndex = _saveDlg.FilterIndex;
@@ -100,7 +100,7 @@ namespace BrawlCostumeManager {
 		}
 
 		void replace_Click(object sender, EventArgs e) {
-			_openDlg.Filter = ExportFilters.TEX0;
+			_openDlg.Filter = FileFilters.TEX0;
 			if (_openDlg.ShowDialog() == DialogResult.OK) {
 				string fileName = _openDlg.FileName;
 				Replace(fileName, true);
