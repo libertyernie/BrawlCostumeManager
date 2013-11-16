@@ -42,12 +42,13 @@
 			this.swapPortraitsForWarioStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.nameportraitPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.button1 = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.spaceFiller1 = new System.Windows.Forms.Panel();
-			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
@@ -71,7 +72,7 @@
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(207, 187);
+			this.listBox1.Size = new System.Drawing.Size(200, 187);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -91,8 +92,8 @@
 			this.splitContainer1.Panel2.Controls.Add(this.modelManager1);
 			this.splitContainer1.Panel2.Controls.Add(this.button1);
 			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-			this.splitContainer1.Size = new System.Drawing.Size(684, 406);
-			this.splitContainer1.SplitterDistance = 207;
+			this.splitContainer1.Size = new System.Drawing.Size(784, 406);
+			this.splitContainer1.SplitterDistance = 200;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// splitContainer2
@@ -109,7 +110,7 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-			this.splitContainer2.Size = new System.Drawing.Size(207, 381);
+			this.splitContainer2.Size = new System.Drawing.Size(200, 381);
 			this.splitContainer2.SplitterDistance = 187;
 			this.splitContainer2.TabIndex = 1;
 			// 
@@ -120,7 +121,7 @@
 			this.listBox2.FormattingEnabled = true;
 			this.listBox2.Location = new System.Drawing.Point(0, 0);
 			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(207, 190);
+			this.listBox2.Size = new System.Drawing.Size(200, 190);
 			this.listBox2.TabIndex = 0;
 			this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
 			// 
@@ -162,7 +163,7 @@
             this.toolStripDropDownButton1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(207, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(200, 25);
 			this.toolStrip1.TabIndex = 6;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -180,6 +181,7 @@
 			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.updateSSSStockIconsToolStripMenuItem,
+            this.screenshotPortraitsToolStripMenuItem,
             this.separator2,
             this.hidePolygonsCheckbox,
             this.cBlissCheckbox,
@@ -198,7 +200,7 @@
 			// 
 			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
 			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.updateSSSStockIconsToolStripMenuItem.Text = "Update SSS stock icons";
+			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
 			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
 			// 
 			// separator2
@@ -245,6 +247,13 @@
 			this.nameportraitPreviewToolStripMenuItem.Text = "Name/portrait preview";
 			this.nameportraitPreviewToolStripMenuItem.Click += new System.EventHandler(this.nameportraitPreviewToolStripMenuItem_Click);
 			// 
+			// backgroundColorToolStripMenuItem
+			// 
+			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
+			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
+			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
+			// 
 			// separator3
 			// 
 			this.separator3.Name = "separator3";
@@ -260,7 +269,7 @@
 			// button1
 			// 
 			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.button1.Location = new System.Drawing.Point(185, 0);
+			this.button1.Location = new System.Drawing.Point(292, 0);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(20, 406);
 			this.button1.TabIndex = 6;
@@ -277,7 +286,7 @@
 			this.flowLayoutPanel1.Controls.Add(this.resultPortraitViewer1);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(205, 0);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(312, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(268, 406);
 			this.flowLayoutPanel1.TabIndex = 5;
@@ -290,19 +299,19 @@
 			this.spaceFiller1.Size = new System.Drawing.Size(100, 4);
 			this.spaceFiller1.TabIndex = 6;
 			// 
-			// backgroundColorToolStripMenuItem
+			// screenshotPortraitsToolStripMenuItem
 			// 
-			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
-			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
+			this.screenshotPortraitsToolStripMenuItem.Name = "screenshotPortraitsToolStripMenuItem";
+			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
+			this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
 			// 
 			// modelManager1
 			// 
 			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelManager1.Location = new System.Drawing.Point(0, 0);
 			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(185, 406);
+			this.modelManager1.Size = new System.Drawing.Size(292, 406);
 			this.modelManager1.TabIndex = 1;
 			// 
 			// cssPortraitViewer1
@@ -331,7 +340,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(684, 406);
+			this.ClientSize = new System.Drawing.Size(784, 406);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "CostumeManager";
 			this.Text = "Brawl Costume Manager";
@@ -383,5 +392,6 @@
 		private System.Windows.Forms.ToolStripMenuItem copyToOtherPacpcsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nameportraitPreviewToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem screenshotPortraitsToolStripMenuItem;
 	}
 }

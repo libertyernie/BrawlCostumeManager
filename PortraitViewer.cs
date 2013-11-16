@@ -60,6 +60,10 @@ namespace BrawlCostumeManager {
 			return texture.Texture != null;
 		}
 
+		public void Replace(string filename, bool useTextureConverter) {
+			texture.Replace(filename, useTextureConverter);
+		}
+
 		public abstract void UpdateDirectory();
 
 		protected abstract void saveButton_Click(object sender, EventArgs e);

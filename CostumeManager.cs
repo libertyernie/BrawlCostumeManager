@@ -231,5 +231,30 @@ namespace BrawlCostumeManager {
 				}
 			}
 		}
+
+		private void screenshotPortraitsToolStripMenuItem_Click(object sender, EventArgs e) {
+			Bitmap screenshot = modelManager1.GrabScreenshot(true);
+
+			int size = Math.Min(screenshot.Width, screenshot.Height);
+			Bitmap square = new Bitmap(size, (int)(size * 160.0/128.0));
+			using (Graphics g = Graphics.FromImage(square)) {
+				g.DrawImage(screenshot,
+					(screenshot.Width - size) / -2,
+					(screenshot.Height - size) / -2);
+			}
+
+			string iconFile = Path.GetTempFileName();
+			File.Move(iconFile, iconFile + ".png");
+			iconFile += ".png";
+
+			BitmapUtilities.Resize(square, new Size(160, 128)).Save(iconFile);
+			cssPortraitViewer1.Replace(iconFile, false);
+
+			try {
+				File.Delete(iconFile);
+			} catch (Exception) {
+				Console.WriteLine("Could not delete temporary file " + iconFile);
+			}
+		}
 	}
 }

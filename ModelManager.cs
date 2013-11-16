@@ -250,5 +250,9 @@ namespace BrawlCostumeManager {
 			{"sonic", new int[] {10,11,14,15,16,18,20,21,22,24,26,27,28,29,30}}, // open eyelids, remove sphere, etc.
 			{"dedede", new int[] {19}}, // remove inflated Dedede
 		};
+
+		public Bitmap GrabScreenshot(bool withTransparency) {
+			return modelPanel1.GrabScreenshot(withTransparency);
+		}
 	}
 }
