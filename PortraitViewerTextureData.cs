@@ -142,6 +142,8 @@ namespace BrawlCostumeManager {
 		}
 
 		public void Replace(string filename, bool useTextureConverter) {
+			if (Texture == null) return;
+
 			var ig = StringComparison.CurrentCultureIgnoreCase;
 			if (filename.EndsWith(".tex0", ig) || filename.EndsWith(".brres", ig)) {
 				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {

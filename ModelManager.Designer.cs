@@ -24,6 +24,7 @@ namespace BrawlCostumeManager {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModelManager));
 			this.modelPanel1 = new System.Windows.Forms.ModelPanel();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
@@ -31,13 +32,14 @@ namespace BrawlCostumeManager {
 			// modelPanel1
 			// 
 			this.modelPanel1.AllowDrop = true;
+			this.modelPanel1.DefaultTranslate = ((System.Vector3)(resources.GetObject("modelPanel1.DefaultTranslate")));
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelPanel1.InitialYFactor = 100;
 			this.modelPanel1.InitialZoomFactor = 5;
-			this.modelPanel1.Location = new System.Drawing.Point(0, 0);
+			this.modelPanel1.Location = new System.Drawing.Point(0, 21);
 			this.modelPanel1.Name = "modelPanel1";
 			this.modelPanel1.RotationScale = 0.1F;
-			this.modelPanel1.Size = new System.Drawing.Size(292, 273);
+			this.modelPanel1.Size = new System.Drawing.Size(292, 252);
 			this.modelPanel1.TabIndex = 0;
 			this.modelPanel1.TranslationScale = 0.05F;
 			this.modelPanel1.ZoomScale = 2.5F;
@@ -56,8 +58,8 @@ namespace BrawlCostumeManager {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.modelPanel1);
+			this.Controls.Add(this.comboBox1);
 			this.Name = "ModelManager";
 			this.Size = new System.Drawing.Size(292, 273);
 			this.ResumeLayout(false);

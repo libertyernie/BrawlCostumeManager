@@ -32,6 +32,21 @@ namespace BrawlCostumeManager {
 			}
 		}
 
+		public Size? ModelPreviewSize {
+			get {
+				return Dock == DockStyle.Fill ? (Size?)null : modelPanel1.Size;
+			}
+			set {
+				if (value == null) {
+					modelPanel1.Dock = DockStyle.Fill;
+				} else {
+					modelPanel1.Dock = DockStyle.None;
+					modelPanel1.Size = value.Value;
+				}
+			}
+		}
+
+		public bool ZoomOut;
 		public bool UseExceptions;
 
 		private string _delayedPath;
@@ -188,6 +203,10 @@ namespace BrawlCostumeManager {
 
 			Vector3 min, max;
 			((IRenderedObject)model).GetBox(out min, out max);
+			if (ZoomOut) {
+				min._x += 20;
+				max._x -= 20;
+			}
 			modelPanel1.SetCamWithBox(min, max);
 		}
 

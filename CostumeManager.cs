@@ -29,7 +29,7 @@ namespace BrawlCostumeManager {
 			if (!new DirectoryInfo("fighter").Exists && new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
 				System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 			}
-
+			modelManager1.ZoomOut = defaultZoomLevelToolStripMenuItem.Checked;
 			readDir();
 		}
 
@@ -236,18 +236,20 @@ namespace BrawlCostumeManager {
 			Bitmap screenshot = modelManager1.GrabScreenshot(true);
 
 			int size = Math.Min(screenshot.Width, screenshot.Height);
-			Bitmap square = new Bitmap(size, (int)(size * 160.0/128.0));
-			using (Graphics g = Graphics.FromImage(square)) {
-				g.DrawImage(screenshot,
-					(screenshot.Width - size) / -2,
-					(screenshot.Height - size) / -2);
+			Bitmap rect = new Bitmap(size, (int)(size * 160.0/128.0));
+			using (Graphics g = Graphics.FromImage(rect)) {
+				int x = (screenshot.Width - rect.Width) / -2;
+				int y = (screenshot.Height - rect.Height) / -2;
+				g.DrawImage(screenshot, x, y);
 			}
+			screenshot.Save(@"C:\Users\Owner\Desktop\1.png");
+			rect.Save(@"C:\Users\Owner\Desktop\2.png");
 
 			string iconFile = Path.GetTempFileName();
 			File.Move(iconFile, iconFile + ".png");
 			iconFile += ".png";
 
-			BitmapUtilities.Resize(square, new Size(160, 128)).Save(iconFile);
+			BitmapUtilities.Resize(rect, new Size(128, 160)).Save(iconFile);
 			cssPortraitViewer1.Replace(iconFile, false);
 
 			try {
@@ -255,6 +257,17 @@ namespace BrawlCostumeManager {
 			} catch (Exception) {
 				Console.WriteLine("Could not delete temporary file " + iconFile);
 			}
+		}
+
+		private void limitModelViewerTo128x160ToolStripMenuItem_Click(object sender, EventArgs e) {
+			modelManager1.ModelPreviewSize = limitModelViewerTo128x160ToolStripMenuItem.Checked
+				? (Size?)new Size(128, 160)
+				: null;
+		}
+
+		private void defaultZoomLevelToolStripMenuItem_Click(object sender, EventArgs e) {
+			modelManager1.ZoomOut = defaultZoomLevelToolStripMenuItem.Checked;
+			modelManager1.RefreshModel();
 		}
 	}
 }
