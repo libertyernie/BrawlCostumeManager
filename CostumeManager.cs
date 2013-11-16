@@ -29,7 +29,10 @@ namespace BrawlCostumeManager {
 			if (!new DirectoryInfo("fighter").Exists && new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
 				System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 			}
+
+			cssPortraitViewer1.NamePortraitPreview = nameportraitPreviewToolStripMenuItem.Checked;
 			modelManager1.ZoomOut = defaultZoomLevelToolStripMenuItem.Checked;
+
 			readDir();
 		}
 
@@ -259,15 +262,19 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private void limitModelViewerTo128x160ToolStripMenuItem_Click(object sender, EventArgs e) {
-			modelManager1.ModelPreviewSize = limitModelViewerTo128x160ToolStripMenuItem.Checked
-				? (Size?)new Size(128, 160)
+		private void limitModelViewerToolStripMenuItem_Click(object sender, EventArgs e) {
+			modelManager1.ModelPreviewSize = limitModelViewerToolStripMenuItem.Checked
+				? (Size?)new Size(256, 320)
 				: null;
 		}
 
 		private void defaultZoomLevelToolStripMenuItem_Click(object sender, EventArgs e) {
 			modelManager1.ZoomOut = defaultZoomLevelToolStripMenuItem.Checked;
 			modelManager1.RefreshModel();
+		}
+
+		private void common5MenSelchrFaceToolStripMenuItem_Click(object sender, EventArgs e) {
+
 		}
 	}
 }

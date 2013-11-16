@@ -37,8 +37,12 @@
 			this.spaceFiller1 = new System.Windows.Forms.Panel();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
+			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-			this.limitModelViewerTo128x160ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.limitModelViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.defaultZoomLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.hidePolygonsCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.cBlissCheckbox = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,10 +52,6 @@
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBrawlCostumeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.defaultZoomLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
@@ -212,11 +212,36 @@
 			this.changeDirectory.Text = "Change Directory";
 			this.changeDirectory.Click += new System.EventHandler(this.changeDirectory_Click);
 			// 
+			// toolStripDropDownButton2
+			// 
+			this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateSSSStockIconsToolStripMenuItem,
+            this.screenshotPortraitsToolStripMenuItem});
+			this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+			this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
+			this.toolStripDropDownButton2.Text = "Tools";
+			// 
+			// updateSSSStockIconsToolStripMenuItem
+			// 
+			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
+			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
+			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
+			// 
+			// screenshotPortraitsToolStripMenuItem
+			// 
+			this.screenshotPortraitsToolStripMenuItem.Name = "screenshotPortraitsToolStripMenuItem";
+			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+			this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
+			this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
+			// 
 			// toolStripDropDownButton1
 			// 
 			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.limitModelViewerTo128x160ToolStripMenuItem,
+            this.limitModelViewerToolStripMenuItem,
             this.defaultZoomLevelToolStripMenuItem,
             this.separator2,
             this.hidePolygonsCheckbox,
@@ -232,13 +257,23 @@
 			this.toolStripDropDownButton1.Size = new System.Drawing.Size(62, 22);
 			this.toolStripDropDownButton1.Text = "Options";
 			// 
-			// limitModelViewerTo128x160ToolStripMenuItem
+			// limitModelViewerToolStripMenuItem
 			// 
-			this.limitModelViewerTo128x160ToolStripMenuItem.CheckOnClick = true;
-			this.limitModelViewerTo128x160ToolStripMenuItem.Name = "limitModelViewerTo128x160ToolStripMenuItem";
-			this.limitModelViewerTo128x160ToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.limitModelViewerTo128x160ToolStripMenuItem.Text = "Limit model viewer to 128x160";
-			this.limitModelViewerTo128x160ToolStripMenuItem.Click += new System.EventHandler(this.limitModelViewerTo128x160ToolStripMenuItem_Click);
+			this.limitModelViewerToolStripMenuItem.CheckOnClick = true;
+			this.limitModelViewerToolStripMenuItem.Name = "limitModelViewerToolStripMenuItem";
+			this.limitModelViewerToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.limitModelViewerToolStripMenuItem.Text = "Limit model viewer to 256x320";
+			this.limitModelViewerToolStripMenuItem.Click += new System.EventHandler(this.limitModelViewerToolStripMenuItem_Click);
+			// 
+			// defaultZoomLevelToolStripMenuItem
+			// 
+			this.defaultZoomLevelToolStripMenuItem.Checked = true;
+			this.defaultZoomLevelToolStripMenuItem.CheckOnClick = true;
+			this.defaultZoomLevelToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.defaultZoomLevelToolStripMenuItem.Name = "defaultZoomLevelToolStripMenuItem";
+			this.defaultZoomLevelToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.defaultZoomLevelToolStripMenuItem.Text = "+-20 default X bounds";
+			this.defaultZoomLevelToolStripMenuItem.Click += new System.EventHandler(this.defaultZoomLevelToolStripMenuItem_Click);
 			// 
 			// separator2
 			// 
@@ -278,7 +313,9 @@
 			// 
 			// nameportraitPreviewToolStripMenuItem
 			// 
+			this.nameportraitPreviewToolStripMenuItem.Checked = true;
 			this.nameportraitPreviewToolStripMenuItem.CheckOnClick = true;
+			this.nameportraitPreviewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.nameportraitPreviewToolStripMenuItem.Name = "nameportraitPreviewToolStripMenuItem";
 			this.nameportraitPreviewToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
 			this.nameportraitPreviewToolStripMenuItem.Text = "Name/portrait preview";
@@ -302,41 +339,6 @@
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Text = "About Brawl Costume Manager";
 			this.aboutBrawlCostumeManagerToolStripMenuItem.Click += new System.EventHandler(this.aboutBrawlCostumeManagerToolStripMenuItem_Click);
-			// 
-			// toolStripDropDownButton2
-			// 
-			this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateSSSStockIconsToolStripMenuItem,
-            this.screenshotPortraitsToolStripMenuItem});
-			this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-			this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
-			this.toolStripDropDownButton2.Text = "Tools";
-			// 
-			// updateSSSStockIconsToolStripMenuItem
-			// 
-			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
-			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
-			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
-			// 
-			// screenshotPortraitsToolStripMenuItem
-			// 
-			this.screenshotPortraitsToolStripMenuItem.Name = "screenshotPortraitsToolStripMenuItem";
-			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-			this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
-			this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
-			// 
-			// defaultZoomLevelToolStripMenuItem
-			// 
-			this.defaultZoomLevelToolStripMenuItem.Checked = true;
-			this.defaultZoomLevelToolStripMenuItem.CheckOnClick = true;
-			this.defaultZoomLevelToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.defaultZoomLevelToolStripMenuItem.Name = "defaultZoomLevelToolStripMenuItem";
-			this.defaultZoomLevelToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-			this.defaultZoomLevelToolStripMenuItem.Text = "+-20 default X bounds";
-			this.defaultZoomLevelToolStripMenuItem.Click += new System.EventHandler(this.defaultZoomLevelToolStripMenuItem_Click);
 			// 
 			// modelManager1
 			// 
@@ -427,7 +429,7 @@
         private System.Windows.Forms.ToolStripMenuItem nameportraitPreviewToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem screenshotPortraitsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem limitModelViewerTo128x160ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem limitModelViewerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
 		private System.Windows.Forms.ToolStripMenuItem defaultZoomLevelToolStripMenuItem;
 	}
