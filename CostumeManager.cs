@@ -155,10 +155,6 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private void aboutBrawlCostumeManagerToolStripMenuItem_Click(object sender, EventArgs e) {
-			new About(Icon).Show();
-		}
-
 		private void contextMenuStrip1_Opening(object sender, CancelEventArgs e) {
 			listBox2.SelectedIndex = listBox2.IndexFromPoint(listBox2.PointToClient(Cursor.Position));
 		}
@@ -248,9 +244,7 @@ namespace BrawlCostumeManager {
 			screenshot.Save(@"C:\Users\Owner\Desktop\1.png");
 			rect.Save(@"C:\Users\Owner\Desktop\2.png");
 
-			string iconFile = Path.GetTempFileName();
-			File.Move(iconFile, iconFile + ".png");
-			iconFile += ".png";
+			string iconFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
 
 			BitmapUtilities.Resize(rect, new Size(128, 160)).Save(iconFile);
 			cssPortraitViewer1.Replace(iconFile, false);
@@ -275,6 +269,10 @@ namespace BrawlCostumeManager {
 
 		private void common5MenSelchrFaceToolStripMenuItem_Click(object sender, EventArgs e) {
 
+		}
+
+		private void toolStripButton1_Click(object sender, EventArgs e) {
+			new About(Icon).Show();
 		}
 	}
 }
