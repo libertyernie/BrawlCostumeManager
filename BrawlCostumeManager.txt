@@ -1,5 +1,5 @@
 Brawl Costume Manager
-v2.2.1 - September 4, 2013
+v3.0 - Nov. 19, 2013
 <http://www.lakora.us/brawl/costumemanager>
 
 Brawl Costume Manager is a .NET application for managing the costume files and
@@ -25,5 +25,12 @@ info/portrite and char_bust_tex. To replace one of these, drag and drop an
 image file onto the existing image. Changes to these files will not be saved
 until you click the Save button.
 
+*** Options ***
 If you're using cBliss, make sure to check the option in the Options menu so
-the mappings between costume and portrait numbers are corrected.
+the mappings between costume and portrait numbers are corrected. There's also
+an option to swap the two Wario outfits to match P:M.
+
+The top two options in the Options menu - "Limit model viewer to 256x320" and
+"+-20 default X bounds" - change the size and zoom levels of the model viewer.
+They can be used with the "Screenshot -> portraits" entry in the Tools menu to
+take a picture of the model and use it as a temporary CSS portrait.
