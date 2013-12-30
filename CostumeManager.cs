@@ -135,7 +135,7 @@ namespace BrawlCostumeManager {
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
 					if (charname.ToLower() == "kirby") {
 						foreach (string hatchar in Constants.KirbyHats) {
-							listBox2.Items.Add(new FighterFile("fighter/kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
+							listBox2.Items.Add(new FighterFile("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
 						}
 					}
 				}
