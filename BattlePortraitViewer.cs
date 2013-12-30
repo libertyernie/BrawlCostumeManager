@@ -19,6 +19,8 @@ namespace BrawlCostumeManager {
 			get { return 56; }
 		}
 		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
+			if (costumeNum < 0) return null;
+
 			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
 			int index = charNum * 10 + costumeNum + 1;
 			ResourceNode bres = bres_cache[index];
