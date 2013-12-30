@@ -102,5 +102,41 @@ namespace BrawlCostumeManager {
 			{"snake", new int[] {0,1,3,4,2,5}},
 			{"sonic", new int[] {0,5,4,2,1}},
 		};
+
+		public static Dictionary<string, int[]> PM30Mappings = new Dictionary<string, int[]>() {
+			{"mario", new int[] {0,6,3,2,5,7,11,8,9,10}},
+			{"donkey", new int[] {0,4,1,3,2,5,6}},
+			{"link", new int[] {0,1,3,5,6,4,7,8,9}},
+			{"yoshi",  new int[] {0,1,3,4,5,6,7,8,9,10}},
+			{"fox", new int[] {0,4,1,2,3,5,6,7,8,9}},
+			{"pikachu", new int[] {0,1,2,3,4,5}},
+			{"luigi", new int[] {0,5,1,3,4,6,7}},
+			{"ness", new int[] {0,5,4,2,3,6,7}},
+			{"koopa", new int[] {0,4,1,3,5,6,7}},
+			{"peach", new int[] {0,5,1,3,2,4,7,6}},
+			{"falco", new int[] {0,5,3,1,2,4,6,7,8,9}},
+
+			{"ganon", new int[] {0,4,3,2,1,5}},
+			{"metaknight", new int[] {0,4,1,2,3,5}},
+			{"pit", new int[] {0,4,1,2,3,5}},
+			{"szerosuit", new int[] {0,3,1,5,4,2}},
+			{"pikmin", new int[] {0,4,1,5,2,3}},
+			{"lucas", new int[] {0,4,1,3,2,5}},
+			{"diddy", new int[] {0,5,4,6,2,3}},
+			{"poketrainer", new int[] {0,1,2,3,4}},
+			{"pokelizardon", new int[] {0,1,2,3,4}},
+			{"pokezenigame", new int[] {0,1,2,3,4}},
+			{"pokefushigisou", new int[] {0,1,2,3,4}},
+			{"dedede", new int[] {0,6,2,5,3,4}},
+			{"lucario", new int[] {0,1,4,5,2}},
+			{"ike", new int[] {0,5,1,3,2,4}},
+			{"robot", new int[] {0,6,5,4,3,2}},
+			{"purin", new int[] {0,1,4,3,2}},
+			{"wario", new int[] {0,1,5,2,4,3,6,7,9,8,10,11}},
+			{"toonlink", new int[] {0,1,3,4,5,6}},
+			{"wolf", new int[] {0,1,4,2,3,5}},
+			{"snake", new int[] {0,1,3,4,2,5}},
+			{"sonic", new int[] {0,5,4,2,1}},
+		};
 	}
 }

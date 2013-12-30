@@ -38,8 +38,8 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.limitModelViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.defaultZoomLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,11 +50,12 @@
 			this.separator = new System.Windows.Forms.ToolStripSeparator();
 			this.nameportraitPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.projectMCheckbox = new System.Windows.Forms.ToolStripMenuItem();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
 			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -223,19 +224,19 @@
 			this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
 			this.toolStripDropDownButton2.Text = "Tools";
 			// 
-			// updateSSSStockIconsToolStripMenuItem
-			// 
-			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
-			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
-			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
-			// 
 			// screenshotPortraitsToolStripMenuItem
 			// 
 			this.screenshotPortraitsToolStripMenuItem.Name = "screenshotPortraitsToolStripMenuItem";
 			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
 			this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
 			this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
+			// 
+			// updateSSSStockIconsToolStripMenuItem
+			// 
+			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
+			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
+			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
 			// 
 			// toolStripDropDownButton1
 			// 
@@ -245,8 +246,9 @@
             this.defaultZoomLevelToolStripMenuItem,
             this.separator2,
             this.hidePolygonsCheckbox,
-            this.cBlissCheckbox,
             this.swapPortraitsForWarioStylesToolStripMenuItem,
+            this.cBlissCheckbox,
+            this.projectMCheckbox,
             this.separator,
             this.nameportraitPreviewToolStripMenuItem,
             this.backgroundColorToolStripMenuItem});
@@ -326,6 +328,23 @@
 			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
 			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
 			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(44, 22);
+			this.toolStripButton1.Text = "About";
+			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+			// 
+			// projectMCheckbox
+			// 
+			this.projectMCheckbox.CheckOnClick = true;
+			this.projectMCheckbox.Name = "projectMCheckbox";
+			this.projectMCheckbox.Size = new System.Drawing.Size(274, 22);
+			this.projectMCheckbox.Text = "Use Project M 3.0 mappings";
+			this.projectMCheckbox.Click += new System.EventHandler(this.projectMCheckbox_Click);
+			// 
 			// modelManager1
 			// 
 			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -356,15 +375,6 @@
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
 			this.resultPortraitViewer1.TabIndex = 4;
-			// 
-			// toolStripButton1
-			// 
-			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(44, 22);
-			this.toolStripButton1.Text = "About";
-			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
 			// CostumeManager
 			// 
@@ -426,5 +436,6 @@
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
 		private System.Windows.Forms.ToolStripMenuItem defaultZoomLevelToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolStripMenuItem projectMCheckbox;
 	}
 }

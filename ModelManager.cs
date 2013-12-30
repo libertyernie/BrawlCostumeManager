@@ -148,6 +148,7 @@ namespace BrawlCostumeManager {
 			this.Text = new FileInfo(path).Name;
 
 			try {
+				if (!File.Exists(path)) path = @"D:\Brawl\" + path.Substring(path.IndexOf("fighter"));
 				_root = NodeFactory.FromFile(null, path);
 				List<MDL0Node> models = findAllMDL0s(_root);
 				if (models.Count > 0) {

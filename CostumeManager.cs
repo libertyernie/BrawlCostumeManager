@@ -16,7 +16,7 @@ namespace BrawlCostumeManager {
 		private static string TITLE = "Brawl Costume Manager";
 
 		private List<PortraitViewer> portraitViewers;
-		public bool Use_cBliss;
+		public bool Use_cBliss, Use_PM;
 		public bool Swap_Wario;
 
 		public CostumeManager() {
@@ -26,8 +26,12 @@ namespace BrawlCostumeManager {
 			} catch (Exception) {}
 			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1, battlePortraitViewer1};
 
-			if (!new DirectoryInfo("fighter").Exists && new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
-				System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
+			if (!new DirectoryInfo("fighter").Exists) {
+				if (new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
+					System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
+				} else if (new DirectoryInfo("/projectm/pf/fighter").Exists) {
+					System.Environment.CurrentDirectory = "/projectm/pf";
+				}
 			}
 
 			cssPortraitViewer1.NamePortraitPreview = nameportraitPreviewToolStripMenuItem.Checked;
@@ -39,6 +43,10 @@ namespace BrawlCostumeManager {
 		private void readDir() {
 			if (!Directory.Exists("mario") && Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
 				System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
+				readDir();
+				return;
+			} else if (!Directory.Exists("mario") && Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf")) {
+				System.Environment.CurrentDirectory += "/projectm/pf/fighter";
 				readDir();
 				return;
 			} else if (!Directory.Exists("mario") && Directory.Exists("fighter")) {
@@ -80,7 +88,15 @@ namespace BrawlCostumeManager {
 			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
 			string charName = Constants.CharactersByCSSOrder[ff.CharNum];
-			if (!Use_cBliss) {
+			if (Use_PM) {
+				if (Constants.PM30Mappings.ContainsKey(charName)) {
+					int[] mappings = Constants.PM30Mappings[charName];
+					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
+				} else if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
+					int[] mappings = Constants.PortraitToCostumeMappings[charName];
+					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
+				}
+			} else if (!Use_cBliss) {
 				if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
 					int[] mappings = Constants.PortraitToCostumeMappings[charName];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
@@ -112,7 +128,7 @@ namespace BrawlCostumeManager {
 				}
 			} else {
 				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
-				int upperBound = (charname.ToLower() == "wario") ? 12 : 10;
+				int upperBound = 12;
 				for (int i = 0; i < upperBound; i++) {
 					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
@@ -143,6 +159,15 @@ namespace BrawlCostumeManager {
 
 		private void cBlissCheckbox_Click(object sender, EventArgs e) {
 			Use_cBliss = cBlissCheckbox.Checked;
+			if (Use_cBliss) projectMCheckbox.Checked = false;
+			foreach (PortraitViewer p in portraitViewers) {
+				RefreshPortraits();
+			}
+		}
+
+		private void projectMCheckbox_Click(object sender, EventArgs e) {
+			Use_PM = projectMCheckbox.Checked;
+			if (Use_PM) cBlissCheckbox.Checked = false;
 			foreach (PortraitViewer p in portraitViewers) {
 				RefreshPortraits();
 			}
