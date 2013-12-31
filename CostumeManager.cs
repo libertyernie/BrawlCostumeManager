@@ -127,7 +127,8 @@ namespace BrawlCostumeManager {
 					}
 				}
 			} else {
-				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, charname);
+				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, 
+					charname == "mewtwo" ? "poketrainer" : charname);
 				int upperBound = 12;
 				for (int i = 0; i < upperBound; i++) {
 					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
