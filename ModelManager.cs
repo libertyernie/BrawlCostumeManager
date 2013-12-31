@@ -12,8 +12,6 @@ using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlCostumeManager {
 	public partial class ModelManager : UserControl {
-		public const string LOCAL_BRAWL_ROOT = @"C:\Brawl";
-
 		/// <summary>
 		/// The string between "Fit" and the number.
 		/// </summary>
@@ -150,7 +148,7 @@ namespace BrawlCostumeManager {
 			this.Text = new FileInfo(path).Name;
 
 			try {
-				if (!File.Exists(path)) path = LOCAL_BRAWL_ROOT + '\\' + path.Substring(path.IndexOf("fighter"));
+				//if (!File.Exists(path)) path = Settings.Default.FallbackBrawlRoot + '\\' + path.Substring(path.IndexOf("fighter"));
 				_root = NodeFactory.FromFile(null, path);
 				List<MDL0Node> models = findAllMDL0s(_root);
 				if (models.Count > 0) {
