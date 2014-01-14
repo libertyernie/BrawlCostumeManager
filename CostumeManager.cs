@@ -31,6 +31,8 @@ namespace BrawlCostumeManager {
 					System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 				} else if (new DirectoryInfo("/projectm/pf/fighter").Exists) {
 					System.Environment.CurrentDirectory = "/projectm/pf";
+				} else if (new DirectoryInfo("/minusery/pf/fighter").Exists) {
+					System.Environment.CurrentDirectory = "/minusery/pf";
 				}
 			}
 
@@ -41,18 +43,24 @@ namespace BrawlCostumeManager {
 		}
 
 		private void readDir() {
-			if (!Directory.Exists("mario") && Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
-				System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
-				readDir();
-				return;
-			} else if (!Directory.Exists("mario") && Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf")) {
-				System.Environment.CurrentDirectory += "/projectm/pf/fighter";
-				readDir();
-				return;
-			} else if (!Directory.Exists("mario") && Directory.Exists("fighter")) {
-				System.Environment.CurrentDirectory += "/fighter";
-				readDir();
-				return;
+			if (!Directory.Exists("mario")) {
+				if (Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
+					System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
+					readDir();
+					return;
+				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf")) {
+					System.Environment.CurrentDirectory += "/projectm/pf/fighter";
+					readDir();
+					return;
+				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/minusery/pf")) {
+					System.Environment.CurrentDirectory += "/minusery/pf/fighter";
+					readDir();
+					return;
+				} else if (Directory.Exists("fighter")) {
+					System.Environment.CurrentDirectory += "/fighter";
+					readDir();
+					return;
+				}
 			}
 
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
