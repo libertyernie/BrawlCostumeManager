@@ -39,9 +39,6 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BrawlLib">
-      <HintPath>..\BrawlLib.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\OpenTK.dll</HintPath>
     </Reference>
@@ -138,6 +135,12 @@
     <Content Include="BrawlCostumeManager.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\brawltools2\BrawlLib\BrawlLib.csproj">
+      <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
+      <Name>BrawlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

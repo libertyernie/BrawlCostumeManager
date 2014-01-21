@@ -2,4 +2,7 @@ obj/
 bin/Debug
 bin/Release/*
 !bin/Release/BrawlCostumeManager.exe
-*.v11.suo
+!bin/Release/BrawlManagerLib.dll
+!bin/Release/BrawlLib.dll
+!bin/Release/*.txt
+*.suo
