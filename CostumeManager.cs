@@ -44,15 +44,15 @@ namespace BrawlCostumeManager {
 
 		private void readDir() {
 			if (!Directory.Exists("mario")) {
-				if (Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf")) {
+				if (Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf/fighter")) {
 					System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
 					readDir();
 					return;
-				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf")) {
+				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf/fighter")) {
 					System.Environment.CurrentDirectory += "/projectm/pf/fighter";
 					readDir();
 					return;
-				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/minusery/pf")) {
+				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/minusery/pf/fighter")) {
 					System.Environment.CurrentDirectory += "/minusery/pf/fighter";
 					readDir();
 					return;
