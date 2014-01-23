@@ -137,7 +137,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\brawltools2\BrawlLib\BrawlLib.csproj">
+    <ProjectReference Include="..\brawltools\BrawlLib\BrawlLib.csproj">
       <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
       <Name>BrawlLib</Name>
     </ProjectReference>
