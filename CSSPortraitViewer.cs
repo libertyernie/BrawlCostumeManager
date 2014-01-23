@@ -24,7 +24,7 @@ namespace BrawlCostumeManager {
 		}
 
 		private static PortraitViewerTextureData[] textureData = {
-            new PortraitViewerTextureData(160, 128, (i,j) => "char_bust_tex_lz77/MiscData[" + i + "]/Textures(NW4R)/MenSelchrFaceB." + (i*10 + j + 1).ToString("D3")),
+            new PortraitViewerTextureData(128, 160, (i,j) => "char_bust_tex_lz77/MiscData[" + i + "]/Textures(NW4R)/MenSelchrFaceB." + (i*10 + j + 1).ToString("D3")),
 			new PortraitViewerTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
 			new PortraitViewerTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
 			new PortraitViewerTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
@@ -127,8 +127,8 @@ namespace BrawlCostumeManager {
 			} else {
 				common5 = null;
 				sc_selcharacter = null;
-				label1.Text = "Could not load sc_selcharacter or common5(_en).";
 			}
+            label1.Text = sc_selcharacter != null ? Path.GetFileName(_openFilePath) : "Could not load sc_selcharacter or common5(_en).";
 		}
 
 		private void saveButton_Click(object sender, EventArgs e) {
@@ -181,7 +181,7 @@ namespace BrawlCostumeManager {
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(150, 150);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 240);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -215,6 +215,7 @@ namespace BrawlCostumeManager {
             // 
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "CSSPortraitViewer";
+            this.Size = new System.Drawing.Size(128, 240);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
