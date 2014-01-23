@@ -16,7 +16,7 @@ namespace BrawlCostumeManager {
 		public override int PortraitHeight {
 			get { return 160; }
 		}
-		public override ResourceNode TEX0For(ResourceNode brres, int charNum, int costumeNum) {
+		public override ResourceNode MainTEX0For(ResourceNode brres, int charNum, int costumeNum) {
 			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
 			string path = "char_bust_tex_lz77/MiscData[" + charNum + "]/Textures(NW4R)/MenSelchrFaceB." + tex_number;
 			return brres.FindChild(path, false);
@@ -67,8 +67,8 @@ namespace BrawlCostumeManager {
 			label1.Text = (common5 != null ? "common5" : "sc_selcharacter");
 
             copyPreview = new ToolStripMenuItem("Copy preview");
-			copyPreview.Click += delegate(object sender, EventArgs e) { Clipboard.SetImage(texture.Panel.BackgroundImage); };
-            texture.Panel.ContextMenuStrip.Items.Add(copyPreview);
+            copyPreview.Click += delegate(object sender, EventArgs e) { Clipboard.SetImage(mainTexture.Panel.BackgroundImage); };
+            mainTexture.Panel.ContextMenuStrip.Items.Add(copyPreview);
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {
@@ -88,7 +88,7 @@ namespace BrawlCostumeManager {
 		}
 
 		private void OverlayName() {
-			Image orig = this.texture.Panel.BackgroundImage;
+            Image orig = this.mainTexture.Panel.BackgroundImage;
 
 			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0));
 			Bitmap swapped = BitmapUtilities.AlphaSwap(name);
@@ -105,7 +105,7 @@ namespace BrawlCostumeManager {
 				new Point(131, 98),
 				new Point(-3, 127)
 			});
-			this.texture.Panel.BackgroundImage = overlaid;
+            this.mainTexture.Panel.BackgroundImage = overlaid;
 		}
 
 		public override void UpdateDirectory() {

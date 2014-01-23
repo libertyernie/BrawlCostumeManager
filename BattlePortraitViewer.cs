@@ -37,7 +37,7 @@ namespace BrawlCostumeManager {
 			}
 			return bres;
 		}
-		public override ResourceNode TEX0For(ResourceNode node, int charNum, int costumeNum) {
+		public override ResourceNode MainTEX0For(ResourceNode node, int charNum, int costumeNum) {
 			return node.FindChild("Textures(NW4R)", false).Children[0];
 		}
 

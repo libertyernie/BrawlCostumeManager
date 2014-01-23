@@ -33,7 +33,7 @@ namespace BrawlCostumeManager {
 			}
 			return bres;
 		}
-		public override ResourceNode TEX0For(ResourceNode brres, int charNum, int costumeNum) {
+		public override ResourceNode MainTEX0For(ResourceNode brres, int charNum, int costumeNum) {
 			string path = "Textures(NW4R)/MenSelchrFaceB." + (charNum * 10 + costumeNum + 1).ToString("D3");
 			return brres.FindChild(path, false);
 		}

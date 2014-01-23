@@ -32,18 +32,18 @@ namespace BrawlCostumeManager {
 		/// This method, when overriden in a subclass, returns the TEX0 within a given
 		/// ResourceNode for the given character and costume index.
 		/// </summary>
-		public abstract ResourceNode TEX0For(ResourceNode node, int charNum, int costumeNum);
+		public abstract ResourceNode MainTEX0For(ResourceNode node, int charNum, int costumeNum);
 
-		protected PortraitViewerTextureData texture;
+		protected PortraitViewerTextureData mainTexture;
 
 		// In case the image needs to be reloaded after replacing the texture
 		protected int _charNum, _costumeNum;
 
 		public PortraitViewer() {
 			InitializeComponent();
-			texture = new PortraitViewerTextureData(PortraitWidth, PortraitHeight, this);
-			additionalTexturesPanel.Controls.Add(texture.Panel);
-			texture.OnUpdate = delegate(PortraitViewerTextureData sender) {
+            mainTexture = new PortraitViewerTextureData(PortraitWidth, PortraitHeight, this);
+            additionalTexturesPanel.Controls.Add(mainTexture.Panel);
+			mainTexture.OnUpdate = delegate(PortraitViewerTextureData sender) {
 				UpdateImage(_charNum, _costumeNum);
 			};
 
@@ -56,12 +56,12 @@ namespace BrawlCostumeManager {
 			_costumeNum = costumeNum;
 			ResourceNode bres = PortraitRootFor(charNum, costumeNum);
 			if (bres != null) label1.Text = bres.RootNode.Name;
-			texture.TextureFrom(bres, charNum, costumeNum);
-			return texture.Texture != null;
+            mainTexture.TextureFrom(bres, charNum, costumeNum);
+            return mainTexture.Texture != null;
 		}
 
 		public void Replace(string filename, bool useTextureConverter) {
-			texture.Replace(filename, useTextureConverter);
+            mainTexture.Replace(filename, useTextureConverter);
 		}
 
 		public abstract void UpdateDirectory();

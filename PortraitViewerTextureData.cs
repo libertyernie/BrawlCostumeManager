@@ -12,9 +12,9 @@ using System.Windows.Forms;
 namespace BrawlCostumeManager {
 	public class PortraitViewerTextureData {
 		/// <summary>
-		/// For the main texture, stores the TEX0For method from the PortraitViewer implementation.
-		/// For other textures (i.e. stock icons), stores another function which gets that TEX0 from the brres.
-		/// The latter is only used for CSSPortraitViewer right now.
+		/// A PortraitViewer always has one texture, but it can have more than one.
+        /// Each texture will get its own PortraitViewerTextureData instance, and this
+        /// function will return the texture node given the container, character ID, and costume ID.
 		/// </summary>
 		public Func<ResourceNode, int, int, ResourceNode> GetTEX0Func { get; private set; }
 
@@ -68,10 +68,10 @@ namespace BrawlCostumeManager {
 		}
 
 		/// <summary>
-		/// Typical usage of the constructor - getting the TEX0 using the PortraitViewer's TEX0For function
+		/// Constructor for the main texture in the PortraitViewer - getting the TEX0 using the PortraitViewer's TEX0For function
 		/// </summary>
 		public PortraitViewerTextureData(int width, int height, PortraitViewer parent)
-			: this(width, height, parent.TEX0For) {
+			: this(width, height, parent.MainTEX0For) {
 		}
 
 		/// <summary>
