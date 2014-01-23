@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BrawlCostumeManager {
 	public class Constants {
 		public static string[] KirbyHats = {
-			"donkey", "falco", "pikmin", "purin", "snake"
+			"donkey", "falco", "mewtwo", "pikmin", "purin", "snake"
 		};
 
 		public static string[] CharactersByCSSOrder = {
