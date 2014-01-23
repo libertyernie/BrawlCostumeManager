@@ -281,7 +281,7 @@ namespace BrawlCostumeManager {
 			string iconFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
 
 			BitmapUtilities.Resize(rect, new Size(128, 160)).Save(iconFile);
-			cssPortraitViewer1.Replace(iconFile, false);
+			cssPortraitViewer1.ReplaceMain(iconFile, false);
 
 			try {
 				File.Delete(iconFile);

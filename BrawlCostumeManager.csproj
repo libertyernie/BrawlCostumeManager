@@ -61,15 +61,16 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="BitmapUtilities.cs" />
+    <Compile Include="PortraitViewer.cs" />
     <Compile Include="PortraitViewerTextureData.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="BattlePortraitViewer.cs">
+    <Compile Include="BattleSinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CSSPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ResultPortraitViewer.cs">
+    <Compile Include="ResultSinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CostumeManager.cs">
@@ -78,11 +79,11 @@
     <Compile Include="CostumeManager.Designer.cs">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="PortraitViewer.cs">
+    <Compile Include="SinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PortraitViewer.Designer.cs">
-      <DependentUpon>PortraitViewer.cs</DependentUpon>
+    <Compile Include="SinglePortraitViewer.Designer.cs">
+      <DependentUpon>SinglePortraitViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="FighterFile.cs" />
     <Compile Include="ModelManager.cs">
@@ -101,8 +102,11 @@
       <DependentUpon>CostumeManager.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PortraitViewer.resx">
-      <DependentUpon>PortraitViewer.cs</DependentUpon>
+    <EmbeddedResource Include="CSSPortraitViewer.resx">
+      <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinglePortraitViewer.resx">
+      <DependentUpon>SinglePortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelManager.resx">
       <DependentUpon>ModelManager.cs</DependentUpon>

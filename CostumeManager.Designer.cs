@@ -37,8 +37,8 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.spaceFiller1 = new System.Windows.Forms.Panel();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
-			this.battlePortraitViewer1 = new BrawlCostumeManager.BattlePortraitViewer();
-			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultPortraitViewer();
+			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -413,7 +413,7 @@
 		private System.Windows.Forms.ListBox listBox2;
 		private CSSPortraitViewer cssPortraitViewer1;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-		private ResultPortraitViewer resultPortraitViewer1;
+		private ResultSinglePortraitViewer resultPortraitViewer1;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton changeDirectory;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
@@ -423,7 +423,7 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToToolStripMenuItem;
-		private BattlePortraitViewer battlePortraitViewer1;
+		private BattleSinglePortraitViewer battlePortraitViewer1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Panel spaceFiller1;
 		private System.Windows.Forms.ToolStripMenuItem updateSSSStockIconsToolStripMenuItem;

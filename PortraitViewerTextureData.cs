@@ -70,7 +70,7 @@ namespace BrawlCostumeManager {
 		/// <summary>
 		/// Constructor for the main texture in the PortraitViewer - getting the TEX0 using the PortraitViewer's TEX0For function
 		/// </summary>
-		public PortraitViewerTextureData(int width, int height, PortraitViewer parent)
+		public PortraitViewerTextureData(int width, int height, SinglePortraitViewer parent)
 			: this(width, height, parent.MainTEX0For) {
 		}
 

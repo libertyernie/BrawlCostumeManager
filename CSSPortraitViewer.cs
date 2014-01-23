@@ -10,20 +10,7 @@ using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
 	public class CSSPortraitViewer : PortraitViewer {
-		public override int PortraitWidth {
-			get { return 128; }
-		}
-		public override int PortraitHeight {
-			get { return 160; }
-		}
-		public override ResourceNode MainTEX0For(ResourceNode brres, int charNum, int costumeNum) {
-			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
-			string path = "char_bust_tex_lz77/MiscData[" + charNum + "]/Textures(NW4R)/MenSelchrFaceB." + tex_number;
-			return brres.FindChild(path, false);
-		}
-		public override ResourceNode PortraitRootFor(int charNum, int costumeNum) {
-			return sc_selcharacter;
-		}
+		private int _charNum, _costumeNum;
 
 		private bool _namePortraitPreview;
 		public bool NamePortraitPreview {
@@ -36,7 +23,8 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private static PortraitViewerTextureData[] additionalTextureData = {
+		private static PortraitViewerTextureData[] textureData = {
+            new PortraitViewerTextureData(160, 128, (i,j) => "char_bust_tex_lz77/MiscData[" + i + "]/Textures(NW4R)/MenSelchrFaceB." + (i*10 + j + 1).ToString("D3")),
 			new PortraitViewerTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
 			new PortraitViewerTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace.0" + (i + 1).ToString("D2")),
 			new PortraitViewerTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
@@ -48,49 +36,56 @@ namespace BrawlCostumeManager {
 		/// <summary>
 		/// The common5 currently being used. If using sc_selcharacter.pac instead, this will be null.
 		/// </summary>
-		private ResourceNode common5;
+        private ResourceNode common5;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label1;
+        private FlowLayoutPanel additionalTexturesPanel;
+        private Button saveButton;
 		/// <summary>
 		/// Either the sc_selcharacter_en archive within common5.pac or the sc_selcharacter.pac file.
 		/// </summary>
 		private ResourceNode sc_selcharacter;
-		private ToolStripMenuItem copyPreview;
 
-		public CSSPortraitViewer() : base() {
-			int a = additionalTextureData.Length;
-			foreach (var atd in additionalTextureData) {
-				AdditionalControls.Add(atd.Panel);
+		public CSSPortraitViewer() {
+            InitializeComponent();
+			foreach (var atd in textureData) {
+                additionalTexturesPanel.Controls.Add(atd.Panel);
 				atd.OnUpdate = delegate(PortraitViewerTextureData sender) {
 					UpdateImage(_charNum, _costumeNum);
 				};
+
+                var copyPreview = new ToolStripMenuItem("Copy preview");
+                copyPreview.Click += (o, e) => Clipboard.SetImage(atd.Panel.BackgroundImage);
+                atd.Panel.ContextMenuStrip.Items.Add(copyPreview);
 			}
 			UpdateDirectory();
 			label1.Text = (common5 != null ? "common5" : "sc_selcharacter");
-
-            copyPreview = new ToolStripMenuItem("Copy preview");
-            copyPreview.Click += delegate(object sender, EventArgs e) { Clipboard.SetImage(mainTexture.Panel.BackgroundImage); };
-            mainTexture.Panel.ContextMenuStrip.Items.Add(copyPreview);
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {
-            bool success = base.UpdateImage(charNum, costumeNum);
-			if (success) {
-				foreach (var atd in additionalTextureData) {
+            //bool success = base.UpdateImage(charNum, costumeNum);
+			//if (success) {
+				foreach (var atd in textureData) {
 					atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
 				}
-                if (NamePortraitPreview) OverlayName();
+                if (NamePortraitPreview && textureData[0].Texture != null) OverlayName();
 				return true;
-			} else {
-				foreach (var atd in additionalTextureData) {
+			/*} else {
+				foreach (var atd in textureData) {
 					atd.Texture = null;
 				}
 				return false;
-			}
+			}*/
+		}
+
+		public void ReplaceMain(string filename, bool useTextureConverter) {
+			textureData[0].Replace(filename, useTextureConverter);
 		}
 
 		private void OverlayName() {
-            Image orig = this.mainTexture.Panel.BackgroundImage;
+            Image orig = textureData[0].Panel.BackgroundImage;
 
-			Bitmap name = new Bitmap(additionalTextureData[0].Texture.GetImage(0));
+            Bitmap name = new Bitmap(textureData[1].Texture.GetImage(0));
 			Bitmap swapped = BitmapUtilities.AlphaSwap(name);
 			Bitmap blurred = BitmapUtilities.BlurCombine(swapped, Color.Black);
 
@@ -105,7 +100,7 @@ namespace BrawlCostumeManager {
 				new Point(131, 98),
 				new Point(-3, 127)
 			});
-            this.mainTexture.Panel.BackgroundImage = overlaid;
+            textureData[0].Panel.BackgroundImage = overlaid;
 		}
 
 		public override void UpdateDirectory() {
@@ -136,7 +131,7 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		protected override void saveButton_Click(object sender, EventArgs e) {
+		private void saveButton_Click(object sender, EventArgs e) {
 			if (sc_selcharacter == null) {
 				return;
 			}
@@ -167,5 +162,63 @@ namespace BrawlCostumeManager {
 				} catch (Exception) { }
 			}
 		}
+
+        private void InitializeComponent()
+        {
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
+            this.flowLayoutPanel1.Controls.Add(this.saveButton);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(150, 150);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
+            // 
+            // additionalTexturesPanel
+            // 
+            this.additionalTexturesPanel.AutoSize = true;
+            this.additionalTexturesPanel.Location = new System.Drawing.Point(3, 16);
+            this.additionalTexturesPanel.Name = "additionalTexturesPanel";
+            this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
+            this.additionalTexturesPanel.TabIndex = 1;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(3, 22);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 2;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // CSSPortraitViewer
+            // 
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Name = "CSSPortraitViewer";
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
 	}
 }
