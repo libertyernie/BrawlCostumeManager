@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace BrawlCostumeManager
 {
-    public abstract class PortraitViewer : UserControl
+    public class PortraitViewer : UserControl
     {
-        public abstract void UpdateDirectory();
+        public virtual void UpdateDirectory() { }
 
-        public abstract bool UpdateImage(int charNum, int costumeNum);
+        public virtual bool UpdateImage(int charNum, int costumeNum) { return false; }
     }
 }
