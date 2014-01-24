@@ -205,7 +205,7 @@
 			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 7);
 			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
 			this.cssPortraitViewer1.NamePortraitPreview = false;
-			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 306);
+			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 326);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
 			// battlePortraitViewer1

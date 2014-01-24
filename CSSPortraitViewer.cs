@@ -165,60 +165,62 @@ namespace BrawlCostumeManager {
 
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
-            this.flowLayoutPanel1.Controls.Add(this.saveButton);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 240);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // additionalTexturesPanel
-            // 
-            this.additionalTexturesPanel.AutoSize = true;
-            this.additionalTexturesPanel.Location = new System.Drawing.Point(3, 16);
-            this.additionalTexturesPanel.Name = "additionalTexturesPanel";
-            this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
-            this.additionalTexturesPanel.TabIndex = 1;
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(3, 22);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // CSSPortraitViewer
-            // 
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "CSSPortraitViewer";
-            this.Size = new System.Drawing.Size(128, 240);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.saveButton = new System.Windows.Forms.Button();
+			this.flowLayoutPanel1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.Controls.Add(this.label1);
+			this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
+			this.flowLayoutPanel1.Controls.Add(this.saveButton);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 326);
+			this.flowLayoutPanel1.TabIndex = 0;
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(0, 0);
+			this.label1.Margin = new System.Windows.Forms.Padding(0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(128, 40);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "label1";
+			// 
+			// additionalTexturesPanel
+			// 
+			this.additionalTexturesPanel.AutoSize = true;
+			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 40);
+			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
+			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
+			this.additionalTexturesPanel.TabIndex = 1;
+			// 
+			// saveButton
+			// 
+			this.saveButton.Location = new System.Drawing.Point(0, 40);
+			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(128, 23);
+			this.saveButton.TabIndex = 2;
+			this.saveButton.Text = "Save";
+			this.saveButton.UseVisualStyleBackColor = true;
+			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+			// 
+			// CSSPortraitViewer
+			// 
+			this.Controls.Add(this.flowLayoutPanel1);
+			this.Name = "CSSPortraitViewer";
+			this.Size = new System.Drawing.Size(128, 326);
+			this.flowLayoutPanel1.ResumeLayout(false);
+			this.flowLayoutPanel1.PerformLayout();
+			this.ResumeLayout(false);
 
         }
 	}
