@@ -122,7 +122,7 @@ namespace BrawlCostumeManager {
 				common5 = null;
 				sc_selcharacter = null;
 			}
-            label1.Text = sc_selcharacter != null ? Path.GetFileName(_openFilePath) : "Could not load sc_selcharacter or common5(_en).";
+			label1.Text = sc_selcharacter != null ? Path.GetFileName(_openFilePath) : "Could not load common5 or sc_selcharacter.";
 		}
 
 		private void saveButton_Click(object sender, EventArgs e) {
@@ -160,8 +160,8 @@ namespace BrawlCostumeManager {
         private void InitializeComponent()
         {
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.label1 = new System.Windows.Forms.Label();
 			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
@@ -178,15 +178,6 @@ namespace BrawlCostumeManager {
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 326);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(128, 40);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "label1";
-			// 
 			// additionalTexturesPanel
 			// 
 			this.additionalTexturesPanel.AutoSize = true;
@@ -195,6 +186,15 @@ namespace BrawlCostumeManager {
 			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
 			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
 			this.additionalTexturesPanel.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(0, 0);
+			this.label1.Margin = new System.Windows.Forms.Padding(0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(128, 40);
+			this.label1.TabIndex = 0;
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// saveButton
 			// 

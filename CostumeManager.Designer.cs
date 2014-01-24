@@ -32,13 +32,9 @@
 			this.copyToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyToOtherPacpcsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.button1 = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.spaceFiller1 = new System.Windows.Forms.Panel();
-			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
-			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
-			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -56,6 +52,10 @@
 			this.nameportraitPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.modelManager1 = new BrawlCostumeManager.ModelManager();
+			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
+			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -158,15 +158,6 @@
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
-			// modelManager1
-			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(0, 0);
-			this.modelManager1.ModelPreviewSize = null;
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(186, 381);
-			this.modelManager1.TabIndex = 1;
-			// 
 			// button1
 			// 
 			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -199,28 +190,6 @@
 			this.spaceFiller1.Name = "spaceFiller1";
 			this.spaceFiller1.Size = new System.Drawing.Size(100, 4);
 			this.spaceFiller1.TabIndex = 6;
-			// 
-			// cssPortraitViewer1
-			// 
-			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 7);
-			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
-			this.cssPortraitViewer1.NamePortraitPreview = false;
-			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 326);
-			this.cssPortraitViewer1.TabIndex = 3;
-			// 
-			// battlePortraitViewer1
-			// 
-			this.battlePortraitViewer1.Location = new System.Drawing.Point(137, 3);
-			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
-			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 100);
-			this.battlePortraitViewer1.TabIndex = 5;
-			// 
-			// resultPortraitViewer1
-			// 
-			this.resultPortraitViewer1.Location = new System.Drawing.Point(137, 109);
-			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
-			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 204);
-			this.resultPortraitViewer1.TabIndex = 4;
 			// 
 			// toolStrip1
 			// 
@@ -376,6 +345,37 @@
 			this.toolStripButton1.Size = new System.Drawing.Size(40, 22);
 			this.toolStripButton1.Text = "About";
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(0, 0);
+			this.modelManager1.ModelPreviewSize = null;
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(186, 381);
+			this.modelManager1.TabIndex = 1;
+			// 
+			// cssPortraitViewer1
+			// 
+			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 7);
+			this.cssPortraitViewer1.Name = "cssPortraitViewer1";
+			this.cssPortraitViewer1.NamePortraitPreview = false;
+			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 326);
+			this.cssPortraitViewer1.TabIndex = 3;
+			// 
+			// battlePortraitViewer1
+			// 
+			this.battlePortraitViewer1.Location = new System.Drawing.Point(137, 3);
+			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
+			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
+			this.battlePortraitViewer1.TabIndex = 5;
+			// 
+			// resultPortraitViewer1
+			// 
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(137, 129);
+			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
+			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
+			this.resultPortraitViewer1.TabIndex = 4;
 			// 
 			// CostumeManager
 			// 
