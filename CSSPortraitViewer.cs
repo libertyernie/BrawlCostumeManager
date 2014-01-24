@@ -63,19 +63,13 @@ namespace BrawlCostumeManager {
 		}
 
 		public override bool UpdateImage(int charNum, int costumeNum) {
-            //bool success = base.UpdateImage(charNum, costumeNum);
-			//if (success) {
-				foreach (var atd in textureData) {
-					atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
-				}
-                if (NamePortraitPreview && textureData[0].Texture != null) OverlayName();
-				return true;
-			/*} else {
-				foreach (var atd in textureData) {
-					atd.Texture = null;
-				}
-				return false;
-			}*/
+			_charNum = charNum;
+			_costumeNum = costumeNum;
+			foreach (var atd in textureData) {
+				atd.TextureFrom(sc_selcharacter, charNum, costumeNum);
+			}
+            if (NamePortraitPreview && textureData[0].Texture != null) OverlayName();
+			return true;
 		}
 
 		public void ReplaceMain(string filename, bool useTextureConverter) {
