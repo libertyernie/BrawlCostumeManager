@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrawlLib;
+using BrawlManagerLib;
 
 namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BrawlLib.SSBB.ResourceNodes;
 using System.Windows.Forms;
+using BrawlManagerLib;
 
 namespace BrawlCostumeManager {
 	public class CSSPortraitViewer : PortraitViewer {
