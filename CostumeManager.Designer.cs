@@ -49,13 +49,14 @@
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.otherPVsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
 			this.collapsibleSplitter2 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter3 = new BrawlManagerLib.CollapsibleSplitter();
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.collapsibleSplitter1 = new BrawlManagerLib.CollapsibleSplitter();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
-			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
-			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
@@ -162,7 +163,8 @@
 			this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.screenshotPortraitsToolStripMenuItem,
-            this.updateSSSStockIconsToolStripMenuItem});
+            this.updateSSSStockIconsToolStripMenuItem,
+            this.updateMewtwoHatForCurrentKirbyToolStripMenuItem});
 			this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
 			this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
@@ -171,14 +173,14 @@
 			// screenshotPortraitsToolStripMenuItem
 			// 
 			this.screenshotPortraitsToolStripMenuItem.Name = "screenshotPortraitsToolStripMenuItem";
-			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+			this.screenshotPortraitsToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
 			this.screenshotPortraitsToolStripMenuItem.Text = "Screenshot -> portraits";
 			this.screenshotPortraitsToolStripMenuItem.Click += new System.EventHandler(this.screenshotPortraitsToolStripMenuItem_Click);
 			// 
 			// updateSSSStockIconsToolStripMenuItem
 			// 
 			this.updateSSSStockIconsToolStripMenuItem.Name = "updateSSSStockIconsToolStripMenuItem";
-			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+			this.updateSSSStockIconsToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
 			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
 			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
 			// 
@@ -301,6 +303,20 @@
 			this.otherPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 381);
 			this.otherPVsFlowLayoutPanel.TabIndex = 7;
 			// 
+			// battlePortraitViewer1
+			// 
+			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 3);
+			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
+			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
+			this.battlePortraitViewer1.TabIndex = 5;
+			// 
+			// resultPortraitViewer1
+			// 
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 129);
+			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
+			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
+			this.resultPortraitViewer1.TabIndex = 4;
+			// 
 			// collapsibleSplitter2
 			// 
 			this.collapsibleSplitter2.AnimationDelay = 20;
@@ -366,19 +382,12 @@
 			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 381);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
-			// battlePortraitViewer1
+			// updateMewtwoHatForCurrentKirbyToolStripMenuItem
 			// 
-			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 3);
-			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
-			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
-			this.battlePortraitViewer1.TabIndex = 5;
-			// 
-			// resultPortraitViewer1
-			// 
-			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 129);
-			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
-			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
-			this.resultPortraitViewer1.TabIndex = 4;
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Name = "updateMewtwoHatForCurrentKirbyToolStripMenuItem";
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Text = "Update Mewtwo hat for current Kirby";
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Click += new System.EventHandler(this.updateMewtwoHatForCurrentKirbyToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -442,5 +451,6 @@
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter1;
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter2;
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter3;
+		private System.Windows.Forms.ToolStripMenuItem updateMewtwoHatForCurrentKirbyToolStripMenuItem;
 	}
 }

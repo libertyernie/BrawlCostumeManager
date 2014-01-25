@@ -57,6 +57,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="KirbyCopy.cs" />
     <Compile Include="Portrait Viewers\PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>

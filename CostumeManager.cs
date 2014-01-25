@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -298,6 +299,38 @@ namespace BrawlCostumeManager {
 
 		private void toolStripButton1_Click(object sender, EventArgs e) {
 			new About(Icon).Show();
+		}
+
+		private void updateMewtwoHatForCurrentKirbyToolStripMenuItem_Click(object sender, EventArgs e) {
+			string kirby, hat;
+
+			FighterFile ff = (FighterFile)listBox2.SelectedItem;
+			if (Constants.CharactersByCSSOrder[ff.CharNum] != "kirby") {
+				MessageBox.Show(this, "Select a Kirby costume before using this feature.");
+				return;
+			}
+
+			string p = ff.FullName.ToLower();
+			string nn = ff.CostumeNum.ToString("D2");
+			if (p.Contains("fitkirbymewtwo")) {
+				kirby = "kirby/FitKirby" + nn + ".pcs";
+				hat = ff.FullName;
+			} else {
+				kirby = ff.FullName;
+				hat = "kirby/FitKirbyMewtwo" + nn + ".pac";
+			}
+			if (!File.Exists(kirby)) {
+				MessageBox.Show(this, "Could not find file: " + kirby);
+				return;
+			}
+			if (!File.Exists(hat)) {
+				MessageBox.Show(this, "Could not find file: " + hat);
+				return;
+			}
+
+			if (DialogResult.OK == MessageBox.Show(this, "Copy from " + kirby + " to " + hat + "?", Text, MessageBoxButtons.OKCancel)) {
+				KirbyCopy.Copy(kirby, hat);
+			}
 		}
 	}
 }
