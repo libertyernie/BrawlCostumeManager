@@ -58,18 +58,18 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="BitmapUtilities.cs" />
-    <Compile Include="PortraitViewer.cs">
+    <Compile Include="Portrait Viewers\PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PortraitViewerTextureData.cs" />
+    <Compile Include="Portrait Viewers\PortraitViewerTextureData.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="BattleSinglePortraitViewer.cs">
+    <Compile Include="Portrait Viewers\BattleSinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CSSPortraitViewer.cs">
+    <Compile Include="Portrait Viewers\CSSPortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ResultSinglePortraitViewer.cs">
+    <Compile Include="Portrait Viewers\ResultSinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CostumeManager.cs">
@@ -78,10 +78,10 @@
     <Compile Include="CostumeManager.Designer.cs">
       <DependentUpon>CostumeManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="SinglePortraitViewer.cs">
+    <Compile Include="Portrait Viewers\SinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SinglePortraitViewer.Designer.cs">
+    <Compile Include="Portrait Viewers\SinglePortraitViewer.Designer.cs">
       <DependentUpon>SinglePortraitViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="FighterFile.cs" />
@@ -101,13 +101,13 @@
       <DependentUpon>CostumeManager.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CSSPortraitViewer.resx">
+    <EmbeddedResource Include="Portrait Viewers\CSSPortraitViewer.resx">
       <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelManager.resx">
       <DependentUpon>ModelManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SinglePortraitViewer.resx">
+    <EmbeddedResource Include="Portrait Viewers\SinglePortraitViewer.resx">
       <DependentUpon>SinglePortraitViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -140,7 +140,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\brawltools\trunk\BrawlLib\BrawlLib.csproj">
+    <ProjectReference Include="..\brawltools\BrawlLib\BrawlLib.csproj">
       <Project>{462D0BBF-CE82-405B-8848-2F91E9E14C55}</Project>
       <Name>BrawlLib</Name>
     </ProjectReference>
