@@ -221,16 +221,6 @@ namespace BrawlCostumeManager {
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e) {
-			if (flowLayoutPanel1.Visible) {
-				flowLayoutPanel1.Visible = false;
-				button1.Text = "<";
-			} else {
-				flowLayoutPanel1.Visible = true;
-				button1.Text = ">";
-			}
-		}
-
 		private void updateSSSStockIconsToolStripMenuItem_Click(object sender, EventArgs e) {
 			cssPortraitViewer1.UpdateSSSStockIcons();
 		}
