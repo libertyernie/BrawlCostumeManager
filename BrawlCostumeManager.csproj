@@ -58,6 +58,7 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="BitmapUtilities.cs" />
+    <Compile Include="KirbyCopy.cs" />
     <Compile Include="Portrait Viewers\PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
