@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace BrawlCostumeManager {
 	public static class KirbyCopy {
@@ -14,13 +15,18 @@ namespace BrawlCostumeManager {
 			ResourceNode hat = NodeFactory.FromFile(null, temphat);
 
 			TEX0Node skin = (TEX0Node)kirby.FindChildByType("PlyKirby5KSkin", true, ResourceType.TEX0);
-			if (skin == null) throw new Exception("Could not find the texture PlyKirby5KSkin in " + kirbypath);
-
+			if (skin == null) {
+				MessageBox.Show(null, "Could not find the texture PlyKirby5KSkin in " + kirbypath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 			string temptex = Path.GetTempFileName();
 			skin.Export(temptex);
 
 			TEX0Node hatskin = (TEX0Node)hat.FindChildByType("WpnKirbyKirbyMewtwoCap", true, ResourceType.TEX0);
-			if (skin == null) throw new Exception("Could not find the texture WpnKirbyKirbyMewtwoCap in " + hatpath);
+			if (hatskin == null) {
+				MessageBox.Show(null, "Could not find the texture WpnKirbyKirbyMewtwoCap in " + hatpath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
 			hatskin.Replace(temptex);
 			hat.Merge();
@@ -31,6 +37,8 @@ namespace BrawlCostumeManager {
 
 			File.Delete(temphat);
 			File.Delete(temptex);
+
+			MessageBox.Show(Path.GetFileName(hatpath) + " has been updated.");
 		}
 	}
 }

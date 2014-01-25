@@ -338,11 +338,7 @@ namespace BrawlCostumeManager {
 			}
 
 			if (DialogResult.OK == MessageBox.Show(this, "Copy from " + kirby + " to " + hat + "?", Text, MessageBoxButtons.OKCancel)) {
-				try {
-					KirbyCopy.Copy(kirby, hat);
-				} catch (Exception ex) {
-					MessageBox.Show(this, ex.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				KirbyCopy.Copy(kirby, hat);
 			}
 		}
 	}
