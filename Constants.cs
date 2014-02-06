@@ -113,6 +113,7 @@ namespace BrawlCostumeManager {
 			{43, new int[] {0,1,4,2,3,5}},
 			{45, new int[] {0,1,3,4,2,5}},
 			{46, new int[] {0,5,4,2,1}},
+			{111, new int[] {0,5,1,3,2,4}},
 		};
 
 		public static Dictionary<int, int[]> PM30Mappings = new Dictionary<int, int[]>() {
