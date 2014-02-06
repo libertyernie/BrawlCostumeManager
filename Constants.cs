@@ -63,6 +63,7 @@ namespace BrawlCostumeManager {
 			new Fighter("wolf", 43),
 			new Fighter("snake", 45),
 			new Fighter("sonic", 46),
+			new Fighter("cloud", 111),
 		};
 
 		public static int CharBustTexFor(string name) {
