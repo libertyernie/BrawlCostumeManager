@@ -69,7 +69,7 @@ namespace BrawlCostumeManager {
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
 			listBox1.Items.Add(DASH);
-			foreach (string charname in Constants.CharactersByCSSOrder) {
+			foreach (string charname in Constants.KnownFighters.Select(f => f.Name)) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
 
@@ -96,22 +96,21 @@ namespace BrawlCostumeManager {
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
 			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
-			string charName = Constants.CharactersByCSSOrder[ff.CharNum];
 			if (Use_PM) {
-				if (Constants.PM30Mappings.ContainsKey(charName)) {
-					int[] mappings = Constants.PM30Mappings[charName];
+				if (Constants.PM30Mappings.ContainsKey(ff.CharNum)) {
+					int[] mappings = Constants.PM30Mappings[ff.CharNum];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
-				} else if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
-					int[] mappings = Constants.PortraitToCostumeMappings[charName];
+				} else if (Constants.PortraitToCostumeMappings.ContainsKey(ff.CharNum)) {
+					int[] mappings = Constants.PortraitToCostumeMappings[ff.CharNum];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
 			} else if (!Use_cBliss) {
-				if (Constants.PortraitToCostumeMappings.ContainsKey(charName)) {
-					int[] mappings = Constants.PortraitToCostumeMappings[charName];
+				if (Constants.PortraitToCostumeMappings.ContainsKey(ff.CharNum)) {
+					int[] mappings = Constants.PortraitToCostumeMappings[ff.CharNum];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
 			}
-			if (charName == "wario" && Swap_Wario) {
+			if (Swap_Wario && ff.CharNum == Constants.CharBustTexFor("wario")) {
 				portraitNum = (portraitNum + 6) % 12;
 			}
 			foreach (PortraitViewer p in portraitViewers) {
@@ -136,8 +135,7 @@ namespace BrawlCostumeManager {
 					}
 				}
 			} else {
-				int charNum = Array.IndexOf(Constants.CharactersByCSSOrder, 
-					charname == "mewtwo" ? "poketrainer" : charname);
+				int charNum = Constants.CharBustTexFor(charname);
 				int upperBound = 12;
 				for (int i = 0; i < upperBound; i++) {
 					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
@@ -314,7 +312,7 @@ namespace BrawlCostumeManager {
 			string kirby, hat;
 
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
-			if (Constants.CharactersByCSSOrder[ff.CharNum] != "kirby") {
+			if (Constants.CharBustTexFor("kirby") != ff.CharNum) {
 				MessageBox.Show(this, "Select a Kirby costume before using this feature.");
 				return;
 			}
