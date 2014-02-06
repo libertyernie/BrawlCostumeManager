@@ -23,8 +23,8 @@ namespace BrawlCostumeManager {
 
 			string tex_number = (charNum * 10 + costumeNum + 1).ToString("D3");
 			int index = charNum * 10 + costumeNum + 1;
-			ResourceNode bres = bres_cache[index];
-			if (bres == null) {
+			ResourceNode bres;
+			if (!bres_cache.TryGetValue(index, out bres)) {
 				string f = "../info/portrite/InfFace" + tex_number + ".brres";
 				if (new FileInfo(f).Exists) {
 					bres_cache[index] = bres = (BRESNode)NodeFactory.FromFile(null, f);
@@ -41,7 +41,7 @@ namespace BrawlCostumeManager {
 			return node.FindChild("Textures(NW4R)", false).Children[0];
 		}
 
-		private ResourceNode[] bres_cache;
+		private Dictionary<int, ResourceNode> bres_cache;
 
 		public BattleSinglePortraitViewer() : base() {
 			UpdateDirectory();
@@ -49,15 +49,15 @@ namespace BrawlCostumeManager {
 
 		public override void UpdateDirectory() {
 			if (bres_cache != null) {
-				foreach (ResourceNode node in bres_cache) {
+				foreach (ResourceNode node in bres_cache.Values) {
 					if (node != null) node.Dispose();
 				}
 			}
-			bres_cache = new ResourceNode[471];
+			bres_cache = new Dictionary<int, ResourceNode>();
 		}
 
 		protected override void saveButton_Click(object sender, EventArgs e) {
-			for (int i = 0; i < bres_cache.Length; i++) {
+			foreach (int i in bres_cache.Keys) {
 				if (bres_cache[i] != null && bres_cache[i].IsDirty) {
 					bres_cache[i].Merge();
 					bres_cache[i].Export("../info/portrite/InfFace" + i.ToString("D3") + ".brres");
