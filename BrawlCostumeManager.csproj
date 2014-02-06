@@ -63,7 +63,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Portrait Viewers\PortraitViewerTextureData.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="PortraitMap.cs" />
     <Compile Include="Portrait Viewers\BattleSinglePortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>

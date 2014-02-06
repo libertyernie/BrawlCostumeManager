@@ -17,11 +17,14 @@ namespace BrawlCostumeManager {
 		private static string TITLE = "Brawl Costume Manager";
 
 		private List<PortraitViewer> portraitViewers;
+		private PortraitMap pmap;
+
 		public bool Use_cBliss, Use_PM;
 		public bool Swap_Wario;
 
 		public CostumeManager() {
 			InitializeComponent();
+			pmap = new PortraitMap();
 			try {
 				Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			} catch (Exception) {}
@@ -66,10 +69,16 @@ namespace BrawlCostumeManager {
 
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
 
+			pmap.ClearAll();
+			pmap.SetFighter("roy", 110);
+			pmap.SetMapping(110, new int[] { 0, 1, 2, 4, 5, 3 });
+			pmap.SetFighter("cloud", 111);
+			pmap.SetMapping(111, new int[] { 0, 5, 1, 3, 2, 4 });
+
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
 			listBox1.Items.Add(DASH);
-			foreach (string charname in Constants.KnownFighters.Select(f => f.Name)) {
+			foreach (string charname in pmap.GetKnownFighterNames()) {
 				if (charname != null) listBox1.Items.Add(charname);
 			}
 
@@ -97,20 +106,20 @@ namespace BrawlCostumeManager {
 			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
 			if (Use_PM) {
-				if (Constants.PM30Mappings.ContainsKey(ff.CharNum)) {
-					int[] mappings = Constants.PM30Mappings[ff.CharNum];
+				if (PortraitMap.PM30Mappings.ContainsKey(ff.CharNum)) {
+					int[] mappings = PortraitMap.PM30Mappings[ff.CharNum];
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
-				} else if (Constants.PortraitToCostumeMappings.ContainsKey(ff.CharNum)) {
-					int[] mappings = Constants.PortraitToCostumeMappings[ff.CharNum];
+				} else if (pmap.ContainsMapping(ff.CharNum)) {
+					int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
 			} else if (!Use_cBliss) {
-				if (Constants.PortraitToCostumeMappings.ContainsKey(ff.CharNum)) {
-					int[] mappings = Constants.PortraitToCostumeMappings[ff.CharNum];
+				if (pmap.ContainsMapping(ff.CharNum)) {
+					int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
 					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 				}
 			}
-			if (Swap_Wario && ff.CharNum == Constants.CharBustTexFor("wario")) {
+			if (Swap_Wario && ff.CharNum == pmap.CharBustTexFor("wario")) {
 				portraitNum = (portraitNum + 6) % 12;
 			}
 			foreach (PortraitViewer p in portraitViewers) {
@@ -135,14 +144,14 @@ namespace BrawlCostumeManager {
 					}
 				}
 			} else {
-				int charNum = Constants.CharBustTexFor(charname);
+				int charNum = pmap.CharBustTexFor(charname);
 				int upperBound = 12;
 				for (int i = 0; i < upperBound; i++) {
 					string pathNoExt = charname + "/fit" + charname + i.ToString("D2");
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pac", charNum, i));
 					listBox2.Items.Add(new FighterFile(pathNoExt + ".pcs", charNum, i));
 					if (charname.ToLower() == "kirby") {
-						foreach (string hatchar in Constants.KirbyHats) {
+						foreach (string hatchar in PortraitMap.KirbyHats) {
 							listBox2.Items.Add(new FighterFile("kirby/fitkirby" + hatchar + i.ToString("D2") + ".pac", charNum, i));
 						}
 					}
@@ -312,7 +321,7 @@ namespace BrawlCostumeManager {
 			string kirby, hat;
 
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
-			if (Constants.CharBustTexFor("kirby") != ff.CharNum) {
+			if (pmap.CharBustTexFor("kirby") != ff.CharNum) {
 				MessageBox.Show(this, "Select a Kirby costume before using this feature.");
 				return;
 			}
