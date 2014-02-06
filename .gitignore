@@ -3,4 +3,5 @@ bin/Debug
 bin/Release/*
 !bin/Release/BrawlCostumeManager.exe
 !bin/Release/*.txt
+bin/Release/BrawlLib*.txt
 *.suo
