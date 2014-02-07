@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BrawlLib;
 using System.Globalization;
 
 namespace BrawlCostumeManager {
@@ -86,7 +85,6 @@ namespace BrawlCostumeManager {
 									name.Append(c);
 								}
 								byte[] cssc_data = File.ReadAllBytes(cssc);
-								for (int i=0; i<4; i++) Console.Write((char)cssc_data[i]);
 								List<int> colors = new List<int>();
 								for (int i = 0x20; i < 0x40; i+=2) {
 									if (cssc_data[i] == 0x0c) break;
