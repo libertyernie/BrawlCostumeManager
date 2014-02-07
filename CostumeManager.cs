@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrawlLib;
+using System.Globalization;
 
 namespace BrawlCostumeManager {
 	public partial class CostumeManager : Form {
@@ -70,10 +71,33 @@ namespace BrawlCostumeManager {
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
 
 			pmap.ClearAll();
-			pmap.SetFighter("roy", 110);
-			pmap.SetMapping(110, new int[] { 0, 1, 2, 4, 5, 3 });
-			pmap.SetFighter("cloud", 111);
-			pmap.SetMapping(111, new int[] { 0, 5, 1, 3, 2, 4 });
+			if (Directory.Exists("../BrawlEx")) {
+				foreach (string fitc in Directory.EnumerateFiles("../BrawlEx/FighterConfig")) {
+					byte id;
+					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
+						if (id >= 0x3F) {
+							string cssc = "../BrawlEx/CSSSlotConfig/CSSSlot" + id.ToString("X2") + ".dat";
+							if (File.Exists(cssc)) {
+								byte[] fitc_data = File.ReadAllBytes(fitc);
+								StringBuilder name = new StringBuilder();
+								for (int i = 0xb0; i < 0xc0; i++) {
+									char c = (char)fitc_data[i];
+									if (c == 0) break;
+									name.Append(c);
+								}
+								byte[] cssc_data = File.ReadAllBytes(cssc);
+								for (int i=0; i<4; i++) Console.Write((char)cssc_data[i]);
+								List<int> colors = new List<int>();
+								for (int i = 0x20; i < 0x40; i+=2) {
+									if (cssc_data[i] == 0x0c) break;
+									colors.Add(cssc_data[i + 1]);
+								}
+								pmap.SetFighter(name.ToString(), id + 47, colors.ToArray());
+							}
+						}
+					}
+				}
+			}
 
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();

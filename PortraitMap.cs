@@ -173,11 +173,8 @@ namespace BrawlCostumeManager {
 			return arr;
 		}
 
-		public void SetFighter(string name, int index) {
-			additionalFighters.Add(new Fighter(name, index));
-		}
-
-		public void SetMapping(int index, int[] colors) {
+		public void SetFighter(string name, int index, int[] colors) {
+			additionalFighters.Add(new Fighter(name.ToLower(), index));
 			additionalMappings.Add(index, colors);
 		}
 
