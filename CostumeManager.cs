@@ -74,7 +74,7 @@ namespace BrawlCostumeManager {
 				foreach (string fitc in Directory.EnumerateFiles("../BrawlEx/FighterConfig")) {
 					byte id;
 					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
-						int? cssSlotIndex = PortraitMap.FighterIndexToCSSSlot(id);
+						int? cssSlotIndex = PortraitMap.GetCSSSlot(id);
 						if (cssSlotIndex != null) {
 							string cssc = "../BrawlEx/CSSSlotConfig/CSSSlot" + cssSlotIndex.Value.ToString("X2") + ".dat";
 							if (File.Exists(cssc)) {
