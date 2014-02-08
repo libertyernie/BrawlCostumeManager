@@ -12,10 +12,17 @@ namespace BrawlCostumeManager {
 		public class Fighter {
 			public string Name { get; private set; }
 			public int CharBustTexIndex { get; private set; }
+			public int? FighterIndex, CSSSlot;
 
 			public Fighter(string Name, int CharBustTexIndex) {
 				this.Name = Name;
 				this.CharBustTexIndex = CharBustTexIndex;
+			}
+
+			public Fighter(string Name, int CharBustTexIndex, int FighterIndex, int CSSSlot)
+			: this(Name, CharBustTexIndex) {
+				this.FighterIndex = FighterIndex;
+				this.CSSSlot = CSSSlot;
 			}
 		}
 
@@ -23,48 +30,88 @@ namespace BrawlCostumeManager {
 		/// Name/index pairs that are known to be used in Brawl or Project M 3.0.
 		/// </summary>
 		private static Fighter[] KnownFighters = {
-			new Fighter("mario", 0),
-			new Fighter("donkey", 1),
-			new Fighter("link", 2),
-			new Fighter("samus", 3),
-			new Fighter("yoshi", 4),
-			new Fighter("kirby", 5),
-			new Fighter("fox", 6),
-			new Fighter("pikachu", 7),
-			new Fighter("luigi", 8),
-			new Fighter("captain", 9),
-			new Fighter("ness", 10),
-			new Fighter("koopa", 11),
-			new Fighter("peach", 12),
-			new Fighter("zelda", 13),
-			new Fighter("sheik", 14),
-			new Fighter("popo", 15),
-			new Fighter("marth", 16),
-			new Fighter("gamewatch", 17),
-			new Fighter("falco", 18),
-			new Fighter("ganon", 19),
-			new Fighter("metaknight", 21),
-			new Fighter("pit", 22),
-			new Fighter("szerosuit", 23),
-			new Fighter("pikmin", 24),
-			new Fighter("lucas", 25),
-			new Fighter("diddy", 26),
+			new Fighter("mario", 0,
+				0, 0),
+			new Fighter("donkey", 1,
+				1, 1),
+			new Fighter("link", 2,
+				2, 2),
+			new Fighter("samus", 3,
+				3, 3),
+			new Fighter("yoshi", 4,
+				4, 5),
+			new Fighter("kirby", 5,
+				5, 6),
+			new Fighter("fox", 6,
+				6, 7),
+			new Fighter("pikachu", 7,
+				7, 8),
+			new Fighter("luigi", 8,
+				8, 9),
+			new Fighter("captain", 9,
+				9, 0xa),
+			new Fighter("ness", 10,
+				0xa, 0xb),
+			new Fighter("koopa", 11,
+				0xb, 0xc),
+			new Fighter("peach", 12,
+				0xc, 0xd),
+			new Fighter("zelda", 13,
+				0xd, 0xe),
+			new Fighter("sheik", 14,
+				0xe, 0xf),
+			new Fighter("popo", 15,
+				0xf, 0x10),
+			new Fighter("marth", 16,
+				0x11, 0x11),
+			new Fighter("gamewatch", 17,
+				0x12, 0x12),
+			new Fighter("falco", 18,
+				0x13, 0x13),
+			new Fighter("ganon", 19,
+				0x14, 0x14),
+			new Fighter("metaknight", 21,
+				0x16, 0x16),
+			new Fighter("pit", 22,
+				0x17, 0x17),
+			new Fighter("szerosuit", 23,
+				0x18, 0x4),
+			new Fighter("pikmin", 24,
+				0x19, 0x18),
+			new Fighter("lucas", 25,
+				0x1a, 0x19),
+			new Fighter("diddy", 26,
+				0x1b, 0x1a),
 			new Fighter("mewtwo", 27), // PM 3.0
-			new Fighter("poketrainer", 27),
-			new Fighter("pokelizardon", 28),
-			new Fighter("pokezenigame", 29),
-			new Fighter("pokefushigisou", 30),
-			new Fighter("dedede", 31),
-			new Fighter("lucario", 32),
-			new Fighter("ike", 33),
-			new Fighter("robot", 34),
-			new Fighter("purin", 36),
-			new Fighter("wario", 37),
+			new Fighter("poketrainer", 27,
+				0x1c, 0x1b),
+			new Fighter("pokelizardon", 28,
+				0x1d, 0x1c),
+			new Fighter("pokezenigame", 29,
+				0x1e, 0x1d),
+			new Fighter("pokefushigisou", 30,
+				0x1f, 0x1e),
+			new Fighter("dedede", 31,
+				0x20, 0x1f),
+			new Fighter("lucario", 32,
+				0x21, 0x20),
+			new Fighter("ike", 33,
+				0x22, 0x21),
+			new Fighter("robot", 34,
+				0x23, 0x22),
+			new Fighter("purin", 36,
+				0x25, 0x23),
+			new Fighter("wario", 37,
+				0x15, 0x15),
 			new Fighter("roy", 39), // PM 3.0
-			new Fighter("toonlink", 40),
-			new Fighter("wolf", 43),
-			new Fighter("snake", 45),
-			new Fighter("sonic", 46),
+			new Fighter("toonlink", 40,
+				0x29, 0x28),
+			new Fighter("wolf", 43,
+				0x2c, 0x29),
+			new Fighter("snake", 45,
+				0x2e, 0x2a),
+			new Fighter("sonic", 46,
+				0x2f, 0x2b),
 		};
 
 		private static Dictionary<int, int[]> PortraitToCostumeMappings = new Dictionary<int, int[]>() {
@@ -136,6 +183,13 @@ namespace BrawlCostumeManager {
 			{40, new int[] {0,1,3,4,5,6,7}},
 			{43, new int[] {0,1,4,2,3,5,6}},
 		};
+
+		public static int? FighterIndexToCSSSlot(int fighter) {
+			if (fighter >= 0x3F) return fighter;
+			return (from f in KnownFighters
+					where f.FighterIndex == fighter
+					select (int?)f.CSSSlot).FirstOrDefault();
+		}
 		#endregion
 
 		private List<Fighter> additionalFighters;
@@ -166,16 +220,30 @@ namespace BrawlCostumeManager {
 			return additionalMappings.ContainsKey(index) || PortraitToCostumeMappings.ContainsKey(index);
 		}
 
-		public int[] GetPortraitMappings(int index) {
+		public int[] GetPortraitMappings(int charBustTexIndex) {
 			int[] arr;
-			bool b = additionalMappings.TryGetValue(index, out arr)
-				|| PortraitToCostumeMappings.TryGetValue(index, out arr);
+			bool b = additionalMappings.TryGetValue(charBustTexIndex, out arr)
+				|| PortraitToCostumeMappings.TryGetValue(charBustTexIndex, out arr);
 			return arr;
 		}
 
-		public void SetFighter(string name, int index, int[] colors) {
+		private int GetCharBustTexIndex(string name) {
+			var q = additionalFighters.Concat(KnownFighters)
+				.Where(f => string.Equals(f.Name, name, StringComparison.InvariantCultureIgnoreCase));
+			if (!q.Any()) {
+				throw new Exception("No known fighter found with name " + name + ".");
+			}
+			return q.First().CharBustTexIndex;
+		}
+		public void SetCharBustTexIndex(string name, int index) {
 			additionalFighters.Add(new Fighter(name.ToLower(), index));
-			additionalMappings.Add(index, colors);
+		}
+
+		public void SetColorMappings(int charBustTexIndex, int[] colors) {
+			additionalMappings.Add(charBustTexIndex, colors);
+		}
+		public void SetColorMappings(string name, int[] colors) {
+			SetColorMappings(GetCharBustTexIndex(name), colors);
 		}
 
 		public void ClearAll() {

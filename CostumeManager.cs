@@ -74,23 +74,28 @@ namespace BrawlCostumeManager {
 				foreach (string fitc in Directory.EnumerateFiles("../BrawlEx/FighterConfig")) {
 					byte id;
 					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
-						if (id >= 0x3F) {
-							string cssc = "../BrawlEx/CSSSlotConfig/CSSSlot" + id.ToString("X2") + ".dat";
+						int? cssSlotIndex = PortraitMap.FighterIndexToCSSSlot(id);
+						if (cssSlotIndex != null) {
+							string cssc = "../BrawlEx/CSSSlotConfig/CSSSlot" + cssSlotIndex.Value.ToString("X2") + ".dat";
 							if (File.Exists(cssc)) {
 								byte[] fitc_data = File.ReadAllBytes(fitc);
-								StringBuilder name = new StringBuilder();
+								StringBuilder sb = new StringBuilder();
 								for (int i = 0xb0; i < 0xc0; i++) {
 									char c = (char)fitc_data[i];
 									if (c == 0) break;
-									name.Append(c);
+									sb.Append(c);
 								}
+								string name = sb.ToString();
 								byte[] cssc_data = File.ReadAllBytes(cssc);
 								List<int> colors = new List<int>();
 								for (int i = 0x20; i < 0x40; i+=2) {
 									if (cssc_data[i] == 0x0c) break;
 									colors.Add(cssc_data[i + 1]);
 								}
-								pmap.SetFighter(name.ToString(), id + 47, colors.ToArray());
+								if (!pmap.GetKnownFighterNames().Contains(name, StringComparer.InvariantCultureIgnoreCase)) {
+									pmap.SetCharBustTexIndex(name, id + 47);
+								}
+								pmap.SetColorMappings(name, colors.ToArray());
 							}
 						}
 					}
