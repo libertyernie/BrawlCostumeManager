@@ -296,7 +296,7 @@ namespace BrawlCostumeManager {
 		}
 
 		private void toolStripButton1_Click(object sender, EventArgs e) {
-			new About(Icon).Show();
+			new AboutBSM(Icon, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
 		}
 
 		private void updateMewtwoHatForCurrentKirbyToolStripMenuItem_Click(object sender, EventArgs e) {
