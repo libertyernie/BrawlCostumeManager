@@ -4,6 +4,16 @@ http://www.lakora.us/brawl/costumemanager
 
 --------
 
+Changes since 3.2:
+	* Can automatically read BrawlEx configuration files and add/update
+	  this program's character info (names, portrait/color mappings)
+	* New feature to update the Mewtwo Kirby hat in Project M with the
+	  color from the standard Kirby texture
+
+NOTE: this program now requires BrawlManagerLib.dll to run.
+
+--------
+
 Brawl Costume Manager is a .NET application for managing the costume files and
 corresponding CSS (character select screen) portraits for each character in
 Super Smash Bros. Brawl.
@@ -37,13 +47,3 @@ The top two options in the Options menu - "Limit model viewer to 256x320" and
 "+-20 default X bounds" - change the size and zoom levels of the model viewer.
 They can be used with the "Screenshot -> portraits" entry in the Tools menu to
 take a picture of the model and use it as a temporary CSS portrait.
-
---------
-
-Changes since 3.2:
-	* Can automatically read BrawlEx configuration files and add/update
-	  this program's character info (names, portrait/color mappings)
-	* New feature to update the Mewtwo Kirby hat in Project M with the
-	  color from the standard Kirby texture
-
-NOTE: this program now requires BrawlManagerLib.dll to run.
