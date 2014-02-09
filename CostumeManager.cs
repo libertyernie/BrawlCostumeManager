@@ -291,10 +291,6 @@ namespace BrawlCostumeManager {
 			modelManager1.RefreshModel();
 		}
 
-		private void common5MenSelchrFaceToolStripMenuItem_Click(object sender, EventArgs e) {
-
-		}
-
 		private void toolStripButton1_Click(object sender, EventArgs e) {
 			new AboutBSM(Icon, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
 		}
