@@ -1,9 +1,6 @@
-Brawl Costume Manager 3.2 - January 22, 2013
+Brawl Costume Manager 3.3 - February 9, 2013
 Copyright © 2014 libertyernie
 http://www.lakora.us/brawl/costumemanager
-
-Project M or cBliss users: make sure to check the appropriate option in the
-Options menu so the mappings between costume and portrait numbers are correct!
 
 --------
 
@@ -13,6 +10,12 @@ Super Smash Bros. Brawl.
 
 To choose a directory to work in, use the Change Directory button. Select the
 folder that contains "fighter" and "system" (usually the "pf" folder.)
+
+Project M or cBliss users: make sure to check the appropriate option in the
+Options menu so the mappings between costume and portrait numbers are correct!
+BrawlEx extensions should now be detected automatically.
+
+--------
 
 The top-left pane shows a list of characters. When you select a character, the
 bottom-left pane will show possible costume files for that character from 00
@@ -37,7 +40,10 @@ take a picture of the model and use it as a temporary CSS portrait.
 
 --------
 
-Changes since 3.1:
-	* "minusery" added to list of search paths
+Changes since 3.2:
+	* Can automatically read BrawlEx configuration files and add/update
+	  this program's character info (names, portrait/color mappings)
+	* New feature to update the Mewtwo Kirby hat in Project M with the
+	  color from the standard Kirby texture
 
-Note: this program does not currently require BrawlManagerLib.dll to run.
+NOTE: this program now requires BrawlManagerLib.dll to run.
