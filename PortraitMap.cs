@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace BrawlCostumeManager {
 	public class PortraitMap {
@@ -171,7 +174,7 @@ namespace BrawlCostumeManager {
 			{46, new int[] {0,5,4,2,1}},
 		};
 
-		public static Dictionary<int, int[]> PM30Mappings = new Dictionary<int, int[]>() {
+		private static Dictionary<int, int[]> PM30Mappings = new Dictionary<int, int[]>() {
 			{0, new int[] {0,6,3,2,5,7,11,8,9,10}},
 			{1, new int[] {0,4,1,3,2,5,6}},
 			{2, new int[] {0,1,3,5,6,4,7,8,9}},
@@ -199,6 +202,22 @@ namespace BrawlCostumeManager {
 		};
 		#endregion
 
+		#region special subclasses
+		public class ProjectM : PortraitMap {
+			public ProjectM()
+				: base() {
+				foreach (int i in PM30Mappings.Keys) {
+					this.AddPortraitMappings(i, PM30Mappings[i]);
+				}
+			}
+		}
+		public class CBliss : PortraitMap {
+			public override bool ContainsMapping(int index) {
+				return additionalMappings.ContainsKey(index);
+			}
+		}
+		#endregion
+
 		private List<Fighter> additionalFighters;
 		private Dictionary<int, int[]> additionalMappings;
 
@@ -223,7 +242,7 @@ namespace BrawlCostumeManager {
 				.Distinct();
 		}
 
-		public bool ContainsMapping(int index) {
+		public virtual bool ContainsMapping(int index) {
 			return additionalMappings.ContainsKey(index) || PortraitToCostumeMappings.ContainsKey(index);
 		}
 
@@ -248,17 +267,51 @@ namespace BrawlCostumeManager {
 			Console.WriteLine("Added " + name + ": char_bust_tex index = " + index);
 		}
 
-		public void SetColorMappings(int charBustTexIndex, int[] colors) {
+		public void AddPortraitMappings(int charBustTexIndex, int[] colors) {
 			additionalMappings.Add(charBustTexIndex, colors);
-			Console.WriteLine("Set color/portrait mappings for index " + charBustTexIndex);
+			Console.WriteLine("Added color/portrait mappings for index " + charBustTexIndex);
 		}
-		public void SetColorMappings(string name, int[] colors) {
-			SetColorMappings(GetCharBustTexIndex(name), colors);
+		public void AddPortraitMappings(string name, int[] colors) {
+			AddPortraitMappings(GetCharBustTexIndex(name), colors);
 		}
 
 		public void ClearAll() {
 			additionalFighters.Clear();
 			additionalMappings.Clear();
+		}
+
+		public void BrawlExScan(string brawlExDir) {
+			if (Directory.Exists(brawlExDir)) {
+				foreach (string fitc in Directory.EnumerateFiles(brawlExDir + "/FighterConfig")) {
+					byte id;
+					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
+						int? cssSlotIndex = PortraitMap.GetCSSSlot(id);
+						if (cssSlotIndex != null) {
+							string cssc = brawlExDir + "/CSSSlotConfig/CSSSlot" + cssSlotIndex.Value.ToString("X2") + ".dat";
+							if (File.Exists(cssc)) {
+								byte[] fitc_data = File.ReadAllBytes(fitc);
+								StringBuilder sb = new StringBuilder();
+								for (int i = 0xb0; i < 0xc0; i++) {
+									char c = (char)fitc_data[i];
+									if (c == 0) break;
+									sb.Append(c);
+								}
+								string name = sb.ToString();
+								byte[] cssc_data = File.ReadAllBytes(cssc);
+								List<int> colors = new List<int>();
+								for (int i = 0x20; i < 0x40; i += 2) {
+									if (cssc_data[i] == 0x0c) break;
+									colors.Add(cssc_data[i + 1]);
+								}
+								if (!this.GetKnownFighterNames().Contains(name, StringComparer.InvariantCultureIgnoreCase)) {
+									this.SetCharBustTexIndex(name, id + 47);
+								}
+								this.AddPortraitMappings(name, colors.ToArray());
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
