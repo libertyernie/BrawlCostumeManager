@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,8 +18,7 @@ namespace BrawlCostumeManager {
 
 		private List<PortraitViewer> portraitViewers;
 		private PortraitMap pmap;
-
-		public bool Use_cBliss, Use_PM;
+		
 		public bool Swap_Wario;
 
 		public CostumeManager() {
@@ -71,32 +69,7 @@ namespace BrawlCostumeManager {
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
 
 			pmap.ClearAll();
-			if (Directory.Exists("../BrawlEx")) {
-				foreach (string fitc in Directory.EnumerateFiles("../BrawlEx/FighterConfig")) {
-					byte id;
-					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
-						if (id >= 0x3F) {
-							string cssc = "../BrawlEx/CSSSlotConfig/CSSSlot" + id.ToString("X2") + ".dat";
-							if (File.Exists(cssc)) {
-								byte[] fitc_data = File.ReadAllBytes(fitc);
-								StringBuilder name = new StringBuilder();
-								for (int i = 0xb0; i < 0xc0; i++) {
-									char c = (char)fitc_data[i];
-									if (c == 0) break;
-									name.Append(c);
-								}
-								byte[] cssc_data = File.ReadAllBytes(cssc);
-								List<int> colors = new List<int>();
-								for (int i = 0x20; i < 0x40; i+=2) {
-									if (cssc_data[i] == 0x0c) break;
-									colors.Add(cssc_data[i + 1]);
-								}
-								pmap.SetFighter(name.ToString(), id + 47, colors.ToArray());
-							}
-						}
-					}
-				}
-			}
+			pmap.BrawlExScan("../BrawlEx");
 
 			int selectedIndex = listBox1.SelectedIndex;
 			listBox1.Items.Clear();
@@ -128,19 +101,9 @@ namespace BrawlCostumeManager {
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
 			if (ff == null) return;
 			int portraitNum = ff.CostumeNum;
-			if (Use_PM) {
-				if (PortraitMap.PM30Mappings.ContainsKey(ff.CharNum)) {
-					int[] mappings = PortraitMap.PM30Mappings[ff.CharNum];
-					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
-				} else if (pmap.ContainsMapping(ff.CharNum)) {
-					int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
-					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
-				}
-			} else if (!Use_cBliss) {
-				if (pmap.ContainsMapping(ff.CharNum)) {
-					int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
-					portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
-				}
+			if (pmap.ContainsMapping(ff.CharNum)) {
+				int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
+				portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
 			}
 			if (Swap_Wario && ff.CharNum == pmap.CharBustTexFor("wario")) {
 				portraitNum = (portraitNum + 6) % 12;
@@ -198,16 +161,22 @@ namespace BrawlCostumeManager {
 		}
 
 		private void cBlissCheckbox_Click(object sender, EventArgs e) {
-			Use_cBliss = cBlissCheckbox.Checked;
-			if (Use_cBliss) projectMCheckbox.Checked = false;
+			projectMCheckbox.Checked = false;
+			pmap = cBlissCheckbox.Checked
+				? new PortraitMap.CBliss()
+				: new PortraitMap();
+			pmap.BrawlExScan("../BrawlEx");
 			foreach (PortraitViewer p in portraitViewers) {
 				RefreshPortraits();
 			}
 		}
 
 		private void projectMCheckbox_Click(object sender, EventArgs e) {
-			Use_PM = projectMCheckbox.Checked;
-			if (Use_PM) cBlissCheckbox.Checked = false;
+			cBlissCheckbox.Checked = false;
+			pmap = projectMCheckbox.Checked
+				? new PortraitMap.ProjectM()
+				: new PortraitMap();
+			pmap.BrawlExScan("../BrawlEx");
 			foreach (PortraitViewer p in portraitViewers) {
 				RefreshPortraits();
 			}
