@@ -14,21 +14,20 @@ namespace BrawlCostumeManager {
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			try {
-				trylib();
+				accessLibraries();
 			} catch (Exception e) {
-				MessageBox.Show(null, "Could not load BrawlManagerLib.dll.", e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(null, e.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
-			}
-
-			var D = BrawlLib.Properties.Settings.Default;
-			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
-				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
 			}
 
 			Application.Run(new CostumeManager());
 		}
 
-		static void trylib() {
+		private static void accessLibraries() {
+			var D = BrawlLib.Properties.Settings.Default;
+			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
+				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
+			}
 			var Q = new BrawlManagerLib.CollapsibleSplitter();
 		}
 	}
