@@ -280,7 +280,9 @@ namespace BrawlCostumeManager {
 			additionalMappings.Clear();
 		}
 
+		private Dictionary<int, string> whoWasAdded_Debug;
 		public void BrawlExScan(string brawlExDir) {
+			if (whoWasAdded_Debug == null) whoWasAdded_Debug = new Dictionary<int, string>();
 			if (Directory.Exists(brawlExDir)) {
 				foreach (string fitc in Directory.EnumerateFiles(brawlExDir + "/FighterConfig")) {
 					byte id;
@@ -306,7 +308,17 @@ namespace BrawlCostumeManager {
 								if (!this.GetKnownFighterNames().Contains(name, StringComparer.InvariantCultureIgnoreCase)) {
 									this.SetCharBustTexIndex(name, id + 47);
 								}
-								this.AddPortraitMappings(name, colors.ToArray());
+								try {
+									this.AddPortraitMappings(name, colors.ToArray());
+								} catch (ArgumentException) {
+									string oldname = null;
+									int i = GetCharBustTexIndex(name);
+									whoWasAdded_Debug.TryGetValue(i, out oldname);
+									System.Windows.Forms.MessageBox.Show("Could not add mappings for CSSSlot" +
+										cssSlotIndex.Value.ToString("X2") +
+										".dat (" + name + ") - mappings were already added for " +
+										(oldname??"-null-") + " (char_bust_tex index " + i + ")");
+								}
 							}
 						}
 					}
