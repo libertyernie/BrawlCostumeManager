@@ -5,3 +5,4 @@ bin/Release/*
 !bin/Release/*.txt
 bin/Release/BrawlLib*.txt
 *.suo
+*.csproj.user
