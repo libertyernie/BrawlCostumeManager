@@ -264,7 +264,7 @@ namespace BrawlCostumeManager {
 		public void SetCharBustTexIndex(string name, int index) {
 			name = name.ToLower();
 			additionalFighters.Add(new Fighter(name, index));
-			Console.WriteLine("Added " + name + ": char_bust_tex index = " + index);
+			Console.WriteLine(name + ": char_bust_tex index = " + index);
 		}
 
 		public void AddPortraitMappings(int charBustTexIndex, int[] colors) {
@@ -305,9 +305,7 @@ namespace BrawlCostumeManager {
 									if (cssc_data[i] == 0x0c) break;
 									colors.Add(cssc_data[i + 1]);
 								}
-								if (!this.GetKnownFighterNames().Contains(name, StringComparer.InvariantCultureIgnoreCase)) {
-									this.SetCharBustTexIndex(name, id + 47);
-								}
+								this.SetCharBustTexIndex(name, id + 47);
 								try {
 									this.AddPortraitMappings(name, colors.ToArray());
 								} catch (ArgumentException) {
