@@ -264,7 +264,11 @@ namespace BrawlCostumeManager {
 		public void SetCharBustTexIndex(string name, int index) {
 			name = name.ToLower();
 			additionalFighters.Add(new Fighter(name, index));
-			Console.WriteLine(name + ": char_bust_tex index = " + index);
+			string n = name;
+			if (KnownFighters.Any(f => f.Name == name)) {
+				n += " (override)";
+			}
+			Console.WriteLine(n + ": char_bust_tex index = " + index);
 		}
 
 		public void AddPortraitMappings(int charBustTexIndex, int[] colors) {
@@ -287,25 +291,32 @@ namespace BrawlCostumeManager {
 				foreach (string fitc in Directory.EnumerateFiles(brawlExDir + "/FighterConfig")) {
 					byte id;
 					if (byte.TryParse(fitc.Substring(fitc.Length - 6, 2), NumberStyles.HexNumber, null, out id)) {
+						byte[] fitc_data = File.ReadAllBytes(fitc);
+						StringBuilder sb = new StringBuilder();
+						for (int i = 0xb0; i < 0xc0; i++) {
+							char c = (char)fitc_data[i];
+							if (c == 0) break;
+							sb.Append(c);
+						}
+						string name = sb.ToString();
+
 						int? cssSlotIndex = PortraitMap.GetCSSSlot(id);
 						if (cssSlotIndex != null) {
+							// I have no idea if Cosmetic and CSSSlot files have the smae IDs, but it seems to work 
+							string cosm = brawlExDir + "/CosmeticConfig/Cosmetic" + cssSlotIndex.Value.ToString("X2") + ".dat";
+							if (File.Exists(cosm)) {
+								byte[] cosm_data = File.ReadAllBytes(cosm);
+								this.SetCharBustTexIndex(name, cosm_data[0x10]);
+							}
+
 							string cssc = brawlExDir + "/CSSSlotConfig/CSSSlot" + cssSlotIndex.Value.ToString("X2") + ".dat";
 							if (File.Exists(cssc)) {
-								byte[] fitc_data = File.ReadAllBytes(fitc);
-								StringBuilder sb = new StringBuilder();
-								for (int i = 0xb0; i < 0xc0; i++) {
-									char c = (char)fitc_data[i];
-									if (c == 0) break;
-									sb.Append(c);
-								}
-								string name = sb.ToString();
 								byte[] cssc_data = File.ReadAllBytes(cssc);
 								List<int> colors = new List<int>();
 								for (int i = 0x20; i < 0x40; i += 2) {
 									if (cssc_data[i] == 0x0c) break;
 									colors.Add(cssc_data[i + 1]);
 								}
-								this.SetCharBustTexIndex(name, id + 47);
 								try {
 									this.AddPortraitMappings(name, colors.ToArray());
 								} catch (ArgumentException) {
