@@ -1,16 +1,14 @@
-Brawl Costume Manager 3.3 - February 9, 2013
+Brawl Costume Manager 3.4 - March 14, 2014
 Copyright © 2014 libertyernie
 http://www.lakora.us/brawl/costumemanager
 
 --------
 
-Changes since 3.2:
-	* Can automatically read BrawlEx configuration files and add/update
-	  this program's character info (names, portrait/color mappings)
-	* New feature to update the Mewtwo Kirby hat in Project M with the
-	  color from the standard Kirby texture
+Changes since 3.3:
+	* You can now define a different char_bust_tex index for a Brawl or
+	  Project M character, like Mewtwo or Roy
 
-NOTE: this program now requires BrawlManagerLib.dll to run.
+NOTE: this program requires BrawlManagerLib.dll to run.
 
 --------
 
