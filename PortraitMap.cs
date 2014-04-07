@@ -77,56 +77,72 @@ namespace BrawlCostumeManager {
 			new Fighter("sonic", 46),
 		};
 
-		private static Dictionary<int, int> FighterIndexToCSSSlot = new Dictionary<int, int>() {
-			{0x00, 0x00},
-			{0x01, 0x01},
-			{0x02, 0x02},
-			{0x03, 0x03},
-			{0x04, 0x05},
-			{0x05, 0x06},
-			{0x06, 0x07},
-			{0x07, 0x08},
-			{0x08, 0x09},
-			{0x09, 0x0A},
-			{0x0A, 0x0B},
-			{0x0B, 0x0C},
-			{0x0C, 0x0D},
-			{0x0D, 0x0E},
-			{0x0E, 0x0F},
-			{0x0F, 0x10},
-			{0x11, 0x11},
-			{0x12, 0x12},
-			{0x13, 0x13},
-			{0x14, 0x14},
-			{0x16, 0x16},
-			{0x17, 0x17},
-			{0x18, 0x04},
-			{0x19, 0x18},
-			{0x1A, 0x19},
-			{0x1B, 0x1A},
-			{0x1C, 0x1B},
-			{0x1D, 0x1C},
-			{0x1E, 0x1D},
-			{0x1F, 0x1E},
-			{0x20, 0x1F},
-			{0x21, 0x20},
-			{0x22, 0x21},
-			{0x23, 0x22},
-			{0x25, 0x23},
-			{0x15, 0x15},
-			{0x29, 0x28},
-			{0x2C, 0x29},
-			{0x2E, 0x2A},
-			{0x2F, 0x2B},
+		// Fighter, CSSSlot, Cosmetic
+		private static readonly int[][] IndexMappings = {
+			new int[] {0x00, 0x00, 0x00},
+			new int[] {0x01, 0x01, 0x01},
+			new int[] {0x02, 0x02, 0x02},
+			new int[] {0x03, 0x03, 0x03},
+			new int[] {0x04, 0x05, 0x04},
+			new int[] {0x05, 0x06, 0x05},
+			new int[] {0x06, 0x07, 0x06},
+			new int[] {0x07, 0x08, 0x07},
+			new int[] {0x08, 0x09, 0x08},
+			new int[] {0x09, 0x0A, 0x09},
+			new int[] {0x0A, 0x0B, 0x0A},
+			new int[] {0x0B, 0x0C, 0x0B},
+			new int[] {0x0C, 0x0D, 0x0C},
+			new int[] {0x0D, 0x0E, 0x0D},
+			new int[] {0x0E, 0x0F, 0x0E},
+			new int[] {0x0F, 0x10, 0x0F},
+			new int[] {0x11, 0x11, 0x10},
+			new int[] {0x12, 0x12, 0x11},
+			new int[] {0x13, 0x13, 0x12},
+			new int[] {0x14, 0x14, 0x13},
+			new int[] {0x16, 0x16, 0x15},
+			new int[] {0x17, 0x17, 0x16},
+			new int[] {0x18, 0x04, 0x17},
+			new int[] {0x19, 0x18, 0x18},
+			new int[] {0x1A, 0x19, 0x19},
+			new int[] {0x1B, 0x1A, 0x1A},
+			new int[] {0x1C, 0x1B, 0x1B},
+			new int[] {0x1D, 0x1C, 0x1C},
+			new int[] {0x1E, 0x1D, 0x1D},
+			new int[] {0x1F, 0x1E, 0x1E},
+			new int[] {0x20, 0x1F, 0x1F},
+			new int[] {0x21, 0x20, 0x20},
+			new int[] {0x22, 0x21, 0x21},
+			new int[] {0x23, 0x22, 0x22},
+			new int[] {0x25, 0x23, 0x23},
+			new int[] {0x15, 0x15, 0x14},
+			new int[] {0x29, 0x28, 0x25},
+			new int[] {0x2C, 0x29, 0x27},
+			new int[] {0x2E, 0x2A, 0x28},
+			new int[] {0x2F, 0x2B, 0x29},
 		};
 
 		public static int? GetCSSSlot(int fighterIndex) {
 			if (fighterIndex >= 0x3F) {
 				return fighterIndex;
 			}
-			int ret;
-			if (FighterIndexToCSSSlot.TryGetValue(fighterIndex, out ret)) {
-				return ret;
+			var q = from a in IndexMappings
+					where a[0] == fighterIndex
+					select a[1];
+			if (q.Any()) {
+				return q.First();
+			}
+			return null;
+		}
+
+		public static int? GetCosmeticSlot(int fighterIndex) {
+			if (fighterIndex >= 0x3F) {
+				return fighterIndex;
+			}
+			var q = from a in IndexMappings
+					where a[0] == fighterIndex
+					select a[2];
+			if (q.Any()) {
+				return q.First();
 			}
 			return null;
 		}
@@ -300,15 +316,18 @@ namespace BrawlCostumeManager {
 						}
 						string name = sb.ToString();
 
-						int? cssSlotIndex = PortraitMap.GetCSSSlot(id);
-						if (cssSlotIndex != null) {
-							// I have no idea if Cosmetic and CSSSlot files have the smae IDs, but it seems to work 
-							string cosm = brawlExDir + "/CosmeticConfig/Cosmetic" + cssSlotIndex.Value.ToString("X2") + ".dat";
+						int? cosmeticIndex = PortraitMap.GetCosmeticSlot(id);
+						if (cosmeticIndex != null) {
+							string cosm = brawlExDir + "/CosmeticConfig/Cosmetic" + cosmeticIndex.Value.ToString("X2") + ".dat";
 							if (File.Exists(cosm)) {
+								Console.WriteLine("Cosmetic" + cosmeticIndex.Value.ToString("X2"));
 								byte[] cosm_data = File.ReadAllBytes(cosm);
 								this.SetCharBustTexIndex(name, cosm_data[0x10]);
 							}
+						}
 
+						int? cssSlotIndex = PortraitMap.GetCSSSlot(id);
+						if (cssSlotIndex != null) {
 							string cssc = brawlExDir + "/CSSSlotConfig/CSSSlot" + cssSlotIndex.Value.ToString("X2") + ".dat";
 							if (File.Exists(cssc)) {
 								byte[] cssc_data = File.ReadAllBytes(cssc);
