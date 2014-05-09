@@ -6,3 +6,4 @@ bin/Release/*
 bin/Release/BrawlLib*.txt
 *.suo
 *.csproj.user
+bin/Release

@@ -57,7 +57,7 @@ namespace BrawlCostumeManager {
 			foreach (int i in bres_cache.Keys) {
 				if (bres_cache[i] != null && bres_cache[i].IsDirty) {
 					bres_cache[i].Merge();
-					bres_cache[i].Export("../info/portrite/InfFace" + i.ToString("D3") + ".brres");
+					bres_cache[i].Export("../menu/common/char_bust_tex/MenSelchrFaceB" + i.ToString("D2") + "0.brres");
 				}
 			}
 		}
