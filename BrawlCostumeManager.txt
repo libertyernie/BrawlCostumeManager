@@ -1,12 +1,14 @@
-Brawl Costume Manager 3.4 - March 14, 2014
+Brawl Costume Manager 3.4.7 - May 9, 2014
 Copyright © 2014 libertyernie
 http://www.lakora.us/brawl/costumemanager
 
 --------
 
-Changes since 3.3:
-	* You can now define a different char_bust_tex index for a Brawl or
-	  Project M character, like Mewtwo or Roy
+Changes since 3.4.5:
+	* If one of your BrawlEx characters has a number above 47, it now works
+	  properly (prior versions worked only for numbers >= 100)
+	* Result portraits are saved to the correct path, instead of overwriting
+	  battle portraits
 
 NOTE: this program requires BrawlManagerLib.dll to run.
 
