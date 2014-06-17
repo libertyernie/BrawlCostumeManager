@@ -115,13 +115,13 @@ namespace BrawlCostumeManager {
 			new int[] {0x23, 0x22, 0x22},
 			new int[] {0x25, 0x23, 0x23},
 			new int[] {0x15, 0x15, 0x14},
-			new int[] {0x29, 0x28, 0x25},
-			new int[] {0x2C, 0x29, 0x27},
-			new int[] {0x2E, 0x2A, 0x28},
-			new int[] {0x2F, 0x2B, 0x29},
+			new int[] {0x29, 0x24, 0x25},
+			new int[] {0x2C, 0x25, 0x27},
+			new int[] {0x2E, 0x26, 0x28},
+			new int[] {0x2F, 0x27, 0x29},
 		};
 
-		public static int? GetCSSSlot(int fighterIndex) {
+		private static int? GetCSSSlot(int fighterIndex) {
 			if (fighterIndex >= 0x3F) {
 				return fighterIndex;
 			}
@@ -134,7 +134,7 @@ namespace BrawlCostumeManager {
 			return null;
 		}
 
-		public static int? GetCosmeticSlot(int fighterIndex) {
+		private static int? GetCosmeticSlot(int fighterIndex) {
 			if (fighterIndex >= 0x3F) {
 				return fighterIndex;
 			}
