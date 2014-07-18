@@ -265,8 +265,6 @@ namespace BrawlCostumeManager {
 				int y = (screenshot.Height - rect.Height) / -2;
 				g.DrawImage(screenshot, x, y);
 			}
-			screenshot.Save(@"C:\Users\Owner\Desktop\1.png");
-			rect.Save(@"C:\Users\Owner\Desktop\2.png");
 
 			string iconFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".png";
 

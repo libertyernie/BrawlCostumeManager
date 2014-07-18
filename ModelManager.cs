@@ -272,6 +272,7 @@ namespace BrawlCostumeManager {
 		};
 
 		public Bitmap GrabScreenshot(bool withTransparency) {
+			modelPanel1.Refresh();
 			return modelPanel1.GrabScreenshot(withTransparency);
 		}
 	}
