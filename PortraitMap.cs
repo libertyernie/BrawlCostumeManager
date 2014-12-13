@@ -190,39 +190,55 @@ namespace BrawlCostumeManager {
 			{46, new int[] {0,5,4,2,1}},
 		};
 
-		private static Dictionary<int, int[]> PM30Mappings = new Dictionary<int, int[]>() {
-			{0, new int[] {0,6,3,2,5,7,11,8,9,10}},
-			{1, new int[] {0,4,1,3,2,5,6}},
-			{2, new int[] {0,1,3,5,6,4,7,8,9}},
-			{4, new int[] {0,1,3,4,5,6,7,8,9,10}},
-			{6, new int[] {0,4,1,2,3,5,6,7,8,9}},
-			{7, new int[] {0,1,2,3,4,5}},
-			{8, new int[] {0,5,1,3,4,6,7}},
-			{10, new int[] {0,5,4,2,3,6,7}},
-			{11, new int[] {0,4,1,3,5,6,7}},
-			{12, new int[] {0,5,1,3,2,4,7,6}},
-			{18, new int[] {0,5,3,1,2,4,6,7,8,9}},
-			{21, new int[] {0,4,1,2,3,5,6}},
-			{24, new int[] {0,4,1,5,2,3,6}},
-			{25, new int[] {0,4,1,3,2,5,6}},
-			{27, new int[] {0,1,2,3,4,5,6}},
-			{28, new int[] {0,1,2,3,4,5}},
-			{29, new int[] {0,1,2,3,4,5}},
-			{30, new int[] {0,1,2,3,4,5}},
-			{32, new int[] {0,1,4,5,2,6}},
-			{34, new int[] {0,6,5,4,3,2,7}},
-			{36, new int[] {0,1,4,3,2,5,6}},
-			{37, new int[] {6,7,10,8,11,9,0,1,3,2,5,4}},
-			{40, new int[] {0,1,3,4,5,6,7}},
-			{43, new int[] {0,1,4,2,3,5,6}},
-		};
+		private static Dictionary<int, int[]> PM35Mappings = CompilePM35Mappings();
+
+		private static Dictionary<int, int[]> CompilePM35Mappings() {
+			Dictionary<int, int[]> ret = new Dictionary<int, int[]>();
+			for (int key=0; key<46; key++) {
+				switch (key) {
+					case 0:
+						ret.Add(key, new int[] { 0, 6, 3, 2, 5, 7, 11, 8, 9, 10 });
+						break;
+					case 12:
+						ret.Add(key, new int[] { 0, 5, 1, 3, 2, 4, 7, 6 });
+						break;
+					case 27:
+						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
+						break;
+					case 28:
+						ret.Add(key, new int[] { 0, 1, 3, 2, 4, 5 });
+						break;
+					case 29:
+						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
+						break;
+					case 37:
+						ret.Add(key, new int[] { 6, 7, 10, 8, 11, 9, 0, 1, 3, 2, 5, 4 });
+						break;
+					case 39:
+						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
+						break;
+					default:
+						if (!PortraitToCostumeMappings.ContainsKey(key)) continue;
+						int[] arr1 = PortraitToCostumeMappings[key];
+						int max = arr1.Max();
+						int[] arr2 = new int[12];
+						Array.Copy(arr1, arr2, arr1.Length);
+						for (var i = arr1.Length; i < 12; i++) {
+							arr2[i] = ++max;
+						}
+						ret.Add(key, arr2);
+						break;
+				}
+			}
+			return ret;
+		}
 		#endregion
 
 		#region special subclasses
 		public class ProjectM : PortraitMap {
 			public ProjectM()
 				: base() {
-				foreach (int i in PM30Mappings.Keys) {
+				foreach (int i in PM35Mappings.Keys) {
 					this.AddPortraitMappings(i, PM30Mappings[i]);
 				}
 			}
