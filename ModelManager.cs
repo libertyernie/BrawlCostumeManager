@@ -177,11 +177,11 @@ namespace BrawlCostumeManager {
 
 		public void LoadModel(MDL0Node model) {
 			model.Populate();
-			model._renderBones = false;
-			model._renderPolygons = true;
-			model._renderWireframe = false;
-			model._renderVertices = false;
-			model._renderBox = false;
+			model._renderAttribs._renderBones = false;
+			model._renderAttribs._renderPolygons = true;
+			model._renderAttribs._renderWireframe = false;
+			model._renderAttribs._renderVertices = false;
+			model._renderAttribs._renderBox = false;
 			model.ApplyCHR(null, 0);
 			model.ApplySRT(null, 0);
 
@@ -273,7 +273,7 @@ namespace BrawlCostumeManager {
 
 		public Bitmap GrabScreenshot(bool withTransparency) {
 			modelPanel1.Refresh();
-			return modelPanel1.GrabScreenshot(withTransparency);
+			return modelPanel1.GetScreenshot(withTransparency);
 		}
 	}
 }

@@ -103,7 +103,8 @@ namespace BrawlCostumeManager {
 			int portraitNum = ff.CostumeNum;
 			if (pmap.ContainsMapping(ff.CharNum)) {
 				int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
-				portraitNum = Array.IndexOf(mappings, ff.CostumeNum);
+				int index = Array.IndexOf(mappings, ff.CostumeNum);
+				if (index >= 0) portraitNum = index;
 			}
 			if (Swap_Wario && ff.CharNum == pmap.CharBustTexFor("wario")) {
 				portraitNum = (portraitNum + 6) % 12;

@@ -170,7 +170,7 @@ namespace BrawlCostumeManager {
 					if (Texture.Format == WiiPixelFormat.CMPR) {
 						Bitmap bitmap = new Bitmap(filename);
 						UnsafeBuffer buffer = TextureConverter.CMPR.GeneratePreview(bitmap);
-						BrawlLib.IO.FileMap textureData = TextureConverter.CMPR.EncodeTextureCached(bitmap, Texture.LevelOfDetail, buffer);
+						BrawlLib.IO.FileMap textureData = TextureConverter.CMPR.EncodeTEX0TextureCached(bitmap, Texture.LevelOfDetail, buffer);
 						Texture.ReplaceRaw(textureData);
 					} else {
 						Texture.Replace(filename);

@@ -239,7 +239,7 @@ namespace BrawlCostumeManager {
 			public ProjectM()
 				: base() {
 				foreach (int i in PM35Mappings.Keys) {
-					this.AddPortraitMappings(i, PM30Mappings[i]);
+					this.AddPortraitMappings(i, PM35Mappings[i]);
 				}
 			}
 		}
