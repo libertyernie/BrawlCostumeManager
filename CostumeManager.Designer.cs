@@ -36,6 +36,7 @@
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.limitModelViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.defaultZoomLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,7 @@
 			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.collapsibleSplitter1 = new BrawlManagerLib.CollapsibleSplitter();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
-			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.costumeNumberLabel = new BrawlCostumeManager.CostumeNumberLabel();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
@@ -184,6 +185,13 @@
 			this.updateSSSStockIconsToolStripMenuItem.Text = "Copy stock icons to SSS";
 			this.updateSSSStockIconsToolStripMenuItem.Click += new System.EventHandler(this.updateSSSStockIconsToolStripMenuItem_Click);
 			// 
+			// updateMewtwoHatForCurrentKirbyToolStripMenuItem
+			// 
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Name = "updateMewtwoHatForCurrentKirbyToolStripMenuItem";
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Text = "Update Mewtwo hat for current Kirby";
+			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Click += new System.EventHandler(this.updateMewtwoHatForCurrentKirbyToolStripMenuItem_Click);
+			// 
 			// toolStripDropDownButton1
 			// 
 			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -295,6 +303,7 @@
 			// otherPVsFlowLayoutPanel
 			// 
 			this.otherPVsFlowLayoutPanel.AutoSize = true;
+			this.otherPVsFlowLayoutPanel.Controls.Add(this.costumeNumberLabel);
 			this.otherPVsFlowLayoutPanel.Controls.Add(this.battlePortraitViewer1);
 			this.otherPVsFlowLayoutPanel.Controls.Add(this.resultPortraitViewer1);
 			this.otherPVsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
@@ -305,14 +314,14 @@
 			// 
 			// battlePortraitViewer1
 			// 
-			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 3);
+			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 23);
 			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
 			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
 			this.battlePortraitViewer1.TabIndex = 5;
 			// 
 			// resultPortraitViewer1
 			// 
-			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 129);
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 149);
 			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
 			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
 			this.resultPortraitViewer1.TabIndex = 4;
@@ -382,12 +391,14 @@
 			this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 381);
 			this.cssPortraitViewer1.TabIndex = 3;
 			// 
-			// updateMewtwoHatForCurrentKirbyToolStripMenuItem
+			// costumeNumberLabel
 			// 
-			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Name = "updateMewtwoHatForCurrentKirbyToolStripMenuItem";
-			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Text = "Update Mewtwo hat for current Kirby";
-			this.updateMewtwoHatForCurrentKirbyToolStripMenuItem.Click += new System.EventHandler(this.updateMewtwoHatForCurrentKirbyToolStripMenuItem_Click);
+			this.costumeNumberLabel.Location = new System.Drawing.Point(3, 0);
+			this.costumeNumberLabel.Name = "costumeNumberLabel";
+			this.costumeNumberLabel.Size = new System.Drawing.Size(128, 20);
+			this.costumeNumberLabel.TabIndex = 6;
+			this.costumeNumberLabel.Text = "No costume selected";
+			this.costumeNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// CostumeManager
 			// 
@@ -452,5 +463,6 @@
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter2;
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter3;
 		private System.Windows.Forms.ToolStripMenuItem updateMewtwoHatForCurrentKirbyToolStripMenuItem;
+		private CostumeNumberLabel costumeNumberLabel;
 	}
 }

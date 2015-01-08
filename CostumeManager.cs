@@ -100,11 +100,17 @@ namespace BrawlCostumeManager {
 		public void RefreshPortraits() {
 			FighterFile ff = (FighterFile)listBox2.SelectedItem;
 			if (ff == null) return;
+
 			int portraitNum = ff.CostumeNum;
+			bool confident = false;
+
 			if (pmap.ContainsMapping(ff.CharNum)) {
 				int[] mappings = pmap.GetPortraitMappings(ff.CharNum);
 				int index = Array.IndexOf(mappings, ff.CostumeNum);
-				if (index >= 0) portraitNum = index;
+				if (index >= 0) {
+					portraitNum = index;
+					confident = true;
+				}
 			}
 			if (Swap_Wario && ff.CharNum == pmap.CharBustTexFor("wario")) {
 				portraitNum = (portraitNum + 6) % 12;
@@ -112,6 +118,7 @@ namespace BrawlCostumeManager {
 			foreach (PortraitViewer p in portraitViewers) {
 				p.UpdateImage(ff.CharNum, portraitNum);
 			}
+			costumeNumberLabel.UpdateImage(ff.CharNum, portraitNum, confident);
 		}
 
 		public void listBox1_SelectedIndexChanged(object sender, EventArgs e) {

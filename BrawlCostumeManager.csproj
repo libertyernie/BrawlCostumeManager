@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KirbyCopy.cs" />
+    <Compile Include="Portrait Viewers\CostumeNumberLabel.cs" />
     <Compile Include="Portrait Viewers\PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -181,7 +181,6 @@ namespace BrawlCostumeManager {
 			model._renderAttribs._renderPolygons = true;
 			model._renderAttribs._renderWireframe = false;
 			model._renderAttribs._renderVertices = false;
-			model._renderAttribs._renderBox = false;
 			model.ApplyCHR(null, 0);
 			model.ApplySRT(null, 0);
 
@@ -202,8 +201,8 @@ namespace BrawlCostumeManager {
 				}
 			}
 
-			Vector3 min, max;
-			((IRenderedObject)model).GetBox(out min, out max);
+			Box box = model.GetBox();
+			Vector3 min = box.Min, max = box.Max;
 			if (ZoomOut) {
 				min._x += 20;
 				max._x -= 20;
