@@ -1,17 +1,15 @@
-Brawl Costume Manager 3.4.9 - July 20, 2014
-Copyright © 2014 libertyernie
+Brawl Costume Manager 3.5 - February 2, 2015
+Copyright © 2015 libertyernie
 http://www.lakora.us/brawl/costumemanager
 
 --------
 
-Changes since 3.4.5:
-	* If one of your BrawlEx characters has a number above 47, it now works
-	  properly (prior versions worked only for numbers >= 100)
-	* Result portraits are saved to the correct path, instead of overwriting
-	  battle portraits
-	* CSSSlot mappings for Toon Link, Wolf, Snake and Sonic have been fixed
-	* "Screenshot -> portraits" feature fixed (force re-rendering and remove
-	  Image.Save call)
+Changes since 3.4.9:
+	* Potrait mappings have been added for Project M 3.5
+	* If a costume is not present in the internal portrait mapping (Brawl or
+	  Project M), "guess" at the right portrait by using the costume file number
+	* A label in the right sidebar shows the costume index for the selected
+	  color (a yellow background means the program is guessing)
 
 NOTE: this program requires BrawlManagerLib.dll to run.
 

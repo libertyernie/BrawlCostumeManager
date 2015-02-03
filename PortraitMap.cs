@@ -196,29 +196,40 @@ namespace BrawlCostumeManager {
 			Dictionary<int, int[]> ret = new Dictionary<int, int[]>();
 			for (int key=0; key<46; key++) {
 				switch (key) {
+					// Some of these characters have their portraits in a different order than Brawl, or have their additional portraits "out of order."
 					case 0:
+						// Mario
 						ret.Add(key, new int[] { 0, 6, 3, 2, 5, 7, 11, 8, 9, 10 });
 						break;
 					case 12:
+						// Fox
 						ret.Add(key, new int[] { 0, 5, 1, 3, 2, 4, 7, 6 });
 						break;
 					case 27:
+						// Mewtwo - uses Pokémon Trainer's character index
 						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
 						break;
 					case 28:
-						ret.Add(key, new int[] { 0, 1, 3, 2, 4, 5 });
+						// Charizard
+						ret.Add(key, new int[] { 0, 1, 3, 2, 4, 5, 6 });
 						break;
 					case 29:
-						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
+						// Squirtle
+						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5, 6, 7 });
 						break;
 					case 37:
+						// Wario
 						ret.Add(key, new int[] { 6, 7, 10, 8, 11, 9, 0, 1, 3, 2, 5, 4 });
 						break;
 					case 39:
-						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5 });
+						// Roy
+						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5, 6 });
 						break;
 					default:
 						if (!PortraitToCostumeMappings.ContainsKey(key)) continue;
+
+						/* All other characters in PM 3.5 follow a pattern: the portraits start out in the same order Brawl has them,
+						   and any additional portraits are in order after the highest-numbered original portrait. */
 						int[] arr1 = PortraitToCostumeMappings[key];
 						int max = arr1.Max();
 						int[] arr2 = new int[12];
@@ -245,6 +256,9 @@ namespace BrawlCostumeManager {
 		}
 		public class CBliss : PortraitMap {
 			public override bool ContainsMapping(int index) {
+				/* Do not check PortraitToCostumeMappings if cBliss is selected.
+				   The program will be "uncertain" of all portrait mappings (yellow label) and
+				   it will look for each portrait at the costume index - which is how cBliss works. */
 				return additionalMappings.ContainsKey(index);
 			}
 		}
