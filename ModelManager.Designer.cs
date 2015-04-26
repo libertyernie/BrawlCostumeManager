@@ -32,15 +32,11 @@ namespace BrawlCostumeManager {
 			// modelPanel1
 			// 
 			this.modelPanel1.AllowDrop = true;
-			this.modelPanel1.DefaultTranslate = ((System.Vector3)(resources.GetObject("modelPanel1.DefaultTranslate")));
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelPanel1.Location = new System.Drawing.Point(0, 21);
 			this.modelPanel1.Name = "modelPanel1";
-			this.modelPanel1.RotationScale = 0.1F;
 			this.modelPanel1.Size = new System.Drawing.Size(292, 252);
 			this.modelPanel1.TabIndex = 0;
-			this.modelPanel1.TranslationScale = 0.05F;
-			this.modelPanel1.ZoomScale = 2.5F;
 			// 
 			// comboBox1
 			// 

@@ -23,7 +23,7 @@ namespace BrawlCostumeManager {
 			if (!bres_cache.TryGetValue(charNum, out bres)) {
 				string f = "../menu/common/char_bust_tex/MenSelchrFaceB" + charNum.ToString("D2") + "0.brres";
 				if (new FileInfo(f).Exists) {
-					bres_cache[charNum] = bres = (BRESNode)NodeFactory.FromFile(null, f);
+					bres_cache[charNum] = bres = (BRRESNode)NodeFactory.FromFile(null, f);
 				}
 
 				if (bres == null) {

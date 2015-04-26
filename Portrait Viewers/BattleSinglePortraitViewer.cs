@@ -27,7 +27,7 @@ namespace BrawlCostumeManager {
 			if (!bres_cache.TryGetValue(index, out bres)) {
 				string f = "../info/portrite/InfFace" + tex_number + ".brres";
 				if (new FileInfo(f).Exists) {
-					bres_cache[index] = bres = (BRESNode)NodeFactory.FromFile(null, f);
+					bres_cache[index] = bres = (BRRESNode)NodeFactory.FromFile(null, f);
 				}
 
 				if (bres == null) {
